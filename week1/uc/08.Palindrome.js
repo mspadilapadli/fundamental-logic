@@ -8,7 +8,7 @@ for (let i = 0; i < kata.length; i++) {
 
 console.log(reversedWord === kata ? "true" : "false");
 
-// function
+// function test
 wordReversed = (kata) => {
     reversed = "";
     for (let i = 0; i < kata.length; i++) {
@@ -18,3 +18,12 @@ wordReversed = (kata) => {
 };
 
 console.log(wordReversed("katak"));
+
+// * build on function reverse
+
+wordReversed2 = (kata) => {
+    kata = kata.replace(/\s/g, "").toLocaleLowerCase();
+    reversedKata = kata.split("").reverse().join("");
+    return reversedKata === kata;
+};
+console.log(wordReversed2("kasur rusak"));
