@@ -3,7 +3,7 @@ kata = "kasur rusa";
 reversedWord = "";
 
 for (let i = 0; i < kata.length; i++) {
-    reversedWord += kata[kata.length - 1 - i];
+    reversedWord + kata[kata.length - 1 - i];
 }
 
 console.log(reversedWord === kata ? "true" : "false");
@@ -18,6 +18,7 @@ wordReversed = (kata) => {
 };
 
 console.log(wordReversed("katak"));
+console.log(wordReversed("katak"));
 
 // * build on function reverse
 
@@ -27,3 +28,8 @@ wordReversed2 = (kata) => {
     return reversedKata === kata;
 };
 console.log(wordReversed2("kasur rusak"));
+// testing sortcut
+
+var q = "kasur rusak";
+q = "ubah";
+console.log(q);

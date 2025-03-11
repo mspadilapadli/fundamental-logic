@@ -10,3 +10,11 @@ if (!kata && kata !== false) {
         kata ? `thank you for agreeing` : `cannot proceed without agreeing`
     );
 }
+
+// create palindrome function
+function palindrome(str) {
+    let reversedStr = str.split("").reverse().join("");
+    return str === reversedStr;
+}
+
+console.log(palindrome("kasurr rusak"));

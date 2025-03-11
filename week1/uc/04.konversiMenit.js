@@ -33,7 +33,7 @@ console.log(convertDetikToMenitDetik(detik1)); // Output: 1:28
 console.log(convertDetikToMenitDetik(detik2)); // Output: 0:44
 console.log(convertDetikToMenitDetik(detik3)); // Output: 1:01
 
-// ! string.padStart(targetLength, padString);
+//* string.padStart(targetLength, padString);
 //  padStart adalah metode di JavaScript yang digunakan untuk menambahkan karakter di awal string hingga string mencapai panjang tertentu. Ini sangat berguna untuk memastikan bahwa string memiliki panjang yang konsisten, misalnya untuk format tanggal, waktu, atau angka yang selalu memiliki digit tertentu.
 // *  patameter
 // * targetLength: Panjang target dari string akhir setelah padding. Jika panjang string asli sudah lebih besar atau sama dengan targetLength, maka string asli tidak akan diubah.
@@ -42,3 +42,32 @@ console.log(convertDetikToMenitDetik(detik3)); // Output: 1:01
 // ex :
 // let str = '5';
 // console.log(str.padStart(2, "0")); // Output: 05
+
+let detik5 = 123;
+let menit5 = Math.floor(detik5 / 60);
+let sisaDetik5 = detik5 % 60;
+
+//  if else
+if (sisaDetik5 < 10) {
+    console.log(`${menit5}:0${sisaDetik5}`);
+} else {
+    console.log(`${menit5}:${sisaDetik5}`);
+}
+
+// ternary
+sisaDetik5 < 10
+    ? console.log(`${menit5}:0${sisaDetik5}`)
+    : console.log(`${menit5}:${sisaDetik5}`);
+
+// function
+function secondsToMinutes(seconds) {
+    let minutes = Math.floor(seconds / 60);
+    let reminingSeconds = seconds % 60;
+
+    let minutesString = minutes.toString().padStart(2, "0");
+    let secondsString = reminingSeconds.toString().padStart(2, "0");
+
+    return `${minutesString}:${secondsString}`;
+}
+
+console.log(secondsToMinutes(187));
