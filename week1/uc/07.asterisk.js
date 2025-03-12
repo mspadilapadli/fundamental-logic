@@ -26,7 +26,7 @@ for (let i = 1; i <= row3; i++) {
 }
 
 // *repeat
-// '*'.repeat(i): Mengulangi karakter * sebanyak i kali, di mana i adalah nomor baris.
+// '*'.repeat(i): Mengulangi karakter * sebanyak i kali, di mana i adalah nomor baris. (build in function)
 for (let i = 1; i <= row3; i++) {
     console.log("R".repeat(i));
 }
