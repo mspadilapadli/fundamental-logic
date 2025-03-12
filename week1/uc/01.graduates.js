@@ -22,4 +22,5 @@ if (nilai > 70 && absen < 5) {
 }
 
 // ternary
-nilai > 70 && absen < 5 ? console.log("lulus") : console.log("tidak lulus");
+console.log(nilai > 70 && absen < 5 ? `${nama} Lulus` : `${nama} Tidak Lulus`);
+// test push ssh

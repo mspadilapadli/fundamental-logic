@@ -27,7 +27,7 @@ for (let i = 1; i <= row3; i++) {
 
 // *repeat
 // '*'.repeat(i): Mengulangi karakter * sebanyak i kali, di mana i adalah nomor baris.
-for (let i = 0; i < row3; i++) {
+for (let i = 1; i <= row3; i++) {
     console.log("R".repeat(i));
 }
 
@@ -44,4 +44,26 @@ for (let i = 0; i < row4; i++) {
 // *repeat
 for (let i = row4; i > 0; i--) {
     console.log("R".repeat(i));
+}
+
+// ==================================
+
+// * 3.1
+let row31 = 5;
+for (let i = 0; i < row31; i++) {
+    let sym = "";
+    for (let j = 0; j <= i; j++) {
+        sym += "*";
+    }
+    console.log(sym);
+}
+
+// * 4.1
+let row41 = 5;
+for (let i = 0; i < row41; i++) {
+    let sym = "";
+    for (let j = i; j < row4; j++) {
+        sym += "*";
+    }
+    console.log(sym);
 }
