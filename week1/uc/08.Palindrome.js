@@ -23,13 +23,17 @@ console.log(wordReversed("katak"));
 // * build on function reverse
 
 wordReversed2 = (kata) => {
-    kata = kata.replace(/\s/g, "").toLocaleLowerCase();
+    kata = kata.replace(/\s/g, "").toLocaleLowerCase(); // Menghapus semua spasi (\s = whitespace). dan mengubah ke lowercase
     reversedKata = kata.split("").reverse().join("");
     return reversedKata === kata;
 };
 console.log(wordReversed2("kasur rusak"));
-// testing sortcut
 
-var q = "kasur rusak";
-q = "ubah";
-console.log(q);
+// create palindrome function
+function palindrome(str) {
+    let reversedStr = str.split("").reverse().join("");
+    return str === reversedStr;
+}
+
+console.log(palindrome("kasur rusak"));
+console.log(isNaN(NaN));
