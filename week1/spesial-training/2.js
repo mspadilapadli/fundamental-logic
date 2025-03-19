@@ -5,7 +5,7 @@ Buatlah sebuah proses yang memiliki 1 input nilai berupa number dan akan menghas
 - Tapi, jika nilai tidak lebih besar dari 80, maka sistem mengeluarkan “nilai anda 80 kebawah” .
 */
 
-let nilai = 80;
+let nilai = 111;
 
 /**
  Algoritma :
@@ -21,9 +21,15 @@ let nilai = 80;
  */
 
 if (nilai >= 100) {
-  console.log("nilai anda di atas 100");
+    console.log("nilai anda di atas 100");
 } else if (nilai >= 80 && nilai < 100) {
-  console.log("nilai anda di atas 80");
+    console.log("nilai anda di atas 80");
 } else if (nilai < 80) {
-  console.log("nilai anda 80 kebawah");
+    console.log("nilai anda 80 kebawah");
 }
+
+nilai >= 100
+    ? console.log(`nilai anda di atas 100`)
+    : nilai < 100 && nilai >= 80
+    ? console.log(`nilai anda di atas 80`)
+    : console.log(`nilai anda dibawah 80`);

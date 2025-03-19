@@ -27,3 +27,7 @@ Buatlah sebuah proses untuk membuat looping yang akan mencetak tulisan 'Javascri
 // 18 - Javascript is so cool
 // 19 - Javascript is so cool
 // 20 - Javascript is so cool
+
+for (i = 0; i <= 20; i++) {
+    console.log(`${i} - Javascript is cool`);
+}

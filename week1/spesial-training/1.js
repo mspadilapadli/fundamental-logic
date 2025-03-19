@@ -36,3 +36,6 @@ if (kelamin === "pria") {
 } else if (kelamin === "wanita") {
     console.log(`halo bu ${nama}`);
 }
+kelamin === "pria"
+    ? console.log(`halo pak ${nama}`)
+    : console.log(`hallo bu ${nama}`);

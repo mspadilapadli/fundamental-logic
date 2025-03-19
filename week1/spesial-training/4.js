@@ -19,10 +19,14 @@ Timer :
  3. 1:02
 */
 
-let nilai = 1283901829045;
+let nilai = 128390182904;
 
 if (nilai % 2 === 0) {
-  console.log(`${nilai} merupakan angka genap`);
+    console.log(`${nilai} merupakan angka genap`);
 } else {
-  console.log(`${nilai} merupakan angka ganjil`);
+    console.log(`${nilai} merupakan angka ganjil`);
 }
+
+nilai % 2 == 0
+    ? console.log(`${nilai} merupakan angka genap`)
+    : console.log(`${nilai} merupakan angka ganjil`);

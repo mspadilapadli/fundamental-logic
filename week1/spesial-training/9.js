@@ -20,6 +20,29 @@
     output: 'huruf o tidak ditemukan'
 */
 
-let kata = 'i love javascript';
-let huruf = 'a';
-let hasil = -1;
+let kata = "i love javascript";
+let huruf = "o";
+let hasil;
+
+// *1
+for (let i = 0; i < kata.length; i++) {
+    const index = kata[i];
+    if (index === huruf) {
+        hasil = i;
+        break;
+    } else {
+        console.log("huruf tidak ditemukan");
+    }
+}
+console.log(hasil);
+
+// *2
+// break cannot using in forEach
+let hasil2;
+kata.split("").forEach((char, i) => {
+    if (char === huruf) {
+        hasil2 = i;
+        return;
+    }
+});
+console.log(hasil2);

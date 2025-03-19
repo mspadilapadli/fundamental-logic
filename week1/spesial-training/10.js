@@ -14,6 +14,29 @@ penjelasan =>
 total : 2 + 2 + 1 = 5
 */
 
-let kata1 = 'javascript is so cool';
-let kata2 = 'aioue';
+let kata1 = "javascript is so cool";
+let kata2 = "aioue";
 let totalHurufYangDicari = 0;
+
+for (let i = 0; i < kata1.length; i++) {
+    const index1 = kata1[i];
+    for (let j = 0; j < kata2.length; j++) {
+        const index2 = kata2[j];
+        if (index1 === index2) {
+            totalHurufYangDicari++;
+        }
+    }
+}
+console.log(totalHurufYangDicari);
+
+// *2
+let totalHurufYangDicari2 = 0;
+kata1.split("").forEach((index1) => {
+    kata2.split("").forEach((index2) => {
+        if (index1 === index2) {
+            totalHurufYangDicari2++;
+        }
+    });
+});
+
+console.log(totalHurufYangDicari2);

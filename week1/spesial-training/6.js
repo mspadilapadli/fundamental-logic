@@ -16,14 +16,33 @@ let kataPertama = string[0] + string[1] + string[2] + string[3] = string[4]
 Buatlah sebuah proses untuk menyusun kata yang urutannya terbalik dengan mengakses huruf per huruf menggunakan index nya
 */
 
-let string = 'so is cool Javascript';
+let string = "cool so is Javascript";
 // susun menjadi 'Javascript is so cool'
 
-let kataPertama; // silahkan di isi dengan karakter yang tepat
-let kataKedua = string[3] + string[4];
-let kataKetiga; // silahkan di isi dengan karakter yang tepat
-let kataKeempat; // silahkan di isi dengan karakter yang tepat
+let kataPertama =
+    string[11] +
+    string[12] +
+    string[13] +
+    string[14] +
+    string[15] +
+    string[16] +
+    string[17] +
+    string[18] +
+    string[19] +
+    string[20]; // silahkan di isi dengan karakter yang tepat
+let kataKedua = string[8] + string[9];
+let kataKetiga = string[5] + string[6]; // silahkan di isi dengan karakter yang tepat
+let kataKeempat = string[0] + string[1] + string[2] + string[3]; // silahkan di isi dengan karakter yang tepat
 
-console.log(`${kataPertama} ${kataKedua} ${kataKetiga} ${kataKeempat}`)
+console.log(`${kataPertama} ${kataKedua} ${kataKetiga} ${kataKeempat}`);
 
+// * semi manual x build in function
 
+let reversed = [];
+string.split(" ").forEach((word) => {
+    reversed.unshift(word);
+});
+console.log(reversed.join(" "));
+
+// * built in function
+console.log(string.split(" ").reverse().join(` `));

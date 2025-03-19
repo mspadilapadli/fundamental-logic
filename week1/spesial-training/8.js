@@ -14,6 +14,24 @@
     output: 'jumlah huruf o ada 3'
 */
 
-let kata = 'javascript is so cool'; 
-let huruf = 'o';
+let kata = "javascript is so cool";
+let huruf = "a";
 let totalHurufYangDicari = 0;
+
+for (let i = 0; i < kata.length; i++) {
+    const index = kata[i];
+    if (index === huruf) {
+        totalHurufYangDicari++;
+    }
+}
+
+console.log(totalHurufYangDicari);
+
+// * 2
+let totalHurufYangDicari2 = 0;
+kata.split("").forEach((e) => {
+    if (e === huruf) {
+        totalHurufYangDicari2++;
+    }
+});
+console.log(totalHurufYangDicari2);

@@ -21,20 +21,38 @@ let angka = 1;
  
  */
 
+// switch (angka) {
+//   case 1:
+//     console.log("Januari");
+//     break;
+//   case 2:
+//     console.log("Februari");
+//     break;
+//   case 3:
+//     console.log("Maret");
+//     break;
+//   case 4:
+//     console.log("April");
+//     break;
+//   default:
+//     console.log("Nomor bulan harus 1 -4");
+//     break;
+// }
+
 switch (angka) {
-  case 1:
-    console.log("Januari");
-    break;
-  case 2:
-    console.log("Februari");
-    break;
-  case 3:
-    console.log("Maret");
-    break;
-  case 4:
-    console.log("April");
-    break;
-  default:
-    console.log("Nomor bulan harus 1 -4");
-    break;
+    case 1:
+        console.log("Januari");
+        break;
+    case 2:
+        console.log("Februari");
+        break;
+    case 3:
+        console.log("Maret");
+        break;
+    case 4:
+        console.log("April");
+        break;
+    default:
+        console.log("Nomor bulan harus 1-4");
+        break;
 }

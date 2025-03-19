@@ -29,13 +29,26 @@ let nama = "Santi";
 let tahun = 1980;
 let generasi = "";
 
+generasi =
+    tahun >= 1994 && tahun <= 1964
+        ? `Baby Boomer`
+        : tahun >= 1965 && tahun <= 1979
+        ? `Generasi X`
+        : tahun >= 1980 && tahun <= 1994
+        ? `Generasi Y (Milenial)`
+        : tahun >= 1995 && tahun <= 2015
+        ? `Generasi Z`
+        : ``;
+
+console.log(`${nama} berdasarkan tahun lahir anda tergolong ${generasi} `);
+
 if (tahun >= 1944 && tahun <= 1964) {
-  generasi = "Baby boomer";
+    generasi = "Baby boomer";
 } else if (tahun >= 1965 && tahun <= 1979) {
-  generasi = "Generasi X";
+    generasi = "Generasi X";
 } else if (tahun >= 1980 && tahun <= 1994) {
-  generasi = "Generasi Y (Milenial)";
+    generasi = "Generasi Y (Milenial)";
 } else if (tahun >= 1995 && tahun <= 2015) {
-  generasi = "Generasi Z";
+    generasi = "Generasi Z";
 }
 console.log(`${nama} berdasarkan tahun lahir anda tergolong ${generasi}`);
