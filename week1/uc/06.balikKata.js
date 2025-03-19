@@ -1,4 +1,4 @@
-let kata = "Javascript";
+let kata = "13";
 let balikKata = "";
 let reversedWord = "";
 
@@ -15,3 +15,7 @@ for (let i = kata.length - 1; i >= 0; i--) {
     balikKata += el;
 }
 console.log(balikKata);
+
+//*3
+let reversed = kata.split("").reverse().join("");
+console.log(reversed);
