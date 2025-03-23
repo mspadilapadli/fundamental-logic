@@ -1,3 +1,4 @@
+// * 1 manual push
 function ladder(str) {
     let result = [];
     for (let i = 0; i < str.length; i++) {
@@ -11,7 +12,16 @@ function ladder(str) {
     return result;
 }
 
+// *2 with build in function
+
+function ladder2(str) {
+    return Array.from({ length: str.length }, (_, i) =>
+        str.slice(0, str.length - i).split("")
+    );
+}
+
 console.log(ladder("hacktiv8"));
+console.log(ladder2("hacktiv8"));
 
 // expected output
 // [
