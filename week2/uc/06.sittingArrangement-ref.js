@@ -84,15 +84,65 @@ function sittingArrangement(person, col) {
     return result;
 }
 
-//DRIVER CODE
+// * 4
+// function sittingArrangement(person, column) {
+//     if (column < 1) return "Invalid number";
 
-console.log(sittingArrangement(["A", "B", "C"], 0)); //Invalid number
-console.log(sittingArrangement(["Juli", "Nisa", "Desi", "Ulfa", "Puji"], 2)); //[ [ 'Juli', 'Nisa' ], [ 'Desi', 'Ulfa' ], [ 'Puji', 'Kursi Kosong' ] ]
-console.log(sittingArrangement(["Yosia", "Asrawi", "Andru"], 3)); //[ [ 'Yosia', 'Asrawi', 'Andru' ] ]
+//     let result = [];
+//     let row = [];
+//     let index = 0;
+
+//     while (index < person.length) {
+//         row.push(person[index]);
+
+//         if (row.length === column) {
+//             result.push(row);
+//             row = []; // Reset row
+//         }
+
+//         index++;
+//     }
+
+//     // Jika masih ada sisa orang yang belum masuk ke result
+//     if (row.length > 0) {
+//         while (row.length < column) {
+//             row.push("Kursi Kosong");
+//         }
+//         result.push(row);
+//     }
+
+//     return result;
+// }
+
+//  * 5 with build in function
+// function sittingArrangement(person, column) {
+//     if (column < 1) return "Invalid number";
+
+//     let result = [];
+//     for (let i = 0; i < person.length; i += column) {
+//         let row = person.slice(i, i + column);
+//         while (row.length < column) {
+//             row.push("Kursi Kosong");
+//         }
+//         result.push(row);
+//     }
+
+//     return result;
+// }
+
+// DRIVER CODE
+console.log(sittingArrangement(["A", "B", "C"], 0)); // "Invalid number"
+console.log(sittingArrangement(["Juli", "Nisa", "Desi", "Ulfa", "Puji"], 2));
+// [ [ 'Juli', 'Nisa' ], [ 'Desi', 'Ulfa' ], [ 'Puji', 'Kursi Kosong' ] ]
+console.log(sittingArrangement(["Yosia", "Asrawi", "Andru"], 3));
+// [ [ 'Yosia', 'Asrawi', 'Andru' ] ]
 console.log(
     sittingArrangement(["Lukman", "Adam", "Dimas", "Hansin", "Orion"], 4)
 );
 // [
-//     ["Lukman", "Adam", "Dimas", "Hansin"],
-//     ["Orion", "Kursi Kosong", "Kursi Kosong", "Kursi Kosong"],
-// ];
+// [ 'Lukman', 'Adam', 'Dimas', 'Hansin' ],
+// [ 'Orion', 'Kursi Kosong', 'Kursi Kosong', 'Kursi Kosong' ]
+// ]
+
+//
+//DRIVER CODE
