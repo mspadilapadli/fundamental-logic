@@ -1,3 +1,4 @@
+//  * 1 manual
 function splitting(str) {
     //code
     let result = [];
@@ -45,8 +46,6 @@ function meleeRangedGrouping(str) {
         arrGroup.push(tempArr);
     }
 
-    //  console.log(arrGroup, "arrGroup");
-
     let ranged = [];
     let melee = [];
 
@@ -54,6 +53,7 @@ function meleeRangedGrouping(str) {
         const indexI = arrGroup[i];
         for (let j = 0; j < indexI.length; j++) {
             const indexJ = indexI[j];
+
             if (indexJ == "Ranged") {
                 ranged.push(indexI[0]);
             } else if (indexJ == "Melee") {
@@ -66,6 +66,24 @@ function meleeRangedGrouping(str) {
 }
 
 // *2  with build in function + destruction
+
+function meleeRangedGrouping(str) {
+    if (str === "") return [];
+    let result = [];
+    let melee = [];
+    let ranged = [];
+    str.split(",").forEach((hero) => {
+        [hero, type] = hero.split("-");
+        if (type == "Ranged") {
+            ranged.push(hero);
+        } else if (type == "Melee") {
+            melee.push(hero);
+        }
+    });
+
+    result.push(ranged, melee);
+    return result;
+}
 
 // TEST CASE
 
