@@ -1,15 +1,15 @@
 // *1
-let kata = "";
-if (!kata && kata !== false) {
+let kata = 0;
+if (!kata) {
     console.log(`invalid data`);
-} else if (typeof kata === "string") {
+} else if (typeof kata == "string") {
     console.log(`username ${kata}`);
-} else if (typeof kata === "number" && kata !== 0) {
+} else if (typeof kata === "number") {
     console.log(`age ${kata}`);
-} else if (typeof kata === `boolean`) {
-    console.log(
-        kata ? `thank you for agreeing` : `cannot proceed without agreeing`
-    );
+} else if (typeof kata === "boolean") {
+    kata
+        ? console.log(`thank you for agreeing`)
+        : console.log("cannot proceed without agreement");
 }
 
 // *2
@@ -34,3 +34,17 @@ if (typeof kata == "boolean") {
 // }
 
 // console.log(palindrome("kasurr rusak"));
+
+//*3
+// let kata = 0;
+// if (!kata) {
+//     console.log(`invalid data`);
+// } else if (typeof kata == "string") {
+//     console.log(`username ${kata}`);
+// } else if (typeof kata === "number") {
+//     console.log(`age ${kata}`);
+// } else if (typeof kata === "boolean") {
+//     kata
+//         ? console.log(`thank you for agreeing`)
+//         : console.log("cannot proceed without agreement");
+// }

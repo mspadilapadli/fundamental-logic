@@ -97,8 +97,8 @@ for (let i = 0; i < row41; i++) {
 let row5 = 5;
 for (let i = 0; i < row5; i++) {
     let symbol = "";
-    for (let j = i; j < row5 - 1; j++) {
-        symbol += " ";
+    for (let j = 1; j < row5 - i; j++) {
+        symbol += "|";
     }
     for (let k = 0; k <= i; k++) {
         symbol += "*";

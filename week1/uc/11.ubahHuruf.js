@@ -48,3 +48,10 @@ let newKata3 = kata
     .join("");
 
 console.log(newKata3);
+
+//* with chaining without {} (1 expresion)
+let kata4 = kata
+    .split("")
+    .map((char) => (dict.includes(char.toLocaleLowerCase()) ? "$" : char))
+    .join("");
+console.log(kata4);

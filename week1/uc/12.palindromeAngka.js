@@ -4,18 +4,21 @@ let angka = 33;
 while (angka) {
     angka > 10 ? (angka += 1) : angka;
     let strAngka = angka.toString();
-    let palindromeAngka = "";
+    let palindromeAngka = ""; // reset palindrome angka jika menggukanan metode manual.
+
     //no buildin function
     for (let i = 0; i < strAngka.length; i++) {
         palindromeAngka += strAngka[strAngka.length - 1 - i];
     }
+    // with build in function
     //  palindromeAngka = angka.toString().split("").reverse().join(""); //with buildin function
+
     if (strAngka === palindromeAngka) {
-        console.log(angka);
         break;
     }
     angka++;
 }
+console.log(angka);
 
 // * for
 let angka2 = 33;
