@@ -1,5 +1,5 @@
-var exercise = "<>^v";
-var userInput = "<";
+let exercise = "<>^v>>>";
+let userInput = "<>^^>><";
 let score = 0;
 let percentage = 0;
 let kategori = "";
@@ -10,13 +10,11 @@ if (exercise.length !== userInput.length) {
 } else {
     for (let i = 0; i < exercise.length; i++) {
         const indexI = exercise[i];
-        for (let j = 0; j < userInput.length; j++) {
-            if (indexI === userInput[i]) {
-                score += 10;
-                break;
-            }
+        if (indexI == userInput[i]) {
+            score += 10;
         }
     }
+
     percentage = Math.round((score / maxScore) * 100);
 
     if (percentage == 100) {
