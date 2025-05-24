@@ -1,5 +1,5 @@
-let id = "3888--0197621";
-let totalMember = 21;
+let id = "3888-A-0197621";
+let totalMember = 10;
 let price = "";
 let totalTagihan = 0;
 let citizen = "";
@@ -14,24 +14,30 @@ for (let x = 0; x < id.length; x++) {
     }
 }
 //  citizen = id.includes("I") ? "WNI" : id.includes("A") ? "WNA" : ""; // build in function
+
+//* with build in function includes
+// if (id.includes("I")) {
+//     citizen = "WNI";
+// } else if (id.includes("A")) {
+//     citizen = "WNA";
+// }
+
 if (!citizen) {
     result = "Anda tidak terdaftar";
 } else {
     if (citizen === "WNI") {
         price = 20_000;
+        totalTagihan = totalMember * price;
         if (totalMember > 20) {
             totalTagihan = totalMember * price;
             totalTagihan = totalTagihan - totalTagihan * (20 / 100);
-        } else {
-            totalTagihan = totalMember * price;
         }
     } else if (citizen === "WNA") {
         price = 50_000;
+        totalTagihan = totalMember * price;
         if (totalMember > 30) {
             totalTagihan = totalMember * price;
             totalTagihan = totalTagihan - totalTagihan * (20 / 100);
-        } else {
-            totalTagihan = totalMember * price;
         }
     }
     result = `Karena anda adalah ${citizen}, maka tagihan untuk id ${id} adalah ${totalTagihan}`;
