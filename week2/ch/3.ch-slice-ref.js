@@ -33,19 +33,21 @@ function slice(data, start, end) {
     //  handel type data array or not
     if (!data || !Array.isArray(data)) {
         return "Invalid data";
-    } else if (start > data.length || start > end) {
-        return [];
-    }
-    // set start and end with default value
-    start = start === undefined ? 0 : start;
-    end = !end ? data.length : end > data.length ? data.length : end;
+    } else {
+        // set start and end with default value
+        start = start ? start : 0;
+        end = !end ? data.length : end > data.length ? data.length : end;
 
-    //  i = start;
-    while (start < end) {
-        newArrSlice.push(data[start]);
-        start++;
+        if (start > data.length || start > end) {
+            return [];
+        }
+        //  i = start;
+        while (start < end) {
+            newArrSlice.push(data[start]);
+            start++;
+        }
+        return newArrSlice;
     }
-    return newArrSlice;
 }
 
 // * 3 more advance
