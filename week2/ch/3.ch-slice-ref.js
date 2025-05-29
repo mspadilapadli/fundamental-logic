@@ -41,7 +41,7 @@ function slice(data, start, end) {
         if (start > data.length || start > end) {
             return [];
         }
-        //  i = start;
+
         while (start < end) {
             newArrSlice.push(data[start]);
             start++;
