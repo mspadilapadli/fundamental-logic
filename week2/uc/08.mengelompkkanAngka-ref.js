@@ -1,20 +1,35 @@
 // *1
-function mengelompokkanAngka(arr) {
-    let result = [];
-    let kelipatan3 = [];
-    let genap = [];
-    let ganjil = [];
+// function mengelompokkanAngka(arr) {
+//     let result = [];
+//     let kelipatan3 = [];
+//     let genap = [];
+//     let ganjil = [];
 
-    for (let i = 0; i < arr.length; i++) {
-        const indexI = arr[i];
-        indexI % 3 === 0
-            ? kelipatan3.push(indexI)
-            : indexI % 2 === 0
-            ? genap.push(indexI)
-            : ganjil.push(indexI);
-    }
-    result.push(genap, ganjil, kelipatan3);
-    return result;
+//     for (let i = 0; i < arr.length; i++) {
+//         const indexI = arr[i];
+//         indexI % 3 === 0
+//             ? kelipatan3.push(indexI)
+//             : indexI % 2 === 0
+//             ? genap.push(indexI)
+//             : ganjil.push(indexI);
+//     }
+//     result.push(genap, ganjil, kelipatan3);
+//     return result;
+// }
+
+//*2
+function mengelompokkanAngka(arr) {
+    //destruct
+    let [genap, ganjil, kelipatan3] = [[], [], []];
+    arr.forEach((el) =>
+        el % 3 == 0
+            ? kelipatan3.push(el)
+            : el % 2 == 0
+            ? genap.push(el)
+            : ganjil.push(el)
+    );
+
+    return [genap, ganjil, kelipatan3];
 }
 
 // TEST CASES
