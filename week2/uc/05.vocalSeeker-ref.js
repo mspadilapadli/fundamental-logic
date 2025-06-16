@@ -38,5 +38,18 @@ function vocalSeeker2(data) {
     } dan kumpulan vocal adalah ${foundVowel.join("")}`;
 }
 
+//* 3
+function vocalSeeker3(board) {
+    let vocal = "";
+    let dicts = "aAiIuUeEoO";
+    board.flat().forEach((el) => {
+        if (dicts.includes(el)) {
+            vocal += el;
+        }
+    });
+
+    return `vocal ditemukan ${vocal.length} dan kumpulan vocal adalah ${vocal}`;
+}
 console.log(vocalSeeker(board));
 console.log(vocalSeeker2(board));
+console.log(vocalSeeker3(board));
