@@ -32,6 +32,8 @@ function targetTerdekat(arr) {
 }
 
 // *2
+// can't handle this
+// console.log(targetTerdekat([" ", " ", " ", "x", " ", "o", "x", "x"])); // 1
 function targetTerdekat(arr) {
     let o,
         x = null;
@@ -55,35 +57,27 @@ function targetTerdekat(arr) {
 
 // * 3
 function targetTerdekat(arr) {
-    let indexO = -1;
-    let indexX = [];
+    let o = -1;
+    let arrX = [];
 
     for (let i = 0; i < arr.length; i++) {
         const indexI = arr[i];
-        if (indexI === "o") {
-            indexO = i;
-        }
-        if (indexI == "x") {
-            indexX.push(i);
-        }
+        if (indexI === "o") o = i;
+        if (indexI === "x") arrX.push(i);
     }
 
-    if (indexO == -1 || indexX.length == 0) {
-        return 0;
-    }
+    //hanle if o or x not found
+    if (o == -1 || arrX.length == 0) return 0;
 
     let jarakTerdekat = Infinity;
-    for (let i = 0; i < indexX.length; i++) {
-        const indexI = indexX[i];
-        let jarak = Math.abs(indexO - indexI);
+    for (let i = 0; i < arrX.length; i++) {
+        const indexX = arrX[i];
+        let jarak = Math.abs(indexX - o);
 
-        if (jarak < jarakTerdekat) {
-            jarakTerdekat = jarak;
-        }
+        if (jarak < jarakTerdekat) jarakTerdekat = jarak;
     }
     return jarakTerdekat;
 }
-
 console.log(targetTerdekat([" ", " ", "o", " ", " ", "x", " ", "x"])); // 3
 console.log(targetTerdekat(["o", " ", " ", " ", "x", "x", "x"])); // 4
 console.log(targetTerdekat(["x", " ", " ", " ", "x", "x", "o", " "])); // 1
