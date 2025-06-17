@@ -20,7 +20,7 @@
 function deepSum(arr) {
     if (arr.length == 0) return "No Number";
     let total = 0;
-    arr.flat(3).forEach((num) => {
+    arr.flat(2).forEach((num) => {
         total += num;
     });
     return total;
@@ -28,13 +28,13 @@ function deepSum(arr) {
 
 //  * 3 with reduce()
 
-function deepSum(arr) {
-    if (arr.length == 0) return "No Number";
+// function deepSum(arr) {
+//     if (arr.length == 0) return "No Number";
 
-    return arr
-        .flat(Infinity)
-        .reduce((total, currValue) => (total += currValue));
-}
+//     return arr
+//         .flat(Infinity)
+//         .reduce((total, currValue) => (total += currValue), 0);
+// }
 
 console.log(
     deepSum([
