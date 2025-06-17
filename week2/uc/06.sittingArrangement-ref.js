@@ -57,32 +57,32 @@
 
 // * 3 use flaging, while and for
 
-function sittingArrangement(person, col) {
-    let result = [];
-    let flag = false;
-    let indexPerson = 0;
-    if (!col) {
-        return `Invalid number`;
-    }
+// function sittingArrangement(person, col) {
+//     let result = [];
+//     let flag = false;
+//     let indexPerson = 0;
+//     if (!col) {
+//         return `Invalid number`;
+//     }
 
-    while (!flag) {
-        let arrTemp = [];
-        for (let i = 0; i < col; i++) {
-            if (indexPerson > person.length - 1) {
-                arrTemp.push("Kursi Kosong");
-            } else {
-                arrTemp.push(person[indexPerson]);
-            }
-            indexPerson++;
-        }
+//     while (!flag) {
+//         let arrTemp = [];
+//         for (let i = 0; i < col; i++) {
+//             if (indexPerson > person.length - 1) {
+//                 arrTemp.push("Kursi Kosong");
+//             } else {
+//                 arrTemp.push(person[indexPerson]);
+//             }
+//             indexPerson++;
+//         }
 
-        if (indexPerson >= person.length) {
-            flag = true;
-        }
-        result.push(arrTemp);
-    }
-    return result;
-}
+//         if (indexPerson >= person.length) {
+//             flag = true;
+//         }
+//         result.push(arrTemp);
+//     }
+//     return result;
+// }
 
 // * 4
 // function sittingArrangement(person, column) {
@@ -114,7 +114,33 @@ function sittingArrangement(person, col) {
 //     return result;
 // }
 
-//  * 5 with build in function
+//* 5
+
+function sittingArrangement(person, number) {
+    let result = [];
+    let tempArr = [];
+
+    if (number < 1) return "Invalid number";
+
+    for (let i = 0; i < person.length; i++) {
+        const indexI = person[i];
+        tempArr.push(indexI);
+
+        if (tempArr.length == number) {
+            result.push(tempArr);
+            tempArr = [];
+        }
+    }
+
+    if (tempArr.length > 0) {
+        while (tempArr.length < number) {
+            tempArr.push("Kursi Kosong");
+        }
+        result.push(tempArr);
+    }
+    return result;
+}
+//  * 6 with build in function
 // function sittingArrangement(person, column) {
 //     if (column < 1) return "Invalid number";
 
