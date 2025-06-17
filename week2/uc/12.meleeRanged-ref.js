@@ -67,23 +67,65 @@ function meleeRangedGrouping(str) {
 
 // *2  with build in function + destruction
 
-function meleeRangedGrouping(str) {
-    if (str === "") return [];
-    let result = [];
-    let melee = [];
-    let ranged = [];
-    str.split(",").forEach((hero) => {
-        [hero, type] = hero.split("-");
-        if (type == "Ranged") {
-            ranged.push(hero);
-        } else if (type == "Melee") {
-            melee.push(hero);
-        }
-    });
+// function meleeRangedGrouping(str) {
+//     if (str === "") return [];
+//     let result = [];
+//     let melee = [];
+//     let ranged = [];
+//     str.split(",").forEach((hero) => {
+//         [hero, type] = hero.split("-");
+//         if (type == "Ranged") {
+//             ranged.push(hero);
+//         } else if (type == "Melee") {
+//             melee.push(hero);
+//         }
+//     });
 
-    result.push(ranged, melee);
-    return result;
-}
+//     result.push(ranged, melee);
+//     return result;
+// }
+
+// //* 3 with includes
+// function splitting(str) {
+//     //your code here
+//     let result = [];
+//     let hero = "";
+//     // or [...str].forEach()
+//     Array.from(str).forEach((el, idx) => {
+//         if (el === ",") {
+//             result.push(hero);
+//             hero = "";
+//         } else {
+//             hero += el;
+//         }
+//         if (idx === str.length - 1) {
+//             result.push(hero);
+//         }
+//     });
+//     return result;
+// }
+
+// function meleeRangedGrouping(str) {
+//     //your code here
+//     if (!str) return [];
+//     let splited = splitting(str);
+//     let result = [];
+//     let ranged = [];
+//     let melee = [];
+
+//     splited.forEach((el) => {
+//         let hero;
+//         if (el.includes("Ranged")) {
+//             hero = el.split("-");
+//             ranged.push(hero[0]);
+//         } else if (el.includes("Melee")) {
+//             hero = el.split("-");
+//             melee.push(hero[0]);
+//         }
+//     });
+//     result.push(ranged, melee);
+//     return result;
+// }
 
 // TEST CASE
 
