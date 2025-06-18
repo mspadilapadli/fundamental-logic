@@ -26,8 +26,9 @@ function urutkanAbjad(str) {
     }
 
     //bubble
-    for (let i = 0; i < arrStr.length; i++) {
-        for (let j = 0; j < arrStr.length; j++) {
+    // you must add -1 & - i , cuz if no, arr[j+1] will be undifined, and its not correct logic
+    for (let i = 0; i < arrStr.length - 1; i++) {
+        for (let j = 0; j < arrStr.length - 1 - i; j++) {
             const indexJ = arrStr[j];
             if (indexJ > arrStr[j + 1]) {
                 let temp = arrStr[j];
