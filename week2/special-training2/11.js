@@ -56,7 +56,31 @@ const history = [
 
 function getPrizes(point) {
     // write your code here
+    let listPrize = [
+        [2000, "Voucher 10k", "Sticker", "Penggaris"],
+        [5000, "Voucher 25k", "Kinderboy", "Tissue", "Piring"],
+        [10000, "Payung", "Panci"],
+    ];
+
+    let gives = [];
+
+    for (let i = 0; i < listPrize.length; i++) {
+        const item = listPrize[i];
+        for (let j = 1; j < item.length; j++) {
+            const el = item[j];
+            if (point > item[0]) {
+                point -= item[0];
+                gives.push(el);
+            } else {
+                break;
+            }
+        }
+    }
+    return gives;
 }
+
+console.log(getPrizes(22000));
+// [ 'Voucher 10k', 'Sticker', 'Penggaris', 'Voucher 25k', 'Kinderboy', 'Tissue' ]
 
 function betamart(pembeli) {
     // write your code here
