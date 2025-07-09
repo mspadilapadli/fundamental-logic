@@ -79,11 +79,20 @@ function getPrizes(point) {
     return gives;
 }
 
-console.log(getPrizes(22000));
+// console.log(getPrizes(22000));
 // [ 'Voucher 10k', 'Sticker', 'Penggaris', 'Voucher 25k', 'Kinderboy', 'Tissue' ]
 
 function betamart(pembeli) {
     // write your code here
+    if (!pembeli) return `Tidak ada pembeli yang belnja`;
+
+    let belanjaan = getPoints(pembeli.histories);
+
+    return {
+        name: pembeli.name,
+        belanjaanReport: belanjaan.belanjaanReport,
+        prizes: getPrizes(belanjaan.totalPoint),
+    };
 }
 
 console.log(
