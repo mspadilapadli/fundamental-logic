@@ -26,7 +26,7 @@ let customer = {
     member: true,
 };
 
-console.log(getTotalPrice(customer)); // 104400000
+console.log(getTotalPrice(customer)); // 11600000
 /**
  Proses
  Fajrin membeli 2 Asus ROG, dimana harga satuan dari Asus ROG adalah 25000000 untuk membeli 2 Asus ROG dibutuhkan 50000000
@@ -34,3 +34,39 @@ console.log(getTotalPrice(customer)); // 104400000
  Dari dua barang yang ingin dibeli Fajrin maka total belanja Fajrin adalah 116000000, dan dikarenakan Fajrin adalah member dari Tokosidia
  maka akan diberikan 10% discount, oleh karena itu total yang harus dibayar oleh Fajrin adalah 104400000
 */
+// ===== //
+
+function getStock(items) {
+    // Insert your code here
+    let stock = {};
+    items.forEach((product) => {
+        if (stock[product] == undefined) {
+            stock[product] = 1;
+        } else {
+            stock[product]++;
+        }
+    });
+    return stock;
+}
+
+console.log(
+    getStock([
+        "Asus ROG",
+        "Asus ROG",
+        "Asus ROG",
+        "Asus ROG",
+        "Lenovo Legion",
+        "Lenovo Legion",
+        "Lenovo Legion",
+        "HP Omen",
+        "HP Omen",
+    ])
+);
+
+/**
+ * {
+ *  'Asus ROG': 4,
+ *  'Lenovo Legion': 3,
+ *  'HP Omen': 2
+ * }
+ */
