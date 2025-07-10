@@ -15,7 +15,7 @@ function getTotalPrice(customer) {
         prices += listProduct[product] * qty;
     });
 
-    return customer.member ? prices * 0.1 : prices;
+    return customer.member ? prices - prices * 0.1 : prices;
 }
 
 // let customer = {
@@ -27,7 +27,7 @@ function getTotalPrice(customer) {
 //     member: true,
 // };
 
-// console.log(getTotalPrice(customer)); // 11600000
+// console.log(getTotalPrice(customer)); // 104400000
 /**
  Proses
  Fajrin membeli 2 Asus ROG, dimana harga satuan dari Asus ROG adalah 25000000 untuk membeli 2 Asus ROG dibutuhkan 50000000
