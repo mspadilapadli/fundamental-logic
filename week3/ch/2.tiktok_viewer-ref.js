@@ -81,16 +81,19 @@ function calculateTotalPoint(data) {
         const el = data[i];
         for (let k = 0; k < el.length; k += 2) {
             const item = el[k];
+            const qty = el[k + 1];
+            //* manual
             for (let l = 0; l < listReward.length; l++) {
                 const reward = listReward[l];
                 let { name, point } = reward;
-
                 if (item == name) {
-                    //   console.log(point, el[k + 1]);
-                    tempPoint += point * el[k + 1];
+                    tempPoint += point * qty;
                     break;
                 }
             }
+            //* find()
+            // let rewardInfo = listReward.find((reward) => reward.name == item)
+            // if(rewardInfo) tempPoint += rewardInfo.point * qty
         }
         result.push(tempPoint);
     }
