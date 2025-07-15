@@ -101,11 +101,65 @@ function calculateTotalPoint(data) {
     return result;
 }
 
+// console.log(
+//     calculateTotalPoint([
+//         ["Rocket", 11, "Chocolate", 13, "Ferrari", 1],
+//         ["Diamond", 9, "Heart", 20, "Ferrari", 7, "Star", 30],
+//         ["Diamond", 1, "Star", 5],
+//     ])
+// );
+// [ 4200, 6600, 275 ]
+
+//===//
+
+function viewTime(data) {
+    //Your code here
+    //* manual
+    let result = [];
+    let wastedTime;
+    let videoDuration = 45;
+    data.forEach((user) => {
+        wastedTime = (user.viewers * videoDuration) / 60;
+        result.push(wastedTime);
+    });
+
+    return result;
+    //* map()
+    return data.map((user) => (user.viewers * 45) / 60);
+}
+
 console.log(
-    calculateTotalPoint([
-        ["Rocket", 11, "Chocolate", 13, "Ferrari", 1],
-        ["Diamond", 9, "Heart", 20, "Ferrari", 7, "Star", 30],
-        ["Diamond", 1, "Star", 5],
+    viewTime([
+        {
+            song: "Papi Chulo",
+            user: "Chikakiku",
+            viewers: 720,
+            rewards: [
+                ["Rocket", 11],
+                ["Chocolate", 13],
+                ["Ferrari", 1],
+            ],
+        },
+        {
+            song: "Saranghae",
+            user: "Lisa Stream",
+            viewers: 1400,
+            rewards: [
+                ["Diamond", 9],
+                ["Heart", 20],
+                ["Ferrari", 7],
+                ["Star", 30],
+            ],
+        },
+        {
+            song: "Mipan Zuzuzu",
+            user: "Mr Jack",
+            viewers: 32,
+            rewards: [
+                ["Diamond", 1],
+                ["Star", 5],
+            ],
+        },
     ])
 );
-// [ 4200, 6600, 275 ]
+// [ 540, 1050, 24 ]
