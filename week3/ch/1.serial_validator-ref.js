@@ -78,3 +78,52 @@ console.log(reverseOddIndex(["79", "08", "86", "79"]));
 
 // console.log(reverseOddIndex(["124", "765"]));
 // [ '124', '567' ]
+
+// ==== //
+function decryptElement(arr) {
+    // Your code here
+    let result = [];
+    let symbol = "!@#$%^&*()";
+
+    arr.forEach((numbers, index) => {
+        let temp = "";
+        if (index % 2 != 0) {
+            for (let i = 0; i < numbers.length; i++) {
+                const char = numbers[i];
+                char == 0 ? (temp += symbol[9]) : (temp += symbol[char - 1]);
+            }
+            result.push(temp);
+        } else {
+            for (let i = 0; i < numbers.length; i++) {
+                const char = numbers[i];
+                temp += symbol[char];
+            }
+            result.push(temp);
+        }
+    });
+
+    return result;
+}
+
+console.log(decryptElement(["79", "80", "86", "97"]));
+// [ '*)', '*)', '(&', '(&' ]
+/*
+penjelasan :
+
+0 1 2 3 4 5 6 7 8 9
+! @ # $ % ^ & * ( )
+
+untuk index genap
+'79' --> index 0
+'7' diubah menjadi symbol '*'
+'9' diubah menjadi symbol ')'
+
+untuk index ganjil
+'80' --> index 1
+'8' dikurangi 1 = 7, diubah menjadi symbol '*'
+'0' karena 0 maka diganti menjadi 9
+'9' diubah menjadi symbol ')'
+*/
+
+console.log(decryptElement(["124", "567"]));
+// [ '@#%', '%^&' ]
