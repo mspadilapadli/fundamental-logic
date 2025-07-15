@@ -162,3 +162,56 @@ console.log(groupingSymbol(["@#%", "%^&"]));
 // [
 //   [ '@#%', '%^&' ]
 // ]
+
+//====//
+function serialValidator(str) {
+    // Your code here
+    if (str.length < 9) return `Harus lebih dari 9 Karakter`;
+
+    let splitedString = splitString(str);
+    let reversedOddIndex = reverseOddIndex(splitedString);
+    let decryptedEl = decryptElement(reversedOddIndex);
+    let grouped = groupingSymbol(decryptedEl);
+
+    for (let i = 0; i < grouped.length; i++) {
+        const el = grouped[i];
+        [index0, index1] = el;
+        if (index0 !== index1) return "Invalid serial numnber";
+    }
+    return "Serial number is valid";
+}
+
+console.log(serialValidator("1234"));
+// Harus lebih dari 9 karakter
+
+console.log(serialValidator("79 08 86 79"));
+// Serial number is valid
+
+console.log(serialValidator("124 765 876 678"));
+// Invalid serial number
+
+console.log(serialValidator("4947 8505 6843 4597"));
+// Serial number is valid
+
+console.log(serialValidator("3417 1218 1813 1311"));
+// Invalid serial number
+
+/*
+contoh 1:
+hasil dari groupingSymbol
+[
+  [ '*)', '*)' ], --> index 0 dan index 1 bernilai sama
+  [ '(&', '(&' ]  --> index 0 dan index 1 bernilai sama
+]
+output:
+`Serial number is valid`
+
+contoh 2:
+hasil dari groupingSymbol
+[
+  [ '*#', '(&' ], --> index 0 dan index 1 TIDAK sama
+  [ '(&', '(&' ]  --> index 0 dan index 1 bernilai sama
+]
+output:
+`Invalid serial number`
+*/
