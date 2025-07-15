@@ -133,6 +133,7 @@ function groupingSymbol(arr) {
     // Your code here
     let result = [];
 
+    //* manual
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
         const indexI = arr[i];
@@ -143,6 +144,11 @@ function groupingSymbol(arr) {
         }
     }
 
+    //* slice()
+    // for (let i = 0; i < arr.length; i += 2) {
+    //     const group = arr.slice(i, i + 2);
+    //     result.push(group);
+    // }
     return result;
 }
 
