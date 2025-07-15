@@ -127,3 +127,32 @@ untuk index ganjil
 
 console.log(decryptElement(["124", "567"]));
 // [ '@#%', '%^&' ]
+
+//====//
+function groupingSymbol(arr) {
+    // Your code here
+    let result = [];
+
+    let temp = [];
+    for (let i = 0; i < arr.length; i++) {
+        const indexI = arr[i];
+        temp.push(indexI);
+        if (temp.length == 2) {
+            result.push(temp);
+            temp = [];
+        }
+    }
+
+    return result;
+}
+
+console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
+// [
+//   [ '*)', '*)' ],  --> berisi index 0 dan index 1 dari array input
+//   [ '(&', '(&' ]   --> berisi index 2 dan index 3 dari array input
+// ]
+
+console.log(groupingSymbol(["@#%", "%^&"]));
+// [
+//   [ '@#%', '%^&' ]
+// ]
