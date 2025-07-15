@@ -128,38 +128,154 @@ function viewTime(data) {
     return data.map((user) => (user.viewers * 45) / 60);
 }
 
-console.log(
-    viewTime([
-        {
-            song: "Papi Chulo",
-            user: "Chikakiku",
-            viewers: 720,
-            rewards: [
-                ["Rocket", 11],
-                ["Chocolate", 13],
-                ["Ferrari", 1],
-            ],
-        },
-        {
-            song: "Saranghae",
-            user: "Lisa Stream",
-            viewers: 1400,
-            rewards: [
-                ["Diamond", 9],
-                ["Heart", 20],
-                ["Ferrari", 7],
-                ["Star", 30],
-            ],
-        },
-        {
-            song: "Mipan Zuzuzu",
-            user: "Mr Jack",
-            viewers: 32,
-            rewards: [
-                ["Diamond", 1],
-                ["Star", 5],
-            ],
-        },
-    ])
-);
+// console.log(
+//     viewTime([
+//         {
+//             song: "Papi Chulo",
+//             user: "Chikakiku",
+//             viewers: 720,
+//             rewards: [
+//                 ["Rocket", 11],
+//                 ["Chocolate", 13],
+//                 ["Ferrari", 1],
+//             ],
+//         },
+//         {
+//             song: "Saranghae",
+//             user: "Lisa Stream",
+//             viewers: 1400,
+//             rewards: [
+//                 ["Diamond", 9],
+//                 ["Heart", 20],
+//                 ["Ferrari", 7],
+//                 ["Star", 30],
+//             ],
+//         },
+//         {
+//             song: "Mipan Zuzuzu",
+//             user: "Mr Jack",
+//             viewers: 32,
+//             rewards: [
+//                 ["Diamond", 1],
+//                 ["Star", 5],
+//             ],
+//         },
+//     ])
+// );
 // [ 540, 1050, 24 ]
+
+// ==== //
+function tiktokRank(data) {
+    // Your code here
+    if (!data) return `Insert data`;
+    if (data.length <= 0) return [];
+    let result = {};
+
+    let convertedData = convertData(data);
+    let totalPoint = calculateTotalPoint(convertedData);
+    let timeView = viewTime(data);
+    let userRank = "";
+    for (let i = 0; i < totalPoint.length; i++) {
+        const point = totalPoint[i];
+        const time = timeView[i];
+        if (point > 5000 && time > 1000) {
+            userRank = "Platinum";
+        } else if (
+            point >= 2500 &&
+            point <= 5000 &&
+            time >= 500 &&
+            time <= 1000
+        ) {
+            userRank = "Gold";
+        } else {
+            userRank = "Bronze";
+        }
+
+        if (!result[userRank]) {
+            result[userRank] = [];
+        }
+        result[userRank].push(data[i].user);
+    }
+    return result;
+}
+
+// TEST CASE
+console.log(tiktokRank([])); // [];
+console.log(tiktokRank()); // Insert data
+
+let data = [
+    {
+        song: "Papi Chulo",
+        user: "Chikakiku",
+        viewers: 720,
+        rewards: [
+            ["Rocket", 11],
+            ["Chocolate", 13],
+            ["Ferrari", 1],
+        ],
+    },
+    {
+        song: "Saranghae",
+        user: "Lisa Stream",
+        viewers: 1400,
+        rewards: [
+            ["Diamond", 9],
+            ["Heart", 20],
+            ["Ferrari", 7],
+            ["Star", 30],
+        ],
+    },
+    {
+        song: "Mipan Zuzuzu",
+        user: "Mr Jack",
+        viewers: 32,
+        rewards: [
+            ["Diamond", 1],
+            ["Star", 5],
+        ],
+    },
+    {
+        song: "Savage Megan",
+        user: "12yes",
+        viewers: 980,
+        rewards: [
+            ["Star", 6],
+            ["Diamond", 3],
+            ["Rocket", 5],
+            ["Heart", 2],
+            ["Ferrari", 1],
+            ["Chocolate", 4],
+        ],
+    },
+    {
+        song: "Lottery",
+        user: "dj_cuap",
+        viewers: 1240,
+        rewards: [
+            ["Star", 30],
+            ["Heart", 10],
+            ["Chocolate", 2],
+            ["Ferrari", 4],
+        ],
+    },
+    {
+        song: "Roses",
+        user: "Dior777",
+        viewers: 560,
+        rewards: [
+            ["Rocket", 3],
+            ["Star", 10],
+            ["Diamond", 5],
+            ["Heart", 4],
+        ],
+    },
+];
+
+console.log(tiktokRank(data));
+/*
+{
+  Gold: [ 'Chikakiku', '12yes', 'dj_cuap' ],
+  Platinum: [ 'Lisa Stream' ],
+  Bronze: [ 'Mr Jack', 'Dior777' ]
+}
+*/
