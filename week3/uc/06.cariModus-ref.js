@@ -2,22 +2,45 @@ function cariModus(arr) {
     let modus = null;
     let maxFreq = 0;
 
-    // *nested loop for
+    //* with Object
+    let freq = {};
     for (let i = 0; i < arr.length; i++) {
-        const indexI = arr[i];
-        let freq = 0;
-        for (let j = 0; j < arr.length; j++) {
-            const indexJ = arr[j];
-            if (indexI == indexJ) {
-                freq++;
-            }
-        }
-        if (freq > maxFreq) {
-            maxFreq = freq;
-            modus = arr[i];
+        const number = arr[i];
+        if (!freq[number]) {
+            freq[number] = 1;
+        } else {
+            freq[number]++;
         }
     }
-    if (maxFreq == 1 || maxFreq == arr.length) return -1;
+
+    for (const number in freq) {
+        if (freq[number] > maxFreq) {
+            maxFreq = freq[number];
+            modus = +number;
+        }
+    }
+    console.log(Object.keys(freq).length);
+
+    if (maxFreq === 1 || Object.keys(freq).length == 1) return -1;
+
+    //=//
+
+    // *nested loop for
+    //  for (let i = 0; i < arr.length; i++) {
+    //      const indexI = arr[i];
+    //      let freq = 0;
+    //      for (let j = 0; j < arr.length; j++) {
+    //          const indexJ = arr[j];
+    //          if (indexI == indexJ) {
+    //              freq++;
+    //          }
+    //      }
+    //      if (freq > maxFreq) {
+    //          maxFreq = freq;
+    //          modus = arr[i];
+    //      }
+    //  }
+    //  if (maxFreq == 1 || maxFreq == arr.length) return -1;
 
     return modus;
 }
