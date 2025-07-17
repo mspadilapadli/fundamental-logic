@@ -1,14 +1,14 @@
-const todos = [
-    "Buy car signal light|16/1/2021",
-    "Return bycycle brake|17/1/2021",
-    "Buy A4 Paper",
-    "Install Garage Shed|18/1/2021",
-    "Service PC|18/1/2021",
-    "Fix rooftops|19/1/2021",
-    "Watching TV series|19/1/2021",
-    "Buy new toys|19/1/2021",
-    "Playing Mobile Legends",
-];
+// const todos = [
+//     "Buy car signal light|16/1/2021",
+//     "Return bycycle brake|17/1/2021",
+//     "Buy A4 Paper",
+//     "Install Garage Shed|18/1/2021",
+//     "Service PC|18/1/2021",
+//     "Fix rooftops|19/1/2021",
+//     "Watching TV series|19/1/2021",
+//     "Buy new toys|19/1/2021",
+//     "Playing Mobile Legends",
+// ];
 
 function splitTodos(todos) {
     // code here
@@ -64,7 +64,7 @@ function splitTodos(todos) {
     });
 }
 
-console.log(splitTodos(todos));
+// console.log(splitTodos(todos));
 /*
   [
     ['Buy car signal light', '16/1/2021'],
@@ -76,5 +76,47 @@ console.log(splitTodos(todos));
     ['Watching TV series', '19/1/2021'],
     ['Buy new toys', '19/1/2021'],
     ['Playing Mobile Legends', '']
+  ]
+ */
+
+//========================================//
+
+const todos = [
+    ["Buy car signal light", "16/1/2021"],
+    ["Return bycycle brake", "17/1/2021"],
+    ["Buy A4 Paper", ""],
+    ["Install Garage Shed", "18/1/2021"],
+    ["Service PC", "18/1/2021"],
+    ["Fix rooftops", "19/1/2021"],
+    ["Watching TV series", "19/1/2021"],
+    ["Buy new toys", "19/1/2021"],
+    ["Playing Mobile Legends", ""],
+];
+function filterTodos(todos) {
+    //* manual
+    let result = [];
+    todos.forEach((todo) => {
+        let [task, date] = todo;
+        if (date) result.push(todo);
+    });
+
+    return result;
+
+    // your code here
+    //* filter()
+    // handle todo[1] yg isinya spasi, karena spasi itu truthy di js
+    return todos.filter((todo) => todo[1] && todo[1].trim() != "");
+}
+
+console.log(filterTodos(todos));
+/*
+  [
+    ['Buy car signal light', '16/1/2021'],
+    ['Return bycycle brake', '17/1/2021'],
+    ['Install Garage Shed', '18/1/2021'],
+    ['Service PC', '18/1/2021'],
+    ['Fix rooftops', '19/1/2021'],
+    ['Watching TV series', '19/1/2021'],
+    ['Buy new toys', '19/1/2021']
   ]
  */
