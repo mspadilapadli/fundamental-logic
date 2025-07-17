@@ -1,11 +1,11 @@
 function generateTravel(passengersData) {
     let result = [];
 
-    passengers.forEach((travel) => {
+    passengersData.forEach((travel) => {
         let [travelName, qty, day] = travel;
         result.push({
             travelAgent: travelName,
-            passanger: qty,
+            passenger: qty,
             day,
         });
     });
@@ -178,35 +178,109 @@ function getReward(travelsData, ticketsBook) {
     return result;
 }
 
-const travels = ["andi travel", "cindi travel"];
+// const travels = ["andi travel", "cindi travel"];
+// const tickets = [
+//     {
+//         travelAgent: "andi travel",
+//         passenger: 7,
+//         day: "senin",
+//         totalPrice: 840000,
+//     },
+//     {
+//         travelAgent: "budi travel",
+//         passenger: 4,
+//         day: "selasa",
+//         totalPrice: 720000,
+//     },
+//     {
+//         travelAgent: "cindi travel",
+//         passenger: 1,
+//         day: "rabu",
+//         totalPrice: 140000,
+//     },
+//     {
+//         travelAgent: "andi travel",
+//         passenger: 10,
+//         day: "kamis",
+//         totalPrice: 2000000,
+//     },
+// ];
+
+// console.log(getReward(travels, tickets));
+/*
+        [
+            {
+                travelAgent: 'andi travel',  
+                flight: ['senin', 'kamis'],
+                totalPrice: 2840000,
+                totalPassengers: 17,
+                reward: 568000
+            },
+            {
+                travelAgent: 'cindi travel',
+                flight: ['rabu']
+                totalPrice: 140000
+                totalPassenger: 1,
+                reward: 0
+            }
+        ]
+    */
+
+// ============================================ //
+function travelAgentReward(passengers, tickets, travels) {
+    // your code here
+    if (!travels) return `Invalid data`;
+    if (travels.length <= 0) return "Data is empty";
+
+    let result = [];
+    let generatedPassengers = generateTravel(passengers);
+    let eTicket = getTicket(generatedPassengers, tickets);
+    let reward = getReward(travels, eTicket);
+
+    return reward;
+}
+
+const datas = [
+    ["andi travel", 7, "senin"],
+    ["budi travel", 4, "selasa"],
+    ["cindi travel", 1, "rabu"],
+    ["andi travel", 10, "kamis"],
+];
+
 const tickets = [
     {
-        travelAgent: "andi travel",
-        passenger: 7,
-        day: "senin",
-        totalPrice: 840000,
+        flight: "senin",
+        price: 120000,
     },
     {
-        travelAgent: "budi travel",
-        passenger: 4,
-        day: "selasa",
-        totalPrice: 720000,
+        flight: "selasa",
+        price: 180000,
     },
     {
-        travelAgent: "cindi travel",
-        passenger: 1,
-        day: "rabu",
-        totalPrice: 140000,
+        flight: "rabu",
+        price: 140000,
     },
     {
-        travelAgent: "andi travel",
-        passenger: 10,
-        day: "kamis",
-        totalPrice: 2000000,
+        flight: "kamis",
+        price: 200000,
+    },
+    {
+        flight: "jumat",
+        price: 160000,
+    },
+    {
+        flight: "sabtu",
+        price: 220000,
     },
 ];
 
-console.log(getReward(travels, tickets));
+console.log(travelAgentReward(datas, tickets));
+// 'Invalid data'
+
+console.log(travelAgentReward(datas, tickets, []));
+// 'Data is empty'
+
+console.log(travelAgentReward(datas, tickets, ["andi travel", "cindi travel"]));
 /*
         [
             {
