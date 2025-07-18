@@ -136,14 +136,8 @@ const todos = [
 function todoStatus(todos, date) {
     // your code here
     let result = [...todos];
-    // let today = new Date();
 
-    // pareseDate split()
-    // function parseDate(dueDate) {
-    //     let [day, month, year] = dueDate.split("/");
-    //     return `${year}-${month}-${day}`
-    // }
-
+    // compare day
     result.forEach((todo) => {
         let [task, dueDate] = todo;
         let taskDate = `${dueDate[0]}${dueDate[1]}`;
@@ -153,9 +147,30 @@ function todoStatus(todos, date) {
     });
 
     return result;
+    //* compare date
+    return todos.map((todo) => {
+        let [task, dueDateStr] = todo;
+        const [day, month, year] = dueDateStr.split("/").map(Number);
+        // UTC time akan mundur 1 hari jika waktu local
+        let dueDate = new Date(year, month - 1, day);
+        let today = new Date(year, month - 1, date);
+
+        console.log(today.getTime());
+        let status;
+        if (today > dueDate) status = "done";
+        //gunakan getTime() aagar waktu jam nya sama dan true, jika tidak maka hasilnya akan selalu false karena jam menit detiknya berbeda
+        else if (today.getTime() == dueDate.getTime()) status = "ongoing";
+        // atay bisa menggukaan pendekatan perbandingan tanpa jam
+        // (dueDate.getDate() === today.getDate() &&
+        // dueDate.getMonth() === today.getMonth() &&
+        // dueDate.getFullYear() === today.getFullYear())
+        else status = "pending";
+        return [task, dueDateStr, status];
+    });
 }
 
-console.log(todoStatus(todos, 18));
+console.log(todoStatus(todos, 20));
+
 /**
  * [
     ['Buy car signal light', '16/1/2021', 'done'],
