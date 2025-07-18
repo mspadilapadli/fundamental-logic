@@ -55,6 +55,7 @@ function splitTodos(todos) {
     //      tempArr.push(task, date);
     //      result.push(tempArr);
     //  }
+
     return result;
 
     //* map()
@@ -141,6 +142,7 @@ function todoStatus(todos, date) {
     result.forEach((todo) => {
         let [task, dueDate] = todo;
         let taskDate = `${dueDate[0]}${dueDate[1]}`;
+        console.log(taskDate, date);
         if (taskDate > date) todo.push("pending");
         else if (taskDate < date) todo.push("done");
         else todo.push("ongoing");
@@ -183,15 +185,15 @@ function todoStatus(todos, date) {
    ]
  */
 
-const todos = [
-    ["Buy car signal light", "16/1/2021", "done"],
-    ["Return bycycle brake", "17/1/2021", "done"],
-    ["Install Garage Shed", "18/1/2021", "ongoing"],
-    ["Service PC", "18/1/2021", "ongoing"],
-    ["Fix rooftops", "19/1/2021", "pending"],
-    ["Watching TV series", "19/1/2021", "pending"],
-    ["Buy new toys", "19/1/2021", "pending"],
-];
+// const todos = [
+//     ["Buy car signal light", "16/1/2021", "done"],
+//     ["Return bycycle brake", "17/1/2021", "done"],
+//     ["Install Garage Shed", "18/1/2021", "ongoing"],
+//     ["Service PC", "18/1/2021", "ongoing"],
+//     ["Fix rooftops", "19/1/2021", "pending"],
+//     ["Watching TV series", "19/1/2021", "pending"],
+//     ["Buy new toys", "19/1/2021", "pending"],
+// ];
 
 function todoStatistic(todos) {
     // your code here
@@ -206,11 +208,76 @@ function todoStatistic(todos) {
     return result;
 }
 
-console.log(todoStatistic(todos));
+// console.log(todoStatistic(todos));
 /**
  * {
  *   done: 2,
  *   ongoing: 2,
  *   pending: 3
  * }
+ */
+
+const todos = [
+    "Buy car signal light|16/1/2021",
+    "Return bycycle brake|17/1/2021",
+    "Buy A4 Paper|",
+    "Install Garage Shed|18/1/2021",
+    "Service PC|18/1/2021",
+    "Fix rooftops|19/1/2021",
+    "Watching TV series|19/1/2021",
+    "Buy new toys|19/1/2021",
+    "Playing Mobile Legends|",
+];
+
+function generateTodos(todos, date) {
+    let result = { statistic: "", todo: [] };
+    let splitedTask = splitTodos(todos);
+    let filteredTask = filterTodos(splitedTask);
+    let statusTask = todoStatus(filteredTask, date);
+    let statisticTask = todoStatistic(statusTask);
+
+    statusTask.forEach((todo) => {
+        let [task, date, status] = todo;
+        result.todo.push({
+            name: task,
+            dueDate: date,
+            status,
+        });
+    });
+
+    result.statistic = statisticTask;
+
+    return result;
+}
+
+console.log(generateTodos(todos, 18));
+/**
+ * {
+    statistic: { done: 2, ongoing: 2, pending: 3 },
+    todos: [
+        {
+            name: 'Buy car signal light',
+            dueDate: '16/1/2021',
+            status: 'done'
+        },
+        {
+            name: 'Return bycycle brake',
+            dueDate: '17/1/2021',
+            status: 'done'
+        },
+        {
+            name: 'Install Garage Shed',
+            dueDate: '18/1/2021',
+            status: 'ongoing'
+        },
+        { name: 'Service PC', dueDate: '18/1/2021', status: 'ongoing' },
+        { name: 'Fix rooftops', dueDate: '19/1/2021', status: 'pending' },
+        {
+            name: 'Watching TV series',
+            dueDate: '19/1/2021',
+            status: 'pending'
+        },
+        { name: 'Buy new toys', dueDate: '19/1/2021', status: 'pending' }
+    ]
+  }
  */
