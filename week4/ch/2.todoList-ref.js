@@ -81,17 +81,17 @@ function splitTodos(todos) {
 
 //========================================//
 
-const todos = [
-    ["Buy car signal light", "16/1/2021"],
-    ["Return bycycle brake", "17/1/2021"],
-    ["Buy A4 Paper", ""],
-    ["Install Garage Shed", "18/1/2021"],
-    ["Service PC", "18/1/2021"],
-    ["Fix rooftops", "19/1/2021"],
-    ["Watching TV series", "19/1/2021"],
-    ["Buy new toys", "19/1/2021"],
-    ["Playing Mobile Legends", ""],
-];
+// const todos = [
+//     ["Buy car signal light", "16/1/2021"],
+//     ["Return bycycle brake", "17/1/2021"],
+//     ["Buy A4 Paper", ""],
+//     ["Install Garage Shed", "18/1/2021"],
+//     ["Service PC", "18/1/2021"],
+//     ["Fix rooftops", "19/1/2021"],
+//     ["Watching TV series", "19/1/2021"],
+//     ["Buy new toys", "19/1/2021"],
+//     ["Playing Mobile Legends", ""],
+// ];
 function filterTodos(todos) {
     //* manual
     let result = [];
@@ -108,7 +108,7 @@ function filterTodos(todos) {
     return todos.filter((todo) => todo[1] && todo[1].trim() != "");
 }
 
-console.log(filterTodos(todos));
+// console.log(filterTodos(todos));
 /*
   [
     ['Buy car signal light', '16/1/2021'],
@@ -119,4 +119,51 @@ console.log(filterTodos(todos));
     ['Watching TV series', '19/1/2021'],
     ['Buy new toys', '19/1/2021']
   ]
+ */
+
+//==================================================//
+
+const todos = [
+    ["Buy car signal light", "16/7/2025"],
+    ["Return bycycle brake", "17/7/2025"],
+    ["Install Garage Shed", "18/7/2025"],
+    ["Service PC", "18/7/2025"],
+    ["Fix rooftops", "19/7/2025"],
+    ["Watching TV series", "19/7/2025"],
+    ["Buy new toys", "19/7/2025"],
+];
+
+function todoStatus(todos, date) {
+    // your code here
+    let result = [...todos];
+    // let today = new Date();
+
+    // pareseDate split()
+    // function parseDate(dueDate) {
+    //     let [day, month, year] = dueDate.split("/");
+    //     return `${year}-${month}-${day}`
+    // }
+
+    result.forEach((todo) => {
+        let [task, dueDate] = todo;
+        let taskDate = `${dueDate[0]}${dueDate[1]}`;
+        if (taskDate > date) todo.push("pending");
+        else if (taskDate < date) todo.push("done");
+        else todo.push("ongoing");
+    });
+
+    return result;
+}
+
+console.log(todoStatus(todos, 18));
+/**
+ * [
+    ['Buy car signal light', '16/1/2021', 'done'],
+    ['Return bycycle brake', '17/1/2021', 'done'],
+    ['Install Garage Shed', '18/1/2021', 'ongoing'],
+    ['Service PC', '18/1/2021', 'ongoing'],
+    ['Fix rooftops', '19/1/2021', 'pending'],
+    ['Watching TV series', '19/1/2021', 'pending'],
+    ['Buy new toys', '19/1/2021', 'pending']
+   ]
  */
