@@ -123,15 +123,15 @@ function filterTodos(todos) {
 
 //==================================================//
 
-const todos = [
-    ["Buy car signal light", "16/7/2025"],
-    ["Return bycycle brake", "17/7/2025"],
-    ["Install Garage Shed", "18/7/2025"],
-    ["Service PC", "18/7/2025"],
-    ["Fix rooftops", "19/7/2025"],
-    ["Watching TV series", "19/7/2025"],
-    ["Buy new toys", "19/7/2025"],
-];
+// const todos = [
+//     ["Buy car signal light", "16/7/2025"],
+//     ["Return bycycle brake", "17/7/2025"],
+//     ["Install Garage Shed", "18/7/2025"],
+//     ["Service PC", "18/7/2025"],
+//     ["Fix rooftops", "19/7/2025"],
+//     ["Watching TV series", "19/7/2025"],
+//     ["Buy new toys", "19/7/2025"],
+// ];
 
 function todoStatus(todos, date) {
     // your code here
@@ -169,7 +169,7 @@ function todoStatus(todos, date) {
     });
 }
 
-console.log(todoStatus(todos, 20));
+// console.log(todoStatus(todos, 20));
 
 /**
  * [
@@ -181,4 +181,36 @@ console.log(todoStatus(todos, 20));
     ['Watching TV series', '19/1/2021', 'pending'],
     ['Buy new toys', '19/1/2021', 'pending']
    ]
+ */
+
+const todos = [
+    ["Buy car signal light", "16/1/2021", "done"],
+    ["Return bycycle brake", "17/1/2021", "done"],
+    ["Install Garage Shed", "18/1/2021", "ongoing"],
+    ["Service PC", "18/1/2021", "ongoing"],
+    ["Fix rooftops", "19/1/2021", "pending"],
+    ["Watching TV series", "19/1/2021", "pending"],
+    ["Buy new toys", "19/1/2021", "pending"],
+];
+
+function todoStatistic(todos) {
+    // your code here
+    let result = {};
+    todos.forEach((todo) => {
+        let [task, date, status] = todo;
+        if (!result[status]) {
+            result[status] = 0;
+        }
+        result[status]++;
+    });
+    return result;
+}
+
+console.log(todoStatistic(todos));
+/**
+ * {
+ *   done: 2,
+ *   ongoing: 2,
+ *   pending: 3
+ * }
  */
