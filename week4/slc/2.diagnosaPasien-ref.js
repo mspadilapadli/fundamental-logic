@@ -50,6 +50,7 @@ function cariPenyakit(pasien, database) {
     let indikasiAntrax = 0;
 
     pasien.keluhan.forEach((gejala) => {
+        //for loop flu
         for (let i = 0; i < database.flu.ciri.length; i++) {
             const ciriFlu = database.flu.ciri[i];
             if (gejala == ciriFlu) {
@@ -57,13 +58,17 @@ function cariPenyakit(pasien, database) {
                 break;
             }
         }
+        //*includes() flu
+        // if (database.flu.ciri.includes(gejala)) indikasiFlu++;
+
+        //for loop antrax
         for (let i = 0; i < database.antrax.ciri.length; i++) {
             const ciriAntrax = database.antrax.ciri[i];
             if (gejala == ciriAntrax) indikasiAntrax++;
         }
+        //*includes() antrax
+        //  if (database.antrax.ciri.includes(gejala)) indikasiAntrax++;
     });
-
-    //  console.log(indikasiFlu, indikasiAntrax);
 
     if (indikasiFlu > indikasiAntrax) diagnosa = "flu";
     else if (indikasiFlu < indikasiAntrax) diagnosa = "antrax";
