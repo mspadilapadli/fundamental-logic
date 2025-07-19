@@ -104,8 +104,9 @@ function cariObat(penyakit, database) {
     // Your code here
     if (penyakit == "ambigu") return "tidak ada obat";
     let obat;
-    let obatTermurah = Infinity;
-    database[penyakit].obat.forEach((listObat) => {
+    let daftarObat = database[penyakit].obat;
+    let obatTermurah = daftarObat[0][1];
+    daftarObat.forEach((listObat) => {
         let [, hargaObat] = listObat;
 
         if (hargaObat < obatTermurah) {
@@ -121,5 +122,15 @@ console.log(cariObat("flu", db_penyakit)); // [ 'jahe kuning', 4000 ]
 console.log(cariObat("antrax", db_penyakit)); // [ 'doxycycline', 20000 ]
 console.log(cariObat("ambigu", db_penyakit)); // 'tidak ada obat'
 //=======================================================//
+
+function cariHargaKonsultasi(penyakit, database) {
+    // Your code here
+    if (penyakit == "ambigu") return "tidak perlu ke dokter";
+    return database[penyakit].konsultasi;
+}
+
+console.log(cariHargaKonsultasi("flu", db_penyakit)); // 1000000
+console.log(cariHargaKonsultasi("antrax", db_penyakit)); // 50000
+console.log(cariHargaKonsultasi("ambigu", db_penyakit)); // 'tidak perlu dokter'
 //=======================================================//
 //=======================================================//
