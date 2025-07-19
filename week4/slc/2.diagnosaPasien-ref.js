@@ -77,25 +77,49 @@ function cariPenyakit(pasien, database) {
     return diagnosa;
 }
 
-console.log(
-    cariPenyakit(
-        {
-            nama: "thanos",
-            keluhan: ["sulit bernafas", "lemas", "demam", "batuk darah"],
-        },
-        db_penyakit
-    )
-);
-//Karena simptom untuk penyakit antrax lebih banyak, maka Thanos dinyatakan sakit 'Antrax.
-//Output: 'antrax'
+// console.log(
+//     cariPenyakit(
+//         {
+//             nama: "thanos",
+//             keluhan: ["sulit bernafas", "lemas", "demam", "batuk darah"],
+//         },
+//         db_penyakit
+//     )
+// );
+// //Karena simptom untuk penyakit antrax lebih banyak, maka Thanos dinyatakan sakit 'Antrax.
+// //Output: 'antrax'
 
-console.log(
-    cariPenyakit(
-        {
-            nama: "heri wahyudianto",
-            keluhan: ["mata berair", "berkunang kunang"],
-        },
-        db_penyakit
-    )
-);
-// Output: 'ambigu'
+// console.log(
+//     cariPenyakit(
+//         {
+//             nama: "heri wahyudianto",
+//             keluhan: ["mata berair", "berkunang kunang"],
+//         },
+//         db_penyakit
+//     )
+// );
+// // Output: 'ambigu'
+//=======================================================//
+function cariObat(penyakit, database) {
+    // Your code here
+    if (penyakit == "ambigu") return "tidak ada obat";
+    let obat;
+    let obatTermurah = Infinity;
+    database[penyakit].obat.forEach((listObat) => {
+        let [, hargaObat] = listObat;
+
+        if (hargaObat < obatTermurah) {
+            obatTermurah = hargaObat;
+            obat = listObat;
+        }
+    });
+
+    return obat;
+}
+
+console.log(cariObat("flu", db_penyakit)); // [ 'jahe kuning', 4000 ]
+console.log(cariObat("antrax", db_penyakit)); // [ 'doxycycline', 20000 ]
+console.log(cariObat("ambigu", db_penyakit)); // 'tidak ada obat'
+//=======================================================//
+//=======================================================//
+//=======================================================//
