@@ -85,3 +85,67 @@ console.log(highestRating(allMovies));
   rating: 8.6
 }
 */
+
+function mostRecommended(data) {
+    // Your code here
+    if (!data) return "invalid input";
+    if (data.length < 3) return "data tidak lengkap";
+    let result = {};
+    let bestRating = highestRating(data);
+    data.forEach((movie) => {
+        console.log(movie.genre);
+        let genre = movie.genre;
+        if (!result[genre]) {
+            result[genre] = { title: [] };
+        }
+        result[genre].title.push(movie.title);
+    });
+
+    result.bestRating = bestRating;
+    return result;
+}
+
+console.log(mostRecommended(allMovies));
+/*
+{
+  thriller: {
+    titles: [
+      'The Wages of Fear',
+      'No Country for Old Men',
+      'Parasite'
+    ]
+  },
+  romance: { titles: [ '500 Days of Summer' ] },
+  action: { titles: [ 'The Raid', 'The Raid 2' ] },
+  documentary: { titles: [ 'Senyap' ] },
+  drama: { titles: [ 'Shoplifters', 'The Farewell' ] },
+  horror: { titles: [ 'Hereditary' ] },
+  bestRating: {
+    title: 'Parasite',
+    genre: 'thriller',
+    director: 'Bong Joon-ho',      
+    rating: 8.6
+  }
+}
+*/
+
+console.log(
+    mostRecommended([
+        {
+            title: "The Wages of Fear",
+            genre: "thriller",
+            director: "Henri-Georges Clouzot",
+            rating: 8.4,
+        },
+        {
+            title: "No Country for Old Men",
+            genre: "thriller",
+            director: "Coen Brothers",
+            rating: 8.1,
+        },
+    ])
+);
+// data tidak lengkap
+
+console.log(mostRecommended());
+// invalid input
