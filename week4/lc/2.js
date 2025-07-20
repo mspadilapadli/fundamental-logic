@@ -161,3 +161,35 @@ console.log(findMovies(["Action", "Musical"]));
   }
 ]
 */
+
+//========================================================//
+let user = {
+    name: "Kosasih",
+    ticket: 10,
+    favoriteGenre: ["Action", "Musical"],
+};
+
+let movie = {
+    id: 7,
+    name: "Dear Evan Hansen",
+    genre: "Musical",
+    soldTicket: 150,
+    capacity: 200,
+};
+
+function findTicketAvailability(movie, user) {
+    // Insert your code here
+    let availabilityTicket = movie.capacity - movie.soldTicket;
+    return availabilityTicket > user.ticket;
+}
+
+console.log(findTicketAvailability(movie, user)); // true
+/**
+ * Proses
+ *  ticket yang ingin dibeli user berjumlah 10, sedang untuk movie ini masih tersedia 50 ticket yang bisa dijual.
+ *  Oleh karena itu hasil yang dikembalikan adalah true
+ **/
+//========================================================//
+//========================================================//
+//========================================================//
+//========================================================//
