@@ -108,6 +108,7 @@ function findMovies(favoriteGenre) {
     //  return movies.filter((movie) => favoriteGenre.includes(movie.genre));
 }
 console.log(findMovies(["Action", "Musical"]));
+
 /**
  [
   {
@@ -180,7 +181,7 @@ let movie = {
 function findTicketAvailability(movie, user) {
     // Insert your code here
     let availabilityTicket = movie.capacity - movie.soldTicket;
-    return availabilityTicket > user.ticket;
+    return availabilityTicket >= user.ticket;
 }
 
 console.log(findTicketAvailability(movie, user)); // true
@@ -236,5 +237,169 @@ console.log(findRecommendation(user));
 ]
  */
 //========================================================//
+
+function generateRecommendation(user) {
+    // Insert your code here
+    if (!user) return "Tidak ada user yang diterima";
+
+    let result = [];
+    let hargaTiket = {
+        Action: 100_000,
+        Musical: 80_000,
+        Romance: 40_000,
+        Horor: 75_000,
+    };
+
+    let movieRecommended = findRecommendation(user);
+    if (movieRecommended.length <= 0)
+        return "Tidak ada film yang sesuai kriteria";
+    movieRecommended.forEach((movie) => {
+        result.push({
+            id: movie.id,
+            name: movie.name,
+            genre: movie.genre,
+            totalPrice: user.ticket * hargaTiket[movie.genre],
+        });
+    });
+
+    //* map()
+    //  return movieRecommended.map((movie) => {
+    //      return {
+    //          id: movie.id,
+    //          name: movie.name,
+    //          genre: movie.genre,
+    //          totalPrice: user.ticket * hargaTiket[movie.genre],
+    //      };
+    //  });
+
+    return result;
+}
+let user2 = {
+    name: "Kosasih",
+    ticket: 10,
+    favoriteGenre: ["Ngasal"],
+};
+
+let krys = {
+    name: "Krys",
+    ticket: 1,
+    favoriteGenre: ["Action", "Musical", "Romance", "Horror"],
+};
+
+console.log(generateRecommendation(krys));
+
+/**
+  [
+  {
+    id: 1,
+    name: 'Avengers end game',
+    genre: 'Action',
+    totalPrice: 100000
+  },
+  {
+    id: 4,
+    name: 'Superman vs Batman',
+    genre: 'Action',
+    totalPrice: 100000
+  },
+  {
+    id: 11,
+    name: 'Fast and Furios',
+    genre: 'Action',
+    totalPrice: 100000
+  },
+  { id: 7, name: 'Hamilton', genre: 'Musical', totalPrice: 80000 },
+  {
+    id: 8,
+    name: 'Dear Evan Hansen',
+    genre: 'Musical',
+    totalPrice: 80000
+  },
+  { id: 2, name: 'La la Land', genre: 'Romance', totalPrice: 40000 },
+  { id: 6, name: '5 feet apart', genre: 'Romance', totalPrice: 40000 },
+  { id: 9, name: 'Conjuring', genre: 'Horror', totalPrice: 75000 },
+  { id: 10, name: 'Annabelle', genre: 'Horror', totalPrice: 75000 }
+]
+ */
+
+let maria = {
+    name: "Maria",
+    ticket: 20,
+    favoriteGenre: ["Musical", "Romance"],
+};
+
+console.log(generateRecommendation(maria));
+/**
+ [
+  {
+    id: 8,
+    name: 'Dear Evan Hansen',
+    genre: 'Musical',
+    totalPrice: 1600000
+  },
+  { id: 2, name: 'La la Land', genre: 'Romance', totalPrice: 800000 },
+  { id: 6, name: '5 feet apart', genre: 'Romance', totalPrice: 800000 }
+]
+*/
+
+let john = {
+    name: "John",
+    ticket: 2,
+    favoriteGenre: ["Musical", "Comedy", "Thriller"],
+};
+
+console.log(generateRecommendation(john));
+
+/**
+  [
+  { id: 7, name: 'Hamilton', genre: 'Musical', totalPrice: 160000 },
+  {
+    id: 8,
+    name: 'Dear Evan Hansen',
+    genre: 'Musical',
+    totalPrice: 160000
+  }
+]
+ */
+
+let lennon = {
+    name: "lennon",
+    ticket: 1,
+    favoriteGenre: ["Sci Fi", "Documentary", "Thriller"],
+};
+
+console.log(generateRecommendation(lennon)); // Tidak ada film yang sesuai kriteria
+
+let bryan = {
+    name: "Bryan",
+    ticket: 100,
+    favoriteGenre: ["Musical"],
+};
+console.log(generateRecommendation(bryan)); //Tidak ada film yang sesuai kriteria
+
+console.log(generateRecommendation()); // Tidak ada user yang diterima
+
+/**
+ [
+  {
+    id: 4,
+    name: 'Superman vs Batman',
+    genre: 'Action',
+    totalPrice: 1000000
+  },
+  {
+    id: 11,
+    name: 'Fast and Furios',
+    genre: 'Action',
+    totalPrice: 1000000
+  },
+  {
+    id: 8,
+    name: 'Dear Evan Hansen',
+    genre: 'Musical',
+    totalPrice: 800000
+  }
+]
+*/
 //========================================================//
 //========================================================//
