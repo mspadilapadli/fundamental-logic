@@ -190,6 +190,51 @@ console.log(findTicketAvailability(movie, user)); // true
  *  Oleh karena itu hasil yang dikembalikan adalah true
  **/
 //========================================================//
+
+function findRecommendation(user) {
+    // Insert your code here
+    //* manual
+    let moviesRecommandation = [];
+    let foundMovies = findMovies(user.favoriteGenre);
+    foundMovies.forEach((movie) => {
+        let reminingTicket = findTicketAvailability(movie, user);
+        if (reminingTicket) moviesRecommandation.push(movie);
+    });
+
+    return moviesRecommandation;
+    //*filter()
+    return foundMovies.filter((movie) => {
+        let reminingTicket = findTicketAvailability(movie, user);
+        return reminingTicket;
+    });
+}
+
+console.log(findRecommendation(user));
+/**
+ [
+  {
+    id: 4,
+    name: 'Superman vs Batman',
+    genre: 'Action',
+    soldTicket: 150,
+    capacity: 250
+  },
+  {
+    id: 11,
+    name: 'Fast and Furios',
+    genre: 'Action',
+    soldTicket: 25,
+    capacity: 40
+  },
+  {
+    id: 8,
+    name: 'Dear Evan Hansen',
+    genre: 'Musical',
+    soldTicket: 150,
+    capacity: 200
+  }
+]
+ */
 //========================================================//
 //========================================================//
 //========================================================//
