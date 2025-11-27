@@ -155,3 +155,19 @@ for (let i = 0; i < row7; i++) {
 //   *****
 //    ***
 //     *
+
+// * 7.2
+let row8 = 5;
+for (let i = 0; i < row8; i++) {
+    let symbol = "";
+    for (let j = 0; j < i; j++) {
+        symbol += " ";
+    }
+    for (let k = 0; k < row8 - i; k++) {
+        symbol += "*";
+    }
+    for (let l = 0; l < row8 - 1 - i; l++) {
+        symbol += "*";
+    }
+    console.log(symbol);
+}
