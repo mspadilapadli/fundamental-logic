@@ -35,3 +35,10 @@ kata.split("").forEach((e) => {
     }
 });
 console.log(totalHurufYangDicari2);
+
+// * 3 one liner
+let totalHurufYangDicari3 = 0;
+
+totalHurufYangDicari3 = [...kata].filter((e) => e === huruf).length;
+
+console.log(totalHurufYangDicari3);
