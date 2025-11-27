@@ -40,3 +40,8 @@ kata1.split("").forEach((index1) => {
 });
 
 console.log(totalHurufYangDicari2);
+
+//* 3 one line & includes
+let totalHurufYangDicari3 = [...kata1].filter((e) => kata2.includes(e)).length;
+
+console.log(totalHurufYangDicari3);
