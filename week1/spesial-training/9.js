@@ -46,3 +46,10 @@ kata.split("").forEach((char, i) => {
     }
 });
 console.log(hasil2);
+
+// * 3 one liner
+// break cannot using in forEach
+let hasil3;
+hasil3 = [...kata].findIndex((e) => e == huruf);
+
+console.log(hasil3);
