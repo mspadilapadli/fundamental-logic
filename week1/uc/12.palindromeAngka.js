@@ -2,7 +2,7 @@ let angka = 33;
 
 // //* while
 while (angka) {
-    angka > 10 ? (angka += 1) : angka;
+    angka++;
     let strAngka = angka.toString();
     let palindromeAngka = ""; // reset palindrome angka jika menggukanan metode manual.
 
@@ -16,7 +16,6 @@ while (angka) {
     if (strAngka === palindromeAngka) {
         break;
     }
-    angka++;
 }
 console.log(angka);
 
@@ -27,7 +26,24 @@ for (let i = angka2; ; i++) {
     let strAngka = i.toString();
     let palindromeNumber = i.toString().split("").reverse().join("");
     if (strAngka === palindromeNumber) {
+        if (i < 10) i += 1;
         console.log(i);
         break;
     }
 }
+
+let angka3 = 33;
+
+// //* while flaging
+let isPalindrome = false;
+while (!isPalindrome) {
+    angka3++;
+    let strAngka = angka3.toString();
+    let palindromeNumber = strAngka.toString().split("").reverse().join("");
+
+    if (strAngka === palindromeNumber) {
+        isPalindrome = true;
+        break;
+    }
+}
+console.log(angka3);
