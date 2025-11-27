@@ -39,3 +39,5 @@ if (kelamin === "pria") {
 kelamin === "pria"
     ? console.log(`halo pak ${nama}`)
     : console.log(`hallo bu ${nama}`);
+
+console.log(kelamin === "pria" ? `halo pak ${nama}` : `halo bu ${nama}`);

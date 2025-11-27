@@ -30,3 +30,9 @@ if (nilai % 2 === 0) {
 nilai % 2 == 0
     ? console.log(`${nilai} merupakan angka genap`)
     : console.log(`${nilai} merupakan angka ganjil`);
+
+console.log(
+    nilai % 2 == 0
+        ? `${nilai} merupakan angka genap`
+        : `${nilai} merupakan angka ganjil`
+);
