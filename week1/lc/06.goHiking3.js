@@ -1,4 +1,4 @@
-let password = "AbgSFDF0";
+let password = "asdVSSD";
 let specialChar = "~!@#$%^&";
 let hasStr = false;
 let hasSpecial = false;
@@ -17,6 +17,9 @@ for (let i = 0; i < password.length; i++) {
                 hasSpecial = true;
             }
         }
+
+        //*includes
+        //if (specialChar.includes(index)) hasSpecial = true;
     }
 }
 
