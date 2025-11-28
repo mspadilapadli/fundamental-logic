@@ -1,5 +1,5 @@
-let id = "3888-A-0197621";
-let totalMember = 10;
+let id = "3888-I-0197621";
+let totalMember = 21;
 let price = "";
 let totalTagihan = 0;
 let citizen = "";
@@ -29,14 +29,12 @@ if (!citizen) {
         price = 20_000;
         totalTagihan = totalMember * price;
         if (totalMember > 20) {
-            totalTagihan = totalMember * price;
             totalTagihan = totalTagihan - totalTagihan * (20 / 100);
         }
     } else if (citizen === "WNA") {
         price = 50_000;
         totalTagihan = totalMember * price;
         if (totalMember > 30) {
-            totalTagihan = totalMember * price;
             totalTagihan = totalTagihan - totalTagihan * (20 / 100);
         }
     }
