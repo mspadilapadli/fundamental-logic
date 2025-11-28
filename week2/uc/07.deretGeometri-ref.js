@@ -21,6 +21,21 @@ function tentukanDeretGeometri(angka) {
     // slice(1) untuk skip angka pertama , karena index pertama tidak perlu dicek
     return angka.slice(1).every((el, index) => el / angka[index] === rasio);
 }
+
+//*3 handle last index in every tanpa slice
+
+// function tentukanDeretGeometri(angka) {
+//     if (angka.length <= 1) return true;
+//     let rasio = angka[1] / angka[0];
+
+//     // without slice
+//     return angka.every((el, index) => {
+//         // skip last index agat tidak NaN
+//         if (index === angka.length - 1) return true;
+//         return angka[index + 1] / el === rasio;
+//     });
+// }
+
 /* note
 kenapa tidak menggukana forEach :
 forEach() bukan pilihan terbaik untuk masalah ini karena:
