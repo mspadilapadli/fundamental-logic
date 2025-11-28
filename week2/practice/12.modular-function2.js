@@ -10,12 +10,14 @@ function moneyManager(history) {
     } else if (history.length === 0) {
         result = `Data kosong`;
     } else {
+        //reduce
+        // let total = history.reduce((total, curr) => (total += curr), 0);
         let total = 0;
         for (let i = 0; i < history.length; i++) {
             // const indexI = history[i];
             total += history[i];
         }
-        result = `Total pengeluaran hari ini adala ${total}`;
+        result = `Total pengeluaran hari ini adalah ${total} rupiah`;
     }
     return result;
 }

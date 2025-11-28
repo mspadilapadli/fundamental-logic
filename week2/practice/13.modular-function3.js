@@ -7,6 +7,8 @@
 
 function totalExpenses(history) {
     //code here
+
+    // return total = history.reduce((total, curr) => (total += curr), 0);
     let total = 0;
     for (let i = 0; i < history.length; i++) {
         total += history[i];
