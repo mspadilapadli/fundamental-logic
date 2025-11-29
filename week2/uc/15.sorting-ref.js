@@ -52,15 +52,12 @@ function sortAllClean(array) {
 
     for (let i = 0; i < array.length; i++) {
         const indexI = array[i];
-
         if (
-            indexI === undefined ||
-            indexI === null ||
-            (typeof indexI === "number" && isNaN(indexI)) ||
-            (Array.isArray(indexI) && indexI.length === 0)
+            indexI !== null &&
+            indexI !== undefined &&
+            !(typeof indexI === "number" && isNaN(indexI)) &&
+            !(Array.isArray(indexI) && indexI.length === 0)
         ) {
-            continue;
-        } else {
             arrTemp.push(indexI);
         }
     }
