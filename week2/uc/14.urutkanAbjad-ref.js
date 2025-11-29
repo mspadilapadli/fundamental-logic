@@ -16,6 +16,25 @@
 //     return sorted;
 // }
 
+//  * with ASCII code
+// note a = 97, z = 122
+// function urutkanAbjad(str) {
+//     let sorted = "";
+//     str = str.toLowerCase();
+
+//     for (let code = 97; code <= 122; code++) {
+//         let huruf = String.fromCharCode(code);
+
+//         for (let j = 0; j < str.length; j++) {
+//             if (str[j] === huruf) {
+//                 sorted += huruf;
+//             }
+//         }
+//     }
+
+//     return sorted;
+// }
+
 // * bubble sorting manual
 function urutkanAbjad(str) {
     //convert to array (mutable)
