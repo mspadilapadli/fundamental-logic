@@ -1,15 +1,24 @@
+// function tukarBesarKecil(kalimat) {
+//     // you can only write your code here!
+//     letel.  for (let i = 0; i < kalimat.length; i++)
+//         const char = kalimat[i];
+
+//         char === char.toLowerCase()
+//             ? (convertedChar += char.toUpperCase())
+//             : (convertedChar += char.toLowerCase());
+//     }
+
+//     return convertedChar;
+// }
+
+//*2 one liner
+
 function tukarBesarKecil(kalimat) {
-    // you can only write your code here!
-    let convertedChar = "";
-    for (let i = 0; i < kalimat.length; i++) {
-        const char = kalimat[i];
-
-        char === char.toLowerCase()
-            ? (convertedChar += char.toUpperCase())
-            : (convertedChar += char.toLowerCase());
-    }
-
-    return convertedChar;
+    return [...kalimat]
+        .map((el) =>
+            el === el.toLowerCase() ? el.toUpperCase() : el.toLowerCase()
+        )
+        .join("");
 }
 
 // TEST CASES
