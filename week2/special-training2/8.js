@@ -34,6 +34,12 @@ function highestLowest(arr) {
     return result;
 }
 
+//*3 buildin function one liner
+
+// const highestLowest = (arr) => (
+//     (e = arr.flat(Infinity)), [Math.min(...e), Math.max(...e)]
+// );
+
 let data = [
     [
         [4, 5, 6],
