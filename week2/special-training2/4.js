@@ -36,6 +36,11 @@ function filterArr(arr, index) {
     return result;
 }
 
+//one liner
+// function filterArr(arr, index) {
+//     return arr.filter((e, i) => i != index);
+// }
+
 console.log(filterArr([1, 2, 3, 4, 5, 6], 3)); // [1, 2, 3, 5, 6];
 console.log(filterArr([4, 5, 2, 11, 34, 121, 21], 4)); // [4, 5, 2, 11, 121, 21]
 console.log(filterArr([3, 2, 1], 0)); // [2, 1]
