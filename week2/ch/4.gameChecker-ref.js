@@ -11,7 +11,7 @@
 //     // you can only write your code here!
 
 //     if (typeof titleGame != "string") return "invalid data";
-//     if (titleGame == "") return "masukkan game yang ingin di cari";
+//     if (titleGame.length == 0) return "masukkan game yang ingin di cari";
 
 //     let inBox = [];
 
@@ -49,7 +49,7 @@ function gameChecker(titleGame) {
     // you can only write your code here!
 
     if (typeof titleGame != "string") return "invalid data";
-    if (titleGame == "") return "masukkan game yang ingin di cari";
+    if (titleGame.length == 0) return "masukkan game yang ingin di cari";
 
     let foundBoxes = [];
     gameBoxes.forEach((box) => {
@@ -76,7 +76,7 @@ function gameChecker(titleGame) {
 //     // you can only write your code here!
 
 //     if (typeof titleGame != "string") return "invalid data";
-//     if (titleGame == "") return "masukkan game yang ingin di cari";
+//     if (titleGame.length == 0) return "masukkan game yang ingin di cari";
 
 //     let foundBoxes = gameBoxes
 //         .filter((box) => box.includes(titleGame))
