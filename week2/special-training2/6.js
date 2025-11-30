@@ -43,20 +43,20 @@ ourput:
 // }
 
 //*2 build in function filter
-function filterNumberByParam(angka, param) {
-    let result = [];
-    if (param == "genap") {
-        result = angka.filter((num) => num % 2 == 0);
-    } else if (param == "ganjil") {
-        result = angka.filter((num) => num % 2 == 1);
-    } else {
-        return "param harus genap atau ganjil";
-    }
+// function filterNumberByParam(angka, param) {
+//     let result = [];
+//     if (param == "genap") {
+//         result = angka.filter((num) => num % 2 == 0);
+//     } else if (param == "ganjil") {
+//         result = angka.filter((num) => num % 2 == 1);
+//     } else {
+//         return "param harus genap atau ganjil";
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
-//* 3 elegan
+//* 3 elegan with object
 // function filterNumberByParam(angka, param) {
 //     const filterMap = {
 //         genap: (num) => num % 2 === 0,
@@ -67,6 +67,13 @@ function filterNumberByParam(angka, param) {
 //         ? angka.filter(filterMap[param])
 //         : "param harus genap atau ganjil";
 // }
+
+//*4 one liner
+function filterNumberByParam(angka, param) {
+    return param != "genap" && param != "ganjil"
+        ? "param harus genap atau ganjil"
+        : angka.filter((e) => (param == "genap" ? e % 2 == 0 : e % 2 != 0));
+}
 
 console.log(filterNumberByParam([1, 32, 123, 12, 543, 544], "ganjil")); // [1, 123, 543]
 console.log(filterNumberByParam([43, 43, 32, 43, 43, 21, 22], "genap")); // [32, 22]
