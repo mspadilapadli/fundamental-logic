@@ -26,7 +26,8 @@ let animal = {
 // console.log(animal["nama"]);
 // console.log(animal["jumlah Kaki"]);
 
-// * - Bagaimana cara jika saya ingin menambahkan properi baru ke hewan. contoh: menambahkan tipe hewan ( unggas, burung, dll)
+// * - Bagaimana cara jika saya ingin menambahkan properi baru ke hewan. contoh: menambahkan tipe hewan ( unggas, burung, dll)\
+animal["tipe Animal 2"] = "test1";
 animal.tipeAnimal = "mamalia";
 // console.log(animal["tipeAnimal"]);
 
