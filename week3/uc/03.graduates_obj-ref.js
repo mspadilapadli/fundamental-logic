@@ -67,13 +67,27 @@
 //     return result;
 // }
 //*4 reduce, fallback
+// function graduates(students) {
+//     return students.reduce((result, students) => {
+//         if (students.score > 75) {
+//             result[students.class] = result[students.class] || [];
+//             result[students.class].push({
+//                 name: students.name,
+//                 score: students.score,
+//             });
+//         }
+//         return result;
+//     }, {});
+// }
+
+//* 5 reduce, param distruct, alias distruct, fallback,
 function graduates(students) {
-    return students.reduce((result, students) => {
-        if (students.score > 75) {
-            result[students.class] = result[students.class] || [];
-            result[students.class].push({
-                name: students.name,
-                score: students.score,
+    return students.reduce((result, { name, score, class: className }) => {
+        if (score > 75) {
+            result[className] = result[className] || [];
+            result[className].push({
+                name,
+                score,
             });
         }
         return result;
