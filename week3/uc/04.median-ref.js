@@ -1,14 +1,27 @@
+//*1
+// function cariMedian(arr) {
+//     // you can only write your code here!
+//     let median = 0;
+//     let centerIndex = 0;
+//     if (arr.length % 2 == 0) {
+//         centerIndex = arr.length / 2;
+//         median = (arr[centerIndex] + arr[centerIndex - 1]) / 2;
+//     } else {
+//         centerIndex = Math.floor(arr.length / 2);
+//         median = arr[centerIndex];
+//     }
+//     return median;
+// }
+
+//*2
 function cariMedian(arr) {
     // you can only write your code here!
     let median = 0;
-    let centerIndex = 0;
-    if (arr.length % 2 == 0) {
-        centerIndex = arr.length / 2;
-        median = (arr[centerIndex] + arr[centerIndex - 1]) / 2;
-    } else {
-        centerIndex = Math.floor(arr.length / 2);
-        median = arr[centerIndex];
-    }
+    let centerIndex = Math.floor(arr.length / 2);
+    median =
+        arr.length % 2 == 0
+            ? (arr[centerIndex] + arr[centerIndex - 1]) / 2
+            : arr[centerIndex];
     return median;
 }
 
