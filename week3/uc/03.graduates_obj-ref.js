@@ -1,6 +1,6 @@
 //* 1 manual tempObj
 // function graduates(students) {
-// you can only write your code here!
+//     // you can only write your code here!
 //     let result = {};
 
 //     for (let i = 0; i < students.length; i++) {
@@ -23,48 +23,61 @@
 // }
 
 //* 2 destruct
+// function graduates(students) {
+//     // you can only write your code here!
+//     let result = {};
+
+//     for (let i = 0; i < students.length; i++) {
+//         const student = students[i];
+//         let { name, score, class: className } = student;
+
+//         if (!result[className]) {
+//             result[className] = [];
+//         }
+//         if (score > 75) {
+//             result[className].push({
+//                 name: name,
+//                 score: score,
+//             });
+//         }
+//     }
+
+//     return result;
+// }
+
+// //* 3 filter() - forEach()
+// function graduates(students) {
+//     // you can only write your code here!
+//     let result = {};
+
+//     students
+//         .filter((student) => student.score > 75)
+//         .forEach((student) => {
+//             let { name, score, class: className } = student;
+
+//             if (!result[className]) {
+//                 result[className] = [];
+//             }
+//             result[className].push({
+//                 name: name,
+//                 score: score,
+//             });
+//         });
+
+//     return result;
+// }
+//*4 reduce, fallback
 function graduates(students) {
-    // you can only write your code here!
-    let result = {};
-
-    for (let i = 0; i < students.length; i++) {
-        const student = students[i];
-        let { name, score, class: className } = student;
-
-        if (!result[className]) {
-            result[className] = [];
-        }
-        if (score > 75) {
-            result[className].push({
-                name: name,
-                score: score,
+    return students.reduce((result, students) => {
+        if (students.score > 75) {
+            result[students.class] = result[students.class] || [];
+            result[students.class].push({
+                name: students.name,
+                score: students.score,
             });
         }
-    }
-
-    return result;
-}
-
-//* 3 filter() - forEach()
-function graduates(students) {
-    // you can only write your code here!
-    let result = {};
-
-    students
-        .filter((student) => student.score > 75)
-        .forEach((student) => {
-            let { name, score, class: className } = student;
-
-            if (!result[className]) {
-                result[className] = [];
-            }
-            result[className].push({
-                name: name,
-                score: score,
-            });
-        });
-
-    return result;
+        return result;
+    }, {});
 }
 
 // TEST CASE 1
