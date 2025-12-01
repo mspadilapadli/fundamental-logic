@@ -111,6 +111,13 @@ function shoppingTeros(customer, items) {
             return "Terdapat barang yang tidak tersedia di gudang";
     }
 
+    // *one liner with every
+    // let isReadyStock = customer.products.every(
+    //     ([product, qty]) => readyStock[product] >= qty
+    // );
+    // console.log(isReadyStock);
+    // if (!isReadyStock) return "Terdapat barang yang tidak tersedia di gudang";
+
     // *! forEach cannot return or break, so use for or build in fucntion every/some
     // customer.products.forEach((item) => {
     //     let [product, qty] = item;
