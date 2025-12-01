@@ -100,14 +100,24 @@ function shoppingTeros(customer, items) {
     // Insert your code here
     if (!customer) return "Tidak ada customer yang ingin melakukan transaksi";
     let readyStock = getStock(items);
-    let isReadyStock;
-    customer.products.forEach((item) => {
+    let isReadyStock = true;
+
+    //* manual
+    for (let i = 0; i < customer.products.length; i++) {
+        const item = customer.products[i];
         let [product, qty] = item;
-
         isReadyStock = readyStock[product] >= qty ? true : false;
-    });
+        if (!isReadyStock)
+            return "Terdapat barang yang tidak tersedia di gudang";
+    }
 
-    if (!isReadyStock) return "Terdapat barang yang tidak tersedia di gudang";
+    // *! forEach cannot return or break, so use for or build in fucntion every/some
+    // customer.products.forEach((item) => {
+    //     let [product, qty] = item;
+
+    //     console.log(readyStock[product], qty, isReadyStock);
+    // });
+
     let totalPrice = getTotalPrice(customer);
     let message = customer.member
         ? `Hai pelanggan setia ${customer.name}! Total harga yang harus kamu bayar adalah Rp ${totalPrice}`
