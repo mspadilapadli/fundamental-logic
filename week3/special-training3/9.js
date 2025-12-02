@@ -8,19 +8,22 @@ output dari function ini adalah number rata-rata umur dari semua orang yang ada
 
 function averageAge(arr) {
     //*manual
-    let totalAge = 0;
-    arr.forEach((user) => {
-        totalAge += user.age;
-    });
+    // let totalAge = 0;
+    // arr.forEach((user) => {
+    //     totalAge += user.age;
+    // });
 
-    return totalAge / arr.length;
+    // return totalAge / arr.length;
 
     //* reduce()
-    return (
-        arr.reduce((acc, curr) => {
-            return acc + curr.age;
-        }, 0) / arr.length
-    );
+    // return (
+    //     arr.reduce((acc, curr) => {
+    //         return acc + curr.age;
+    //     }, 0) / arr.length
+    // );
+
+    //* one liner reduce()
+    return arr.reduce((acc, { age }) => acc + age, 0) / arr.length;
 }
 
 let multiArr = [
