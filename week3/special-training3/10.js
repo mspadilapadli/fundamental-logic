@@ -113,14 +113,40 @@ output dari function ini adalah object dengan 2 key
 // }
 
 //* one liner filter & map, arrow funct obj literal
-const groupingId = (arr) => ({
-    genap: {
-        list: arr.filter(({ id }) => id % 2 == 0).map(({ name }) => name),
-    },
-    ganjil: {
-        list: arr.filter(({ id }) => id % 2 != 0).map(({ name }) => name),
-    },
-});
+// const groupingId = (arr) => ({
+//     genap: {
+//         list: arr.filter(({ id }) => id % 2 == 0).map(({ name }) => name),
+//     },
+//     ganjil: {
+//         list: arr.filter(({ id }) => id % 2 != 0).map(({ name }) => name),
+//     },
+// });
+
+//*reduce
+// function groupingId(arr) {
+//   let genap = { list: [] },
+//       ganjil = { list: [] };
+// genap.list = arr.reduce((acc, students) => {
+//     if (students.id % 2 == 0) acc.push(students.name);
+//     return acc;
+// }, []);
+// ganjil.list = arr.reduce((acc, students) => {
+//     if (students.id % 2 != 0) acc.push(students.name);
+//     return acc;
+// }, []);
+// return { genap, ganjil };}
+// }
+
+//* one liner reduce
+const groupingId = (arr) =>
+    arr.reduce(
+        (acc, { id, name }) => {
+            const key = id % 2 == 0 ? "genap" : "ganjil";
+            acc[key].list.push(name);
+            return acc;
+        },
+        { genap: { list: [] }, ganjil: { list: [] } }
+    );
 
 let multiArr = [
     { id: 1, name: "Marco Tiger", age: 26 },
