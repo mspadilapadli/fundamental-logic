@@ -138,13 +138,21 @@ output dari function ini adalah object dengan 2 key
 // }
 
 //* one liner reduce
+// const groupingId = (arr) =>
+//     arr.reduce(
+//         (acc, { id, name }) => {
+//             const key = id % 2 == 0 ? "genap" : "ganjil";
+//             acc[key].list.push(name);
+//             return acc;
+//         },
+//         { genap: { list: [] }, ganjil: { list: [] } }
+//     );
+//* one liner reduce more dry, comma operator
 const groupingId = (arr) =>
     arr.reduce(
-        (acc, { id, name }) => {
-            const key = id % 2 == 0 ? "genap" : "ganjil";
-            acc[key].list.push(name);
-            return acc;
-        },
+        (acc, { id, name }) => (
+            acc[id % 2 ? "ganjil" : "genap"].list.push(name), acc
+        ),
         { genap: { list: [] }, ganjil: { list: [] } }
     );
 
