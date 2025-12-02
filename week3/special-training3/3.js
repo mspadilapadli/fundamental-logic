@@ -4,6 +4,7 @@
 3.
 Buatlah sebuah function generateArrayOfObject yang merubah data array multidimensi menjadi array of object
 
+
 */
 
 function generateArrayOfObject(arr) {
@@ -42,17 +43,33 @@ function generateArrayOfObject(arr) {
 
     // * base on result
 
-    arr.forEach((el) => {
-        let [id, firstName, lastName, age] = el;
+    // arr.forEach((el) => {
+    //     let [id, firstName, lastName, age] = el;
 
-        result.push({
-            id,
-            name: `${firstName} ${lastName}`,
-            age: new Date().getFullYear() - age,
-        });
-    });
+    //     result.push({
+    //         id,
+    //         name: `${firstName} ${lastName}`,
+    //         age: new Date().getFullYear() - age,
+    //     });
+    // });
 
-    return result;
+    // return result;
+    //*maping & param distruct
+    // return arr.map(([id, firstName, lastName, age]) => {  //error karena =>{} dibaca sebagai body block di js
+    //         id,
+    //         name: `${firstName} ${lastName}`,
+    //         age: new Date().getFullYear() - age,
+    //     });
+
+    //tambahkan () untuk membungkus objnya
+    return arr.map(([id, firstName, lastName, age]) => ({
+        id,
+        name: `${firstName} ${lastName}`,
+        age: new Date().getFullYear() - age,
+    }));
+    //  Intinya
+    // { ... } setelah arrow → block
+    // ({...}) setelah arrow → object literal
 }
 
 let multiArr = [
