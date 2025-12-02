@@ -23,17 +23,19 @@ function findId(arr, id) {
         //*jika menggunakan else disni , maka output akan selalu tidak di temukan kecuali id yg pertama,
         // * karena looping hanya berjalan 1 kali iterasi (id === index.id), di iterasi pertanam sudah mendapatkan hasil return yang di else if,
     }
-    // *cara yang lebih tepat adalah dengan menggunakan return default. dimana return berada di luar looping.
-
-    return "Id tidak ditemukan";
+    // *cara yang lebih tepat adalah dengan menggunakan return default. dimana return berada di luar looping. atau menggunakan flaging
+    return `Id tidak ditemukan`;
 
     //* manual
     for (let i = 0; i < arr.length; i++) {
         const list = arr[i];
         if (list.id == id) return list;
     }
+    return "Id tidak ditemukan";
 
-    return `Id tidak ditemukan`;
+    //*filter(), param distruct, param alias
+    const found = arr.filter(({ id: reqId }) => reqId === id);
+    return found.length ? found : "Id tidak ditemukan";
 
     //* find()
     let foundId = arr.find((list) => list.id == id);
