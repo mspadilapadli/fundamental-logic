@@ -5,6 +5,7 @@ input function ini ada 1 parameter
 
 output dari function ini adalah object dari 1 person dengan umur tertua
 */
+
 // // * V2 : menggunakan nested for
 // function oldestPersonV2(arr) {
 //     let oldestAge = 0;
@@ -45,21 +46,29 @@ output dari function ini adalah object dari 1 person dengan umur tertua
 // * V3 ref
 function oldestPersonV1(arr) {
     //* manual
-    let result;
-    let oldestAge = 0;
-    for (let i = 0; i < arr.length; i++) {
-        const user = arr[i];
-        if (user.age > oldestAge) {
-            oldestAge = user.age;
-            result = user;
-        }
-    }
-    return result;
+    // let result;
+    // let oldestAge = 0;
+    // for (let i = 0; i < arr.length; i++) {
+    //     const user = arr[i];
+    //     if (user.age > oldestAge) {
+    //         oldestAge = user.age;
+    //         result = user;
+    //     }
+    // }
+    // return result;
 
-    //*reduce()
-    return arr.reduce((oldest, user) => {
-        return user.age > oldest.age ? user : oldest;
-    });
+    //*Math.max()
+    const ages = arr.map(({ age }) => age);
+    const oldest = Math.max(...ages);
+    return arr.find(({ age }) => oldest == age);
+
+    //* one liner find-Math.max
+    return arr.find(({ age }) => age == Math.max(...arr.map(({ age }) => age)));
+
+    //*one liner reduce(), best practice
+    return arr.reduce((oldest, user) =>
+        user.age > oldest.age ? user : oldest
+    );
 }
 
 let multiArr = [
