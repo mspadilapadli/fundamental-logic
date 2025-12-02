@@ -9,6 +9,7 @@ output dari function ini ada array of object yang sudah berubah data salah 1 obj
 - Apabila id ditemukan di data array, maka data dengan id yang dipilih akan dirubah
 - apabila id tidak ditemukan maka tampilkan 'id tidak ditemukan'
 */
+
 // * V1 : langsung ganti value dari properti id yang di cari.
 function editArrayOfObject(arr, input, id) {
     //*manual
@@ -25,11 +26,15 @@ function editArrayOfObject(arr, input, id) {
     //* find()
     let foundId = arr.find((list) => list.id == id);
     if (!foundId) return `Id tidak ditemukan`;
-
     foundId.name = input.name;
     foundId.age = input.age;
-
     return arr;
+
+    //*filter(), param distruct, param alias
+    const found = arr.filter(({ id: reqId }) => reqId === id);
+    found.name = input.name;
+    found.age = input.age;
+    return found.length ? found : "Id tidak ditemukan";
 }
 
 // * V2 : mengaplikasikan flaging/swapped.
