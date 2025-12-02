@@ -18,7 +18,7 @@ output dari function ini adalah object dengan 2 key
 //     }
 // }
 
-// * V2 : init value resutlnya ada didalam looping.
+// * V2 : init value resutlnya ada didalam looping..
 // function groupingIdV2(arr) {
 //     let result = {};
 //     for (let i = 0; i < arr.length; i++) {
@@ -68,34 +68,59 @@ output dari function ini adalah object dengan 2 key
 // }
 
 // * V3
-function groupingId(arr) {
-    //* manual
-    let result = {};
+// function groupingId(arr) {
+//* manual
+// let result = {};
 
-    arr.forEach((user) => {
-        if (user.id % 2 == 0) {
-            if (!result.genap) result.genap = {};
-            if (!result.genap.list) result.genap.list = [];
-            result.genap.list.push(user.name);
-        } else {
-            if (!result.ganjil) result.ganjil = {};
-            if (!result.ganjil.list) result.ganjil.list = [];
-            result.ganjil.list.push(user.name);
-        }
-    });
-    return result;
+// arr.forEach((user) => {
+//     if (user.id % 2 == 0) {
+//         if (!result.genap) result.genap = {};
+//         if (!result.genap.list) result.genap.list = [];
+//         result.genap.list.push(user.name);
+//     } else {
+//         if (!result.ganjil) result.ganjil = {};
+//         if (!result.ganjil.list) result.ganjil.list = [];
+//         result.ganjil.list.push(user.name);
+//     }
+// });
+// return result;
 
-    //* templete result
-    let genap = { list: [] },
-        ganjil = { list: [] };
+// * templete result
+// let genap = { list: [] },
+//     ganjil = { list: [] };
 
-    arr.forEach((user) => {
-        user.id % 2 == 0
-            ? genap.list.push(user.name)
-            : ganjil.list.push(user.name);
-    });
-    return { genap, ganjil };
-}
+// arr.forEach((user) => {
+//     user.id % 2 == 0
+//         ? genap.list.push(user.name)
+//         : ganjil.list.push(user.name);
+// });
+// return { genap, ganjil };
+// }
+
+//*filter & map
+// function groupingId(arr) {
+//   let genap = { list: [] },
+//       ganjil = { list: [] };
+// const genapId = arr
+//     .filter((students) => students.id % 2 == 0)
+//     .map(({ name }) => name);
+// const ganjilId = arr
+//     .filter((students) => students.id % 2 != 0)
+//     .map(({ name }) => name);
+// genap.list.push(genapId);
+// ganjil.list.push(ganjilId);
+// return { genap, ganjil };
+// }
+
+//* one liner filter & map, arrow funct obj literal
+const groupingId = (arr) => ({
+    genap: {
+        list: arr.filter(({ id }) => id % 2 == 0).map(({ name }) => name),
+    },
+    ganjil: {
+        list: arr.filter(({ id }) => id % 2 != 0).map(({ name }) => name),
+    },
+});
 
 let multiArr = [
     { id: 1, name: "Marco Tiger", age: 26 },
@@ -109,7 +134,7 @@ let multiArr = [
 ];
 
 console.log(groupingId(multiArr));
-console.log(groupingIdV2(multiArr));
+// console.log(groupingIdV2(multiArr));
 // {
 //     genap: {
 //         list: [ 'Acong Budiman', 'Robert Downey', 'Lanu', 'Suki' ]
