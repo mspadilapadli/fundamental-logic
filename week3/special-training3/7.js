@@ -9,22 +9,29 @@ output dari function ini ada array of object yang sudah terfilter dengan syarat
 */
 
 // console.log(2022 - 26);
-function filterArrayOfObject(arr) {
-    let result = [];
-    for (let i = 0; i < arr.length; i++) {
-        const user = arr[i];
-        let birdYear = 2022 - user.age;
-        if (birdYear >= 1970 && birdYear <= 1979) {
-            result.push(user);
-        }
-    }
-    return result;
 
-    //* filter()
-    return arr.filter((user) => {
-        let birdYear = 2022 - user.age;
-        return birdYear >= 1970 && birdYear <= 1979;
-    });
+function filterArrayOfObject(arr) {
+    // let result = [];
+    // for (let i = 0; i < arr.length; i++) {
+    //     const user = arr[i];
+    //     let birdYear = 2022 - user.age;
+    //     if (birdYear >= 1970 && birdYear <= 1979) {
+    //         result.push(user);
+    //     }
+    // }
+    // return result;
+
+    // //* filter()
+    // return arr.filter((user) => {
+    //     let birdYear = 2022 - user.age;
+    //     return birdYear >= 1970 && birdYear <= 1979;
+    // });
+
+    //* param object distruct, one liner
+    const currentYear = 2022;
+    return arr.filter(
+        ({ age }) => currentYear - age >= 1970 && currentYear - age <= 1979
+    );
 }
 
 let multiArr = [
