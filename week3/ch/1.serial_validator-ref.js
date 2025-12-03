@@ -215,22 +215,11 @@ untuk index ganjil
 //     }, []);
 
 //* just try reduce() one liner
-// const groupingSymbol = (arr) =>
-//     arr.reduce(
-//         (r, c, i) => (i % 2 ? r[r.length - 1].push(c) : r.push([c]), r),
-//         []
-//     );
-
-//* just try reduce(), slice() one liner - mutable syle
 const groupingSymbol = (arr) =>
-    arr.reduce((r, c, i) => {
-        if (i % 2 == 0) r.push(arr.slice(i, i + 2));
-        return r;
-    }, []);
-
-//* just try reduce(), slice() one liner - immutable syle
-// const groupingSymbol = (arr) =>
-//     arr.reduce((r, c, i) => (i % 2 == 0 ? [...r, arr.slice(i, i + 2)] : r), []);
+    arr.reduce(
+        (r, c, i) => (i % 2 ? r[r.length - 1].push(c) : r.push([c]), r),
+        []
+    );
 
 console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
 // [
