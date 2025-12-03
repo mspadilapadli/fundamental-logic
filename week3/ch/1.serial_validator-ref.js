@@ -1,6 +1,6 @@
 function splitString(str) {
     // Your code here
-    let result = [];
+    const result = [];
     let temp = "";
     for (let i = 0; i < str.length; i++) {
         const char = str[i];
@@ -14,96 +14,148 @@ function splitString(str) {
     }
     result.push(temp);
 
+    // oneliner;
     // str.split(" ");
 
     return result;
 }
 
+// *comma opration, concat array
+// const splitString = (str) => {
+//     let result = [],
+//         temp = "";
+//     [...str].forEach((char) =>
+//         char == " " ? (result.push(temp), (temp = "")) : (temp += char)
+//     );
+//     return result.concat(temp);
+// };
+
 // console.log(splitString("79 08 86 79"));
 // // [ '79', '08', '86', '79' ]
 
 // console.log(splitString("124 765"));
-// // [ '124', '765' ]
+// [ '124', '765' ]
 
-//=====//
-function reverseOddIndex(arr) {
-    // Your code here
-    let result = [];
+// =====//
+// function reverseOddIndex(arr) {
+//     // Your code here
+//     let result = [];
 
-    // * manual forEadh - for
-    arr.forEach((num, index) => {
-        if (index % 2 != 0) {
-            // num = "a";
+//     // * manual forEadh - for
+//     arr.forEach((num, index) => {
+//         if (index % 2 != 0) {
+//             // num = "a";
 
-            let reversedNum = "";
-            for (let i = 0; i < num.length; i++) {
-                reversedNum += num[num.length - 1 - i];
-            }
-            // console.log(num);
-            num = reversedNum;
-        }
+//             let reversedNum = "";
+//             for (let i = 0; i < num.length; i++) {
+//                 reversedNum += num[num.length - 1 - i];
+//             }
+//             // console.log(num);
+//             num = reversedNum;
+//         }
 
-        result.push(num);
-    });
+//         result.push(num);
+//     });
+//     return result;
 
-    // * reversed()
-    // arr.forEach((num, index) => {
-    //     if (index % 2 != 0) {
-    //         // num = "a";
-    //         num = num.split("").reverse().join("");
-    //     }
+// * manual nested forEach
+// arr.forEach((num, index) => {
+//     if (index % 2 != 0) {
+//         let reversedNum = "";
 
-    //     result.push(num);
-    // });
+//         [...num].forEach((char, index) => {
+//             reversedNum += num[num.length - 1 - index];
+//         });
 
-    // * manual nested forEach
-    // arr.forEach((num, index) => {
-    //     if (index % 2 != 0) {
-    //         let reversedNum = "";
+//         num = reversedNum
+//     }
+//     result.push(num)
+// });
+// return result;
+// }
 
-    //         [...num].forEach((char, index) => {
-    //             reversedNum += num[num.length - 1 - index];
-    //         });
+// * map() & reverse()
+const reverseOddIndex = (arr) =>
+    arr.map((num, index) =>
+        index % 2 == 0 ? num : num.split("").reverse().join("")
+    );
 
-    //         num = reversedNum
-    //     }
-    //     result.push(num)
-    // });
-
-    return result;
-}
-
-console.log(reverseOddIndex(["79", "08", "86", "79"]));
+// console.log(reverseOddIndex(["79", "08", "86", "79"]));
 // [ '79', '80', '86', '97' ]
 
 // console.log(reverseOddIndex(["124", "765"]));
 // [ '124', '567' ]
 
 // ==== //
-function decryptElement(arr) {
-    // Your code here
-    let result = [];
-    let symbol = "!@#$%^&*()";
+// function decryptElement(arr) {
+//     // Your code here
+// let result = [];
+// let symbol = "!@#$%^&*()";
 
-    arr.forEach((numbers, index) => {
-        let temp = "";
-        if (index % 2 != 0) {
-            for (let i = 0; i < numbers.length; i++) {
-                const char = numbers[i];
-                char == 0 ? (temp += symbol[9]) : (temp += symbol[char - 1]);
-            }
-            result.push(temp);
-        } else {
-            for (let i = 0; i < numbers.length; i++) {
-                const char = numbers[i];
-                temp += symbol[char];
-            }
-            result.push(temp);
-        }
-    });
+//     arr.forEach((numbers, index) => {
+//         let temp = "";
+//         if (index % 2 != 0) {
+//             for (let i = 0; i < numbers.length; i++) {
+//                 const char = numbers[i];
+//                 char == 0 ? (temp += symbol[9]) : (temp += symbol[char - 1]);
+//             }
+//         } else {
+//             for (let i = 0; i < numbers.length; i++) {
+//                 const char = numbers[i];
+//                 temp += symbol[char];
+//             }
+//         }
+//         // move redundance push
+//         result.push(temp);
+//     });
 
-    return result;
-}
+//     return result;
+// }
+
+//*map() & for
+// const decryptElement = (arr) => {
+//     // let result = [];
+//     const symbol = "!@#$%^&*()";
+//     return arr.map((num, idx) => {
+//         let temp = "";
+
+//         for (let i = 0; i < num.length; i++) {
+//             const char = num[i];
+//             if (idx % 2 != 0) {
+//                 char == 0 ? (temp += symbol[9]) : (temp += symbol[char - 1]);
+//             } else {
+//                 temp += symbol[char];
+//             }
+//         }
+//         return temp;
+//     });
+// };
+
+//*map() & map()
+// const decryptElement = (arr) => {
+//     const symbol = "!@#$%^&*()";
+//     return arr.map((num, idx) =>
+//         [...num]
+//             .map((n) => {
+//                 if (idx % 2 == 0) {
+//                     return symbol[+n];
+//                 } else {
+//                     return symbol[+n == 0 ? 9 : n - 1];
+//                 }
+//             })
+//             .join("")
+//     );
+// };
+
+//* one liner map()
+const decryptElement = (arr) => {
+    const symbol = "!@#$%^&*()";
+    return arr.map((num, idx) =>
+        [...num]
+            .map((n) => symbol[idx % 2 == 0 ? +n : +n == 0 ? 9 : +n - 1])
+            .join("")
+    );
+};
 
 console.log(decryptElement(["79", "80", "86", "97"]));
 // [ '*)', '*)', '(&', '(&' ]
