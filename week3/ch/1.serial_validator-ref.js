@@ -132,17 +132,27 @@ const reverseOddIndex = (arr) =>
 // };
 
 //*map() & map()
+// const decryptElement = (arr) => {
+//     const symbol = "!@#$%^&*()";
+//     return arr.map((num, idx) =>
+//         [...num]
+//             .map((n) => {
+//                 if (idx % 2 == 0) {
+//                     return symbol[+n];
+//                 } else {
+//                     return symbol[+n == 0 ? 9 : n - 1];
+//                 }
+//             })
+//             .join("")
+//     );
+// };
+
+//* one liner map()
 const decryptElement = (arr) => {
     const symbol = "!@#$%^&*()";
     return arr.map((num, idx) =>
         [...num]
-            .map((n) => {
-                if (idx % 2 == 0) {
-                    return symbol[+n];
-                } else {
-                    return symbol[+n == 0 ? 9 : n - 1];
-                }
-            })
+            .map((n) => symbol[idx % 2 == 0 ? +n : +n == 0 ? 9 : +n - 1])
             .join("")
     );
 };
