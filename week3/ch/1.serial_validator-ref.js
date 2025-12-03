@@ -228,8 +228,11 @@ const groupingSymbol = (arr) =>
         return r;
     }, []);
 
-console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
+//* just try reduce(), slice() one liner - immutable syle
+// const groupingSymbol = (arr) =>
+//     arr.reduce((r, c, i) => (i % 2 == 0 ? [...r, arr.slice(i, i + 2)] : r), []);
 
+console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
 // [
 //   [ '*)', '*)' ],  --> berisi index 0 dan index 1 dari array input
 //   [ '(&', '(&' ]   --> berisi index 2 dan index 3 dari array input
