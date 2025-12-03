@@ -229,6 +229,7 @@ const groupingSymbol = (arr) =>
     }, []);
 
 console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
+
 // [
 //   [ '*)', '*)' ],  --> berisi index 0 dan index 1 dari array input
 //   [ '(&', '(&' ]   --> berisi index 2 dan index 3 dari array input
