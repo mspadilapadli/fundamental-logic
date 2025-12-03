@@ -253,12 +253,17 @@ function serialValidator(str) {
     let decryptedEl = decryptElement(reversedOddIndex);
     let grouped = groupingSymbol(decryptedEl);
 
-    for (let i = 0; i < grouped.length; i++) {
-        const el = grouped[i];
-        [index0, index1] = el;
-        if (index0 !== index1) return "Invalid serial numnber";
-    }
-    return "Serial number is valid";
+    //*for
+    // for (let i = 0; i < grouped.length; i++) {
+    //     const el = grouped[i];
+    //     [index0, index1] = el;
+    //     if (index0 !== index1) return "Invalid serial numnber";
+    // }
+    // return "Serial number is valid";
+
+    //* every()
+    const isValid = grouped.every(([idx1, idx2]) => idx1 == idx2);
+    return isValid ? "Serial number is valid" : "Invalid serial numnber";
 }
 
 // console.log(serialValidator("1234"));
