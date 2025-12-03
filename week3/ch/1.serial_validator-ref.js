@@ -266,19 +266,19 @@ function serialValidator(str) {
     return isValid ? "Serial number is valid" : "Invalid serial numnber";
 }
 
-// console.log(serialValidator("1234"));
-// // Harus lebih dari 9 karakter
+console.log(serialValidator("1234"));
+// Harus lebih dari 9 karakter
 
-// console.log(serialValidator("79 08 86 79"));
-// // Serial number is valid
+console.log(serialValidator("79 08 86 79"));
+// Serial number is valid
 
-// console.log(serialValidator("124 765 876 678"));
-// // Invalid serial number
+console.log(serialValidator("124 765 876 678"));
+// Invalid serial number
 
-// console.log(serialValidator("4947 8505 6843 4597"));
-// // Serial number is valid
+console.log(serialValidator("4947 8505 6843 4597"));
+// Serial number is valid
 
-// console.log(serialValidator("3417 1218 1813 1311"));
+console.log(serialValidator("3417 1218 1813 1311"));
 // Invalid serial number
 
 /*
