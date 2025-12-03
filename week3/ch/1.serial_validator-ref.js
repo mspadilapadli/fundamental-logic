@@ -74,6 +74,12 @@ function splitString(str) {
 // return result;
 // }
 
+// * map() & reverse()
+const reverseOddIndex = (arr) =>
+    arr.map((num, index) =>
+        index % 2 == 0 ? num : num.split("").reverse().join("")
+    );
+
 console.log(decryptElement(["79", "80", "86", "97"]));
 // [ '*)', '*)', '(&', '(&' ]
 /*
