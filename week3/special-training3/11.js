@@ -33,8 +33,21 @@ output dari function ini ada array of object yang sudah terfilter dengan syarat
 // });
 // return result;
 //* filter() & every()
-return arr.filter((user) => params.every((char) => user.name.includes(char)));
+// return arr.filter((user) =>
+//     params.every((char) => user.name.includes(char))
+// );
 // }
+
+//* one liner, filter(), every(), param distruct,
+const filterArrayOfObjectByParams = (arr, params) =>
+    arr.filter(({ name }) => params.every((char) => name.includes(char)));
+
+let multiArr = [
+    { id: 1, name: "Marco Tiger", age: 26 },
+    { id: 2, name: "Acong Budiman", age: 52 },
+    { id: 3, name: "Kris Evan", age: 36 },
+    { id: 4, name: "Robert Downey", age: 46 },
+];
 
 console.log(filterArrayOfObjectByParams(multiArr, ["o", "r"]));
 // [
