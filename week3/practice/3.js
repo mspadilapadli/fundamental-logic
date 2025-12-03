@@ -44,4 +44,13 @@ function countAnimals(arr) {
     return result;
 }
 
+//* one liner reduce
+const countAnimals = (arr) =>
+    arr.reduce(
+        (result, animal) => (
+            (result[animal] = (result[animal] || 0) + 1), result
+        ),
+        {}
+    );
+
 console.log(countAnimals(animals));
