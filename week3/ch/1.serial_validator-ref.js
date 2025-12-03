@@ -36,7 +36,7 @@ function splitString(str) {
 // console.log(splitString("124 765"));
 // [ '124', '765' ]
 
-// =====//
+// *=====================================================
 // function reverseOddIndex(arr) {
 //     // Your code here
 //     let result = [];
@@ -86,7 +86,7 @@ const reverseOddIndex = (arr) =>
 // console.log(reverseOddIndex(["124", "765"]));
 // [ '124', '567' ]
 
-// ==== //
+// *=====================================================
 // function decryptElement(arr) {
 //     // Your code here
 // let result = [];
@@ -157,7 +157,7 @@ const decryptElement = (arr) => {
     );
 };
 
-console.log(decryptElement(["79", "80", "86", "97"]));
+// console.log(decryptElement(["79", "80", "86", "97"]));
 // [ '*)', '*)', '(&', '(&' ]
 /*
 penjelasan :
@@ -177,32 +177,60 @@ untuk index ganjil
 '9' diubah menjadi symbol ')'
 */
 
-console.log(decryptElement(["124", "567"]));
+// console.log(decryptElement(["124", "567"]));
 // [ '@#%', '%^&' ]
 
-//====//
-function groupingSymbol(arr) {
-    // Your code here
-    let result = [];
+// *=====================================================
+// function groupingSymbol(arr) {
+//     // Your code here
+//     let result = [];
 
-    //* manual
-    let temp = [];
-    for (let i = 0; i < arr.length; i++) {
-        const indexI = arr[i];
-        temp.push(indexI);
-        if (temp.length == 2) {
-            result.push(temp);
-            temp = [];
-        }
-    }
+//     //* manual
+//     let temp = [];
+//     for (let i = 0; i < arr.length; i++) {
+//         const indexI = arr[i];
+//         temp.push(indexI);
+//         if (temp.length == 2) {
+//             result.push(temp);
+//             temp = [];
+//         }
+//     }
 
-    //* slice()
-    // for (let i = 0; i < arr.length; i += 2) {
-    //     const group = arr.slice(i, i + 2);
-    //     result.push(group);
-    // }
-    return result;
-}
+//     //* slice()
+//     // for (let i = 0; i < arr.length; i += 2) {
+//     //     const group = arr.slice(i, i + 2);
+//     //     result.push(group);
+//     // }
+//     return result;
+// }
+//* just try reduce()
+// const groupingSymbol = (arr) =>
+//     arr.reduce((result, curr, idx) => {
+//         if (idx % 2 == 0) {
+//             result.push([curr]);
+//         } else {
+//             result[result.length - 1].push(curr);
+//         }
+//         return result;
+//     }, []);
+
+//* just try reduce() one liner
+// const groupingSymbol = (arr) =>
+//     arr.reduce(
+//         (r, c, i) => (i % 2 ? r[r.length - 1].push(c) : r.push([c]), r),
+//         []
+//     );
+
+//* just try reduce(), slice() one liner - mutable syle
+const groupingSymbol = (arr) =>
+    arr.reduce((r, c, i) => {
+        if (i % 2 == 0) r.push(arr.slice(i, i + 2));
+        return r;
+    }, []);
+
+//* just try reduce(), slice() one liner - immutable syle
+// const groupingSymbol = (arr) =>
+//     arr.reduce((r, c, i) => (i % 2 == 0 ? [...r, arr.slice(i, i + 2)] : r), []);
 
 console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
 // [
@@ -210,12 +238,12 @@ console.log(groupingSymbol(["*)", "*)", "(&", "(&"]));
 //   [ '(&', '(&' ]   --> berisi index 2 dan index 3 dari array input
 // ]
 
-console.log(groupingSymbol(["@#%", "%^&"]));
+// console.log(groupingSymbol(["@#%", "%^&"]));
 // [
 //   [ '@#%', '%^&' ]
 // ]
 
-//====//
+// *=====================================================
 function serialValidator(str) {
     // Your code here
     if (str.length < 9) return `Harus lebih dari 9 Karakter`;
@@ -233,19 +261,19 @@ function serialValidator(str) {
     return "Serial number is valid";
 }
 
-console.log(serialValidator("1234"));
-// Harus lebih dari 9 karakter
+// console.log(serialValidator("1234"));
+// // Harus lebih dari 9 karakter
 
-console.log(serialValidator("79 08 86 79"));
-// Serial number is valid
+// console.log(serialValidator("79 08 86 79"));
+// // Serial number is valid
 
-console.log(serialValidator("124 765 876 678"));
-// Invalid serial number
+// console.log(serialValidator("124 765 876 678"));
+// // Invalid serial number
 
-console.log(serialValidator("4947 8505 6843 4597"));
-// Serial number is valid
+// console.log(serialValidator("4947 8505 6843 4597"));
+// // Serial number is valid
 
-console.log(serialValidator("3417 1218 1813 1311"));
+// console.log(serialValidator("3417 1218 1813 1311"));
 // Invalid serial number
 
 /*
