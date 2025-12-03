@@ -16,18 +16,32 @@ output:
 { kambing: 3, ayam: 4, Ayam: 1 }
 */
 
+//*1
+// function countAnimals(arr) {
+//     let result = {};
+
+//     for (let i = 0; i < arr.length; i++) {
+//         const indexI = arr[i];
+//         if (result[indexI] === undefined) {
+//             result[indexI] = 1;
+//         } else {
+//             result[indexI]++;
+//         }
+//     }
+
+//     return result;
+// }
+
+//* 2 fallback
 function countAnimals(arr) {
     let result = {};
 
     for (let i = 0; i < arr.length; i++) {
         const indexI = arr[i];
-        if (result[indexI] === undefined) {
-            result[indexI] = 1;
-        } else {
-            result[indexI]++;
-        }
+        result[indexI] = (result[indexI] || 0) + 1;
     }
 
     return result;
 }
+
 console.log(countAnimals(animals));
