@@ -55,74 +55,97 @@ const generatePassangers = (passengerData) =>
 
 //* ===================================================== //
 
-function getTicket(passengersGenerated, ticketsData) {
-    // your code here
-    let totalPrice = 0;
+// function getTicket(passengersGenerated, ticketsData) {
+//     // your code here
+//     let totalPrice = 0;
 
-    passengersGenerated.forEach((order) => {
-        for (let i = 0; i < ticketsData.length; i++) {
-            const ticket = ticketsData[i];
-            if (order.day == ticket.flight) {
-                totalPrice = order.passenger * ticket.price;
-            }
-        }
-        order.totalPrice = totalPrice;
+//     passengersGenerated.forEach((order) => {
+//         for (let i = 0; i < ticketsData.length; i++) {
+//             const ticket = ticketsData[i];
+//             if (order.day == ticket.flight) {
+//                 totalPrice = order.passenger * ticket.price;
+//             }
+//         }
+//         order.totalPrice = totalPrice;
+//     });
+
+//     return passengersGenerated;
+// }
+//*2 map()
+const getTicket = (passengersGenerated, ticketsData) =>
+    passengersGenerated.map(({ travelAgent, passenger, day }) => {
+        const foundTicket = ticketsData.find(({ flight }) => flight == day);
+        return foundTicket
+            ? {
+                  travelAgent,
+                  passenger,
+                  day,
+                  totalPrice: passenger * foundTicket.price,
+              }
+            : { error: "Ticket not found" };
     });
 
-    return passengersGenerated;
-}
+//*3 just try one liner map()
+// const getTicket = (passengersGenerated, ticketsData) =>
+//     passengersGenerated.map(
+//         ({ travelAgent, passenger, day }) => (
+//             ({ price } = ticketsData.find(({ flight }) => flight === day)), //tidak aman untuk variable price, karena akan jadi global scope
+//             { travelAgent, passenger, day, totalPrice: passenger * price }
+//         )
+//     );
 
-// const passengers = [
-//     {
-//         travelAgent: "andi travel",
-//         passenger: 7,
-//         day: "senin",
-//     },
-//     {
-//         travelAgent: "budi travel",
-//         passenger: 4,
-//         day: "selasa",
-//     },
-//     {
-//         travelAgent: "cindi travel",
-//         passenger: 1,
-//         day: "rabu",
-//     },
-//     {
-//         travelAgent: "andi travel",
-//         passenger: 10,
-//         day: "kamis",
-//     },
-// ];
+// console.log(price);
+const passengers = [
+    {
+        travelAgent: "andi travel",
+        passenger: 7,
+        day: "senin",
+    },
+    {
+        travelAgent: "budi travel",
+        passenger: 4,
+        day: "selasa",
+    },
+    {
+        travelAgent: "cindi travel",
+        passenger: 1,
+        day: "rabu",
+    },
+    {
+        travelAgent: "andi travel",
+        passenger: 10,
+        day: "kamis",
+    },
+];
 
-// const tickets = [
-//     {
-//         flight: "senin",
-//         price: 120000,
-//     },
-//     {
-//         flight: "selasa",
-//         price: 180000,
-//     },
-//     {
-//         flight: "rabu",
-//         price: 140000,
-//     },
-//     {
-//         flight: "kamis",
-//         price: 200000,
-//     },
-//     {
-//         flight: "jumat",
-//         price: 160000,
-//     },
-//     {
-//         flight: "sabtu",
-//         price: 220000,
-//     },
-// ];
+const tickets = [
+    {
+        flight: "senin",
+        price: 120000,
+    },
+    {
+        flight: "selasa",
+        price: 180000,
+    },
+    {
+        flight: "rabu",
+        price: 140000,
+    },
+    {
+        flight: "kamis",
+        price: 200000,
+    },
+    {
+        flight: "jumat",
+        price: 160000,
+    },
+    {
+        flight: "sabtu",
+        price: 220000,
+    },
+];
 
-// console.log(getTicket(passengers, tickets));
+console.log(getTicket(passengers, tickets));
 /*
         [
             {
@@ -255,32 +278,32 @@ const datas = [
     ["andi travel", 10, "kamis"],
 ];
 
-const tickets = [
-    {
-        flight: "senin",
-        price: 120000,
-    },
-    {
-        flight: "selasa",
-        price: 180000,
-    },
-    {
-        flight: "rabu",
-        price: 140000,
-    },
-    {
-        flight: "kamis",
-        price: 200000,
-    },
-    {
-        flight: "jumat",
-        price: 160000,
-    },
-    {
-        flight: "sabtu",
-        price: 220000,
-    },
-];
+// const tickets = [
+//     {
+//         flight: "senin",
+//         price: 120000,
+//     },
+//     {
+//         flight: "selasa",
+//         price: 180000,
+//     },
+//     {
+//         flight: "rabu",
+//         price: 140000,
+//     },
+//     {
+//         flight: "kamis",
+//         price: 200000,
+//     },
+//     {
+//         flight: "jumat",
+//         price: 160000,
+//     },
+//     {
+//         flight: "sabtu",
+//         price: 220000,
+//     },
+// ];
 
 console.log(travelAgentReward(datas, tickets));
 // 'Invalid data'
