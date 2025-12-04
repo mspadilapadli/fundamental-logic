@@ -111,6 +111,53 @@ EXPECTED OUTPUT
 //     ])
 // );
 // [4200, 6600, 275];
+const calculateTotalPoint = (data) => {
+    let listReward = [
+        { name: "Rocket", point: 100 },
+        { name: "Chocolate", point: 200 },
+        { name: "Ferrari", point: 500 },
+        { name: "Heart", point: 50 },
+        { name: "Diamond", point: 150 },
+        { name: "Star", point: 25 },
+    ];
+    //*3 map() & find()
+    return data.map((el) => {
+        let totalPoint = 0;
+        for (let i = 0; i < el.length; i += 2) {
+            const rewardName = el[i];
+            const qty = el[i + 1];
+
+            const getReward = listReward.find(({ name }) => name == rewardName);
+            if (getReward) totalPoint += qty * getReward.point;
+        }
+        return totalPoint;
+    });
+
+    //*4 map() & reduce()
+    // return data.map((list) =>
+    //     list.reduce((total, curr, idx, arr) => {
+    //         if (idx % 2 == 0) {
+    //             const qty = arr[idx + 1];
+    //             const getReward = listReward.find(({ name }) => name == curr);
+    //             return (total += qty * getReward.point); // return iterasi di condisi true
+    //         }
+    //         return total; //return value jika false
+    //     }, 0)
+    // );
+    //*5 map() & reduce()
+    // return data.map((list) =>
+    //     list.reduce(
+    //         (total, curr, idx, arr) =>
+    //             idx % 2 == 0
+    //                 ? total +
+    //                   listReward.find(({ name }) => name == curr).point *
+    //                       arr[idx + 1]
+    //                 : total,
+
+    //         0
+    //     )
+    // );
+};
 
 //*======================================================================
 
