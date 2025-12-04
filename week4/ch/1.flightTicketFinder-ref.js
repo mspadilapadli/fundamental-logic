@@ -209,72 +209,82 @@ const getTicket = (passengersGenerated, ticketsData) =>
 //     return result;
 // }
 
-//*2 map(), filter(),reduce()
-
-const getReward = (travelsData, ticketsBook) =>
-    travelsData.map(
-        (travel) =>
-            ticketsBook
-                .filter(({ travelAgent }) => travelAgent == travel)
-                .reduce(
-                    (result, { travelAgent, passenger, day, totalPrice }) => {
-                        result.flight.push(day);
-                        result.totalPrice += totalPrice;
-                        result.totalPassenger += passenger;
-                        result.reward =
-                            result.totalPassenger >= 15 &&
-                            result.totalPrice >= 2_000_000
-                                ? result.totalPrice * 0.2
-                                : 0;
-                        return result;
-                    },
-                    //*best practice nya init keynya di awal juga, mirip denang init variable di awal kode
-                    {
-                        travelAgent: travel,
-                        flight: [],
-                        totalPrice: 0,
-                        totalPassenger: 0,
-                        reward: 0,
-                    }
-                )
-        //*reduce tanpa init keys, bisa, tapi rawam, harus selsalu checking (fallback)
-        // .reduce((acc, item) => {
-        //     acc.travelAgent= travel;
-        //     acc.totalPrice = (acc.totalPrice || 0) + item.totalPrice;
-        //     acc.totalPassenger = (acc.totalPassenger || 0) + item.passenger;
-        //     acc.flight = acc.flight || [];
-        //     acc.flight.push(item.day);
-        //     return acc;
-        // }, {})
-    );
+//*2 just try map(), filter(), reduce()
 
 // const getReward = (travelsData, ticketsBook) =>
-//     travelsData.map((travel) => {
-//         const acc = ticketsBook.reduce(
-//             (acc, { travelAgent, passenger, day, totalPrice }) => {
-//                 if (travelAgent === travel) {
-//                     acc.flight.push(day);
-//                     acc.totalPrice += totalPrice;
-//                     acc.totalPassenger += passenger;
-//                 }
-//                 return acc;
-//             },
-//             {
-//                 travelAgent: travel,
-//                 flight: [],
-//                 totalPrice: 0,
-//                 totalPassenger: 0,
-//             }
-//         );
+//     travelsData.map(
+//         (travel) =>
+//             ticketsBook
+//                 .filter(({ travelAgent }) => travelAgent == travel)
+//                 .reduce(
+//                     (result, { travelAgent, passenger, day, totalPrice }) => {
+//                         result.flight.push(day);
+//                         result.totalPrice += totalPrice;
+//                         result.totalPassenger += passenger;
+//                         result.reward =
+//                             result.totalPassenger >= 15 &&
+//                             result.totalPrice >= 2_000_000
+//                                 ? result.totalPrice * 0.2
+//                                 : 0;
+//                         return result;
+//                     },
+//                     //*best practice nya init keynya di awal juga, mirip denang init variable di awal kode
+//                     {
+//                         travelAgent: travel,
+//                         flight: [],
+//                         totalPrice: 0,
+//                         totalPassenger: 0,
+//                         reward: 0,
+//                     }
+//                 )
+//         //*reduce tanpa init keys, bisa, tapi rawam, harus selsalu checking (fallback)
+//         // .reduce((acc, item) => {
+//         //     acc.travelAgent= travel;
+//         //     acc.totalPrice = (acc.totalPrice || 0) + item.totalPrice;
+//         //     acc.totalPassenger = (acc.totalPassenger || 0) + item.passenger;
+//         //     acc.flight = acc.flight || [];
+//         //     acc.flight.push(item.day);
+//         //     return acc;
+//         // }, {})
+//     );
 
-//         acc.reward =
-//             acc.totalPassenger >= 15 && acc.totalPrice >= 2_000_000
-//                 ? acc.totalPrice * 0.2
-//                 : 0;
+//*3 map() & reduce()
+const getReward = (travelsData, ticketsBook) =>
+    travelsData.map((travel) => {
+        const result = ticketsBook.reduce(
+            (acc, { travelAgent, passenger, day, totalPrice }) => {
+                if (travelAgent !== travel) return acc;
+                acc.flight.push(day);
+                acc.totalPrice += totalPrice;
+                acc.totalPassenger += passenger;
+                return acc;
+            },
+            //*best practice nya init keynya di awal juga, mirip denang init variable di awal kode
+            {
+                travelAgent: travel,
+                flight: [],
+                totalPrice: 0,
+                totalPassenger: 0,
+            }
+        );
 
-//         return acc;
-//     });
+        //* hitung reward setelah reduce selesai, agar 1 kali eksekusi,
+        //* reward bisa di hitung di dalam reduce,hasilnya sama, tapi reward akan selalu di eksekusi di setiap iterasi
+        // result.reward =
+        //     result.totalPassenger >= 15 && result.totalPrice >= 2_000_000
+        //         ? result.totalPrice * 0.2
+        //         : 0;
+        // return result;
 
+        //*or
+        return {
+            ...result,
+            reward:
+                result.totalPassenger >= 15 && result.totalPrice >= 2_000_000
+                    ? result.totalPrice * 0.2
+                    : 0,
+        };
+    });
 // const hasil = [
 //     [
 //         {
