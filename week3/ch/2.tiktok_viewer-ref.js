@@ -161,19 +161,22 @@ const calculateTotalPoint = (data) => {
 
 //*======================================================================
 
-function viewTime(data) {
-    //Your code here
-    //*1 manual
-    let result = [];
-    let wastedTime;
-    let videoDuration = 45;
-    data.forEach((user) => {
-        wastedTime = (user.viewers * videoDuration) / 60;
-        result.push(wastedTime);
-    });
+// function viewTime(data) {
+//     //Your code here
+//     //*1 manual
+//     let result = [];
+//     let wastedTime;
+//     let videoDuration = 45;
+//     data.forEach((user) => {
+//         wastedTime = (user.viewers * videoDuration) / 60;
+//         result.push(wastedTime);
+//     });
 
-    return result;
-}
+//     return result;
+// }
+
+//*2 map()
+const viewTime = (data) => data.map((user) => (user.viewers * 45) / 60);
 
 // console.log(
 //     viewTime([
