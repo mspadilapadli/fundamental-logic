@@ -1,23 +1,25 @@
-function convertData(data) {
-    //Your code here
-    //*manual
-    let result = [];
-    data.forEach((item) => {
-        let temp = [];
-        for (let i = 0; i < item.rewards.length; i++) {
-            const el = item.rewards[i];
-            [reward, qty] = el;
-            temp.push(reward, qty);
-        }
-        result.push(temp);
-    });
-    return result;
+// function convertData(data) {
+//     //Your code here
+//     //*1 manual
+//     let result = [];
+//     data.forEach((item) => {
+//         let temp = [];
+//         for (let i = 0; i < item.rewards.length; i++) {
+//             const el = item.rewards[i];
+//             [reward, qty] = el;
+//             temp.push(reward, qty);
+//         }
+//         result.push(temp);
+//     });
+//     return result;
 
-    //* map()
-    //  return data.map((list) => {
-    //      return list.rewards.flat();
-    //  });
-}
+//*2 map()
+//  return data.map((list) => {
+//      return list.rewards.flat();
+//  });
+// }
+//*3 map() one liner
+const convertData = (data) => data.map(({ rewards }) => rewards.flat());
 
 // console.log(
 //     convertData([
@@ -63,43 +65,43 @@ EXPECTED OUTPUT
 ]
 */
 
-// === //
-function calculateTotalPoint(data) {
-    let listReward = [
-        { name: "Rocket", point: 100 },
-        { name: "Chocolate", point: 200 },
-        { name: "Ferrari", point: 500 },
-        { name: "Heart", point: 50 },
-        { name: "Diamond", point: 150 },
-        { name: "Star", point: 25 },
-    ];
-    //Your code here
+//*======================================================================
+// function calculateTotalPoint(data) {
+//     let listReward = [
+//         { name: "Rocket", point: 100 },
+//         { name: "Chocolate", point: 200 },
+//         { name: "Ferrari", point: 500 },
+//         { name: "Heart", point: 50 },
+//         { name: "Diamond", point: 150 },
+//         { name: "Star", point: 25 },
+//     ];
+//     //Your code here
 
-    let result = [];
-    for (let i = 0; i < data.length; i++) {
-        let tempPoint = 0;
-        const el = data[i];
-        for (let k = 0; k < el.length; k += 2) {
-            const item = el[k];
-            const qty = el[k + 1];
-            //* manual
-            for (let l = 0; l < listReward.length; l++) {
-                const reward = listReward[l];
-                let { name, point } = reward;
-                if (item == name) {
-                    tempPoint += point * qty;
-                    break;
-                }
-            }
-            //* find()
-            // let rewardInfo = listReward.find((reward) => reward.name == item)
-            // if(rewardInfo) tempPoint += rewardInfo.point * qty
-        }
-        result.push(tempPoint);
-    }
+//     let result = [];
+//     for (let i = 0; i < data.length; i++) {
+//         let tempPoint = 0;
+//         const el = data[i];
+//         for (let k = 0; k < el.length; k += 2) {
+//             const item = el[k];
+//             const qty = el[k + 1];
+//             //*1 manual
+//             for (let l = 0; l < listReward.length; l++) {
+//                 const reward = listReward[l];
+//                 let { name, point } = reward;
+//                 if (item == name) {
+//                     tempPoint += point * qty;
+//                     break;
+//                 }
+//             }
+//             //*2 find()
+//             // let rewardInfo = listReward.find((reward) => reward.name == item)
+//             // if(rewardInfo) tempPoint += rewardInfo.point * qty
+//         }
+//         result.push(tempPoint);
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 // console.log(
 //     calculateTotalPoint([
@@ -108,13 +110,13 @@ function calculateTotalPoint(data) {
 //         ["Diamond", 1, "Star", 5],
 //     ])
 // );
-// [ 4200, 6600, 275 ]
+// [4200, 6600, 275];
 
-//===//
+//*======================================================================
 
 function viewTime(data) {
     //Your code here
-    //* manual
+    //*1 manual
     let result = [];
     let wastedTime;
     let videoDuration = 45;
@@ -124,8 +126,6 @@ function viewTime(data) {
     });
 
     return result;
-    //* map()
-    return data.map((user) => (user.viewers * 45) / 60);
 }
 
 // console.log(
@@ -164,7 +164,8 @@ function viewTime(data) {
 // );
 // [ 540, 1050, 24 ]
 
-// ==== //
+//*======================================================================
+
 function tiktokRank(data) {
     // Your code here
     if (!data) return `Insert data`;
@@ -174,8 +175,10 @@ function tiktokRank(data) {
     let convertedData = convertData(data);
     let totalPoint = calculateTotalPoint(convertedData);
     let timeView = viewTime(data);
+    //*1 for
     let userRank = "";
     for (let i = 0; i < totalPoint.length; i++) {
+        const user = data[i].user;
         const point = totalPoint[i];
         const time = timeView[i];
         if (point > 5000 && time > 1000) {
@@ -194,7 +197,7 @@ function tiktokRank(data) {
         if (!result[userRank]) {
             result[userRank] = [];
         }
-        result[userRank].push(data[i].user);
+        result[userRank].push(user);
     }
     return result;
 }
