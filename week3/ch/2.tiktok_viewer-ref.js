@@ -216,42 +216,69 @@ const viewTime = (data) => data.map((user) => (user.viewers * 45) / 60);
 
 //*======================================================================
 
-function tiktokRank(data) {
-    // Your code here
+// function tiktokRank(data) {
+//     // Your code here
+//     if (!data) return `Insert data`;
+//     if (data.length <= 0) return [];
+//     let result = {};
+
+//     let convertedData = convertData(data);
+//     let totalPoint = calculateTotalPoint(convertedData);
+//     let timeView = viewTime(data);
+//     //*1 for
+//     let userRank = "";
+//     for (let i = 0; i < totalPoint.length; i++) {
+//         const user = data[i].user;
+//         const point = totalPoint[i];
+//         const time = timeView[i];
+//         if (point > 5000 && time > 1000) {
+//             userRank = "Platinum";
+//         } else if (
+//             point >= 2500 &&
+//             point <= 5000 &&
+//             time >= 500 &&
+//             time <= 1000
+//         ) {
+//             userRank = "Gold";
+//         } else {
+//             userRank = "Bronze";
+//         }
+
+//         if (!result[userRank]) {
+//             result[userRank] = [];
+//         }
+//         result[userRank].push(user);
+//     }
+//     return result;
+// }
+
+//* reduce()
+const tiktokRank = (data) => {
     if (!data) return `Insert data`;
     if (data.length <= 0) return [];
-    let result = {};
 
-    let convertedData = convertData(data);
-    let totalPoint = calculateTotalPoint(convertedData);
-    let timeView = viewTime(data);
-    //*1 for
-    let userRank = "";
-    for (let i = 0; i < totalPoint.length; i++) {
+    const convertedData = convertData(data);
+    const totalPoint = calculateTotalPoint(convertedData);
+    const timeView = viewTime(data);
+
+    return totalPoint.reduce((result, point, i) => {
         const user = data[i].user;
-        const point = totalPoint[i];
         const time = timeView[i];
-        if (point > 5000 && time > 1000) {
-            userRank = "Platinum";
-        } else if (
-            point >= 2500 &&
-            point <= 5000 &&
-            time >= 500 &&
-            time <= 1000
-        ) {
-            userRank = "Gold";
-        } else {
-            userRank = "Bronze";
-        }
 
-        if (!result[userRank]) {
-            result[userRank] = [];
-        }
+        const userRank =
+            point > 5000 && time > 1000
+                ? "Platinum"
+                : point >= 2500 && point <= 5000 && time >= 500 && time <= 1000
+                ? "Gold"
+                : "Bronze";
+
+        //fallback
+        result[userRank] = result[userRank] || [];
         result[userRank].push(user);
-    }
-    return result;
-}
 
+        return result;
+    }, {});
+};
 // TEST CASE
 console.log(tiktokRank([])); // [];
 console.log(tiktokRank()); // Insert data
