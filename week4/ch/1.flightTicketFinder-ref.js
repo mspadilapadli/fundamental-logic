@@ -95,57 +95,57 @@ const getTicket = (passengersGenerated, ticketsData) =>
 //     );
 
 // console.log(price);
-const passengers = [
-    {
-        travelAgent: "andi travel",
-        passenger: 7,
-        day: "senin",
-    },
-    {
-        travelAgent: "budi travel",
-        passenger: 4,
-        day: "selasa",
-    },
-    {
-        travelAgent: "cindi travel",
-        passenger: 1,
-        day: "rabu",
-    },
-    {
-        travelAgent: "andi travel",
-        passenger: 10,
-        day: "kamis",
-    },
-];
+// const passengers = [
+//     {
+//         travelAgent: "andi travel",
+//         passenger: 7,
+//         day: "senin",
+//     },
+//     {
+//         travelAgent: "budi travel",
+//         passenger: 4,
+//         day: "selasa",
+//     },
+//     {
+//         travelAgent: "cindi travel",
+//         passenger: 1,
+//         day: "rabu",
+//     },
+//     {
+//         travelAgent: "andi travel",
+//         passenger: 10,
+//         day: "kamis",
+//     },
+// ];
 
-const tickets = [
-    {
-        flight: "senin",
-        price: 120000,
-    },
-    {
-        flight: "selasa",
-        price: 180000,
-    },
-    {
-        flight: "rabu",
-        price: 140000,
-    },
-    {
-        flight: "kamis",
-        price: 200000,
-    },
-    {
-        flight: "jumat",
-        price: 160000,
-    },
-    {
-        flight: "sabtu",
-        price: 220000,
-    },
-];
+// const tickets = [
+//     {
+//         flight: "senin",
+//         price: 120000,
+//     },
+//     {
+//         flight: "selasa",
+//         price: 180000,
+//     },
+//     {
+//         flight: "rabu",
+//         price: 140000,
+//     },
+//     {
+//         flight: "kamis",
+//         price: 200000,
+//     },
+//     {
+//         flight: "jumat",
+//         price: 160000,
+//     },
+//     {
+//         flight: "sabtu",
+//         price: 220000,
+//     },
+// ];
 
-console.log(getTicket(passengers, tickets));
+// console.log(getTicket(passengers, tickets));
 /*
         [
             {
@@ -177,67 +177,158 @@ console.log(getTicket(passengers, tickets));
 
 // ===================================================== //
 
-function getReward(travelsData, ticketsBook) {
-    // your code here
+// function getReward(travelsData, ticketsBook) {
+//     // your code here
 
-    let result = [];
-    travelsData.forEach((travel) => {
-        let flight = [],
-            totalPassenger = 0,
-            totalPrice = 0,
-            reward = 0;
-        ticketsBook.forEach((ticket) => {
-            if (travel == ticket.travelAgent) {
-                flight.push(ticket.day);
-                totalPassenger += ticket.passenger;
-                totalPrice += ticket.totalPrice;
-            }
-        });
+//     let result = [];
+//     travelsData.forEach((travel) => {
+//         let flight = [],
+//             totalPassenger = 0,
+//             totalPrice = 0,
+//             reward = 0;
+//         ticketsBook.forEach((ticket) => {
+//             if (travel == ticket.travelAgent) {
+//                 flight.push(ticket.day);
+//                 totalPassenger += ticket.passenger;
+//                 totalPrice += ticket.totalPrice;
+//             }
+//         });
 
-        result.push({
-            travelAgent: travel,
-            flight,
-            totalPrice,
-            totalPassenger,
-            reward:
-                totalPassenger > 15 && totalPrice > 2_000_000
-                    ? totalPrice * 0.2
-                    : reward,
-        });
-    });
+//         result.push({
+//             travelAgent: travel,
+//             flight,
+//             totalPrice,
+//             totalPassenger,
+//             reward:
+//                 totalPassenger > 15 && totalPrice > 2_000_000
+//                     ? totalPrice * 0.2
+//                     : reward,
+//         });
+//     });
 
-    return result;
-}
+//     return result;
+// }
 
-// const travels = ["andi travel", "cindi travel"];
-// const tickets = [
-//     {
-//         travelAgent: "andi travel",
-//         passenger: 7,
-//         day: "senin",
-//         totalPrice: 840000,
-//     },
-//     {
-//         travelAgent: "budi travel",
-//         passenger: 4,
-//         day: "selasa",
-//         totalPrice: 720000,
-//     },
-//     {
-//         travelAgent: "cindi travel",
-//         passenger: 1,
-//         day: "rabu",
-//         totalPrice: 140000,
-//     },
-//     {
-//         travelAgent: "andi travel",
-//         passenger: 10,
-//         day: "kamis",
-//         totalPrice: 2000000,
-//     },
+//*2 map(), filter(),reduce()
+
+const getReward = (travelsData, ticketsBook) =>
+    travelsData.map(
+        (travel) =>
+            ticketsBook
+                .filter(({ travelAgent }) => travelAgent == travel)
+                .reduce(
+                    (result, { travelAgent, passenger, day, totalPrice }) => {
+                        result.flight.push(day);
+                        result.totalPrice += totalPrice;
+                        result.totalPassenger += passenger;
+                        result.reward =
+                            result.totalPassenger >= 15 &&
+                            result.totalPrice >= 2_000_000
+                                ? result.totalPrice * 0.2
+                                : 0;
+                        return result;
+                    },
+                    //*best practice nya init keynya di awal juga, mirip denang init variable di awal kode
+                    {
+                        travelAgent: travel,
+                        flight: [],
+                        totalPrice: 0,
+                        totalPassenger: 0,
+                        reward: 0,
+                    }
+                )
+        //*reduce tanpa init keys, bisa, tapi rawam, harus selsalu checking (fallback)
+        // .reduce((acc, item) => {
+        //     acc.travelAgent= travel;
+        //     acc.totalPrice = (acc.totalPrice || 0) + item.totalPrice;
+        //     acc.totalPassenger = (acc.totalPassenger || 0) + item.passenger;
+        //     acc.flight = acc.flight || [];
+        //     acc.flight.push(item.day);
+        //     return acc;
+        // }, {})
+    );
+
+// const getReward = (travelsData, ticketsBook) =>
+//     travelsData.map((travel) => {
+//         const acc = ticketsBook.reduce(
+//             (acc, { travelAgent, passenger, day, totalPrice }) => {
+//                 if (travelAgent === travel) {
+//                     acc.flight.push(day);
+//                     acc.totalPrice += totalPrice;
+//                     acc.totalPassenger += passenger;
+//                 }
+//                 return acc;
+//             },
+//             {
+//                 travelAgent: travel,
+//                 flight: [],
+//                 totalPrice: 0,
+//                 totalPassenger: 0,
+//             }
+//         );
+
+//         acc.reward =
+//             acc.totalPassenger >= 15 && acc.totalPrice >= 2_000_000
+//                 ? acc.totalPrice * 0.2
+//                 : 0;
+
+//         return acc;
+//     });
+
+// const hasil = [
+//     [
+//         {
+//             travelAgent: "andi travel",
+//             passenger: 7,
+//             day: "senin",
+//             totalPrice: 840000,
+//         },
+//         {
+//             travelAgent: "andi travel",
+//             passenger: 10,
+//             day: "kamis",
+//             totalPrice: 2000000,
+//         },
+//     ],
+//     [
+//         {
+//             travelAgent: "cindi travel",
+//             passenger: 1,
+//             day: "rabu",
+//             totalPrice: 140000,
+//         },
+//     ],
 // ];
 
-// console.log(getReward(travels, tickets));
+const travels = ["andi travel", "cindi travel"];
+const tickets = [
+    {
+        travelAgent: "andi travel",
+        passenger: 7,
+        day: "senin",
+        totalPrice: 840000,
+    },
+    {
+        travelAgent: "budi travel",
+        passenger: 4,
+        day: "selasa",
+        totalPrice: 720000,
+    },
+    {
+        travelAgent: "cindi travel",
+        passenger: 1,
+        day: "rabu",
+        totalPrice: 140000,
+    },
+    {
+        travelAgent: "andi travel",
+        passenger: 10,
+        day: "kamis",
+        totalPrice: 2000000,
+    },
+];
+
+console.log(getReward(travels, tickets));
 /*
         [
             {
@@ -305,13 +396,13 @@ const datas = [
 //     },
 // ];
 
-console.log(travelAgentReward(datas, tickets));
+// console.log(travelAgentReward(datas, tickets));
 // 'Invalid data'
 
-console.log(travelAgentReward(datas, tickets, []));
+// console.log(travelAgentReward(datas, tickets, []));
 // 'Data is empty'
 
-console.log(travelAgentReward(datas, tickets, ["andi travel", "cindi travel"]));
+// console.log(travelAgentReward(datas, tickets, ["andi travel", "cindi travel"]));
 /*
         [
             {
