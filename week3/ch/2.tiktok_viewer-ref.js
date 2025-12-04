@@ -144,7 +144,7 @@ const calculateTotalPoint = (data) => {
     //         return total; //return value jika false
     //     }, 0)
     // );
-    //*5 map() & reduce()
+    //*5 one liner map() & reduce()
     // return data.map((list) =>
     //     list.reduce(
     //         (total, curr, idx, arr) =>
