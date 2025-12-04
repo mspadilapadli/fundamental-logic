@@ -1,3 +1,4 @@
+//*1 manual
 function generateTravel(passengersData) {
     let result = [];
 
@@ -12,6 +13,13 @@ function generateTravel(passengersData) {
 
     return result;
 }
+//*2 one liner map()
+const generatePassangers = (passengerData) =>
+    passengerData.map(([travelAgent, passenger, day]) => ({
+        travelAgent,
+        passenger,
+        day,
+    }));
 // const passengers = [
 //     ["andi travel", 7, "senin"],
 //     ["budi travel", 4, "selasa"],
@@ -45,7 +53,7 @@ function generateTravel(passengersData) {
         ]
     */
 
-// ===================================================== //
+//* ===================================================== //
 
 function getTicket(passengersGenerated, ticketsData) {
     // your code here
