@@ -10,60 +10,71 @@
 //     "Playing Mobile Legends",
 // ];
 
-function splitTodos(todos) {
-    // code here
-    //* manual v1
-    let result = [];
-    for (let i = 0; i < todos.length; i++) {
-        let tempArr = [];
-        let temp = "";
-        const todo = todos[i];
-        for (let j = 0; j < todo.length; j++) {
-            const char = todo[j];
-            if (char === "|") {
-                tempArr.push(temp);
-                temp = "";
-            } else {
-                temp += char;
-            }
-        }
-        tempArr.push(temp);
-        tempArr.length == 2 ? tempArr : tempArr.push("");
+// function splitTodos(todos) {
+// code here
+//* manual v1
+// let result = [];
+// for (let i = 0; i < todos.length; i++) {
+//     let tempArr = [];
+//     let temp = "";
+//     const todo = todos[i];
+//     for (let j = 0; j < todo.length; j++) {
+//         const char = todo[j];
+//         if (char === "|") {
+//             tempArr.push(temp);
+//             temp = "";
+//         } else {
+//             temp += char;
+//         }
+//     }
+//     tempArr.push(temp);
+//     tempArr.length == 2 ? tempArr : tempArr.push("");
 
-        result.push(tempArr);
-    }
+//     result.push(tempArr);
+// }
 
-    //* manual v2 with flaging foundSeparator
-    //  for (let i = 0; i < todos.length; i++) {
-    //      const indexTodo = todos[i];
-    //      let tempArr = [];
-    //      let task = "";
-    //      let date = "";
-    //      let foundSeparator = false;
-    //      for (let j = 0; j < indexTodo.length; j++) {
-    //          const indexChar = indexTodo[j];
-    //          if (indexChar === "|") {
-    //              foundSeparator = true;
-    //          } else {
-    //              if (foundSeparator) {
-    //                  date += indexChar;
-    //              } else {
-    //                  task += indexChar;
-    //              }
-    //          }
-    //      }
-    //      tempArr.push(task, date);
-    //      result.push(tempArr);
-    //  }
+//* manual v2 with flaging foundSeparator
+//  for (let i = 0; i < todos.length; i++) {
+//      const indexTodo = todos[i];
+//      let tempArr = [];
+//      let task = "";
+//      let date = "";
+//      let foundSeparator = false;
+//      for (let j = 0; j < indexTodo.length; j++) {
+//          const indexChar = indexTodo[j];
+//          if (indexChar === "|") {
+//              foundSeparator = true;
+//          } else {
+//              if (foundSeparator) {
+//                  date += indexChar;
+//              } else {
+//                  task += indexChar;
+//              }
+//          }
+//      }
+//      tempArr.push(task, date);
+//      result.push(tempArr);
+//  }
 
-    return result;
+// return result;
 
-    //* map()
-    return todos.map((item) => {
-        let part = item.split("|");
-        return part.length == 2 ? part : [part[0], ""];
+//* map()
+//     return todos.map((item) => {
+//         let part = item.split("|");
+//         return part.length == 2 ? part : part.concat("");
+//     });
+// }
+
+//* default value disctructing one liner (not recomend , cuz array distruct to global scope)
+// const splitTodos = (todos) =>
+//  todos.map((item) => (([task, date = ""] = item.split("|")), [task, date])); //date=""
+
+//*best default value disctructing
+const splitTodos = (todos) =>
+    todos.map((item) => {
+        const [task, date = ""] = item.split("|");
+        return [task, date];
     });
-}
 
 // console.log(splitTodos(todos));
 /*
@@ -80,36 +91,32 @@ function splitTodos(todos) {
   ]
  */
 
-//========================================//
+//*================================================================================//
 
-// const todos = [
-//     ["Buy car signal light", "16/1/2021"],
-//     ["Return bycycle brake", "17/1/2021"],
-//     ["Buy A4 Paper", ""],
-//     ["Install Garage Shed", "18/1/2021"],
-//     ["Service PC", "18/1/2021"],
-//     ["Fix rooftops", "19/1/2021"],
-//     ["Watching TV series", "19/1/2021"],
-//     ["Buy new toys", "19/1/2021"],
-//     ["Playing Mobile Legends", ""],
-// ];
-function filterTodos(todos) {
-    //* manual
-    let result = [];
-    todos.forEach((todo) => {
-        let [task, date] = todo;
-        if (date) result.push(todo);
-    });
+const todos = [
+    ["Buy car signal light", "16/1/2021"],
+    ["Return bycycle brake", "17/1/2021"],
+    ["Buy A4 Paper", ""],
+    ["Install Garage Shed", "18/1/2021"],
+    ["Service PC", "18/1/2021"],
+    ["Fix rooftops", "19/1/2021"],
+    ["Watching TV series", "19/1/2021"],
+    ["Buy new toys", "19/1/2021"],
+    ["Playing Mobile Legends", ""],
+];
+// function filterTodos(todos) {
+//     //* manual
+//     let result = [];
+//     todos.forEach((todo) => {
+//         let [task, date] = todo;
+//         if (date) result.push(todo);
+//     });
 
-    return result;
+//     return result;
 
-    // your code here
-    //* filter()
-    // handle todo[1] yg isinya spasi, karena spasi itu truthy di js
-    return todos.filter((todo) => todo[1] && todo[1].trim() != "");
-}
+// }
 
-// console.log(filterTodos(todos));
+console.log(filterTodos(todos));
 /*
   [
     ['Buy car signal light', '16/1/2021'],
@@ -122,7 +129,7 @@ function filterTodos(todos) {
   ]
  */
 
-//==================================================//
+//*================================================================================//
 
 // const todos = [
 //     ["Buy car signal light", "16/7/2025"],
@@ -195,6 +202,8 @@ function todoStatus(todos, date) {
 //     ["Buy new toys", "19/1/2021", "pending"],
 // ];
 
+//*================================================================================//
+
 function todoStatistic(todos) {
     // your code here
     let result = {};
@@ -217,17 +226,19 @@ function todoStatistic(todos) {
  * }
  */
 
-const todos = [
-    "Buy car signal light|16/1/2021",
-    "Return bycycle brake|17/1/2021",
-    "Buy A4 Paper|",
-    "Install Garage Shed|18/1/2021",
-    "Service PC|18/1/2021",
-    "Fix rooftops|19/1/2021",
-    "Watching TV series|19/1/2021",
-    "Buy new toys|19/1/2021",
-    "Playing Mobile Legends|",
-];
+// const todos = [
+//     "Buy car signal light|16/1/2021",
+//     "Return bycycle brake|17/1/2021",
+//     "Buy A4 Paper|",
+//     "Install Garage Shed|18/1/2021",
+//     "Service PC|18/1/2021",
+//     "Fix rooftops|19/1/2021",
+//     "Watching TV series|19/1/2021",
+//     "Buy new toys|19/1/2021",
+//     "Playing Mobile Legends|",
+// ];
+
+//*================================================================================//
 
 function generateTodos(todos, date) {
     let result = { statistic: "", todo: [] };
@@ -250,7 +261,7 @@ function generateTodos(todos, date) {
     return result;
 }
 
-console.log(generateTodos(todos, 18));
+// console.log(generateTodos(todos, 18));
 /**
  * {
     statistic: { done: 2, ongoing: 2, pending: 3 },
