@@ -34,19 +34,41 @@
 // };
 
 //*3 implisit reduce->(arr.reduce(...).name)
+// const findStrongest = (arr) =>
+//     arr.reduce(
+//         (strongest, { name, status, type }) => {
+//             const { attack, hp, defense } = status;
+//             const totalStatus = attack + hp + defense;
+//             if (totalStatus > strongest.status) {
+//                 strongest.name = name;
+//                 strongest.status = totalStatus;
+//             }
+//             return strongest;
+//         },
+//         { name: "", status: 0 }
+//     ).name;
+
+//*4 one liner reduce() - readable
 const findStrongest = (arr) =>
     arr.reduce(
-        (strongest, { name, status, type }) => {
-            const { attack, hp, defense } = status;
-            const totalStatus = attack + hp + defense;
-            if (totalStatus > strongest.status) {
-                strongest.name = name;
-                strongest.status = totalStatus;
-            }
-            return strongest;
+        (strongest, { name, status }) => {
+            const totalStatus = status.attack + status.hp + status.defense;
+            return totalStatus > strongest.status
+                ? { name, status: totalStatus }
+                : strongest;
         },
         { name: "", status: 0 }
     ).name;
+
+//*5 reduce() direct expression comparison
+// const findStrongest = (arr) =>
+//     arr.reduce(
+//         (strongest, { name, status }) =>
+//             status.attack + status.hp + status.defense > strongest.status
+//                 ? { name, status: status.attack + status.hp + status.defense }
+//                 : strongest,
+//         { name: "", status: 0 }
+//     ).name;
 
 console.log(
     findStrongest([
