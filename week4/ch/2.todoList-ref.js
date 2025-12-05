@@ -93,17 +93,17 @@ const splitTodos = (todos) =>
 
 //*================================================================================//
 
-const todos = [
-    ["Buy car signal light", "16/1/2021"],
-    ["Return bycycle brake", "17/1/2021"],
-    ["Buy A4 Paper", ""],
-    ["Install Garage Shed", "18/1/2021"],
-    ["Service PC", "18/1/2021"],
-    ["Fix rooftops", "19/1/2021"],
-    ["Watching TV series", "19/1/2021"],
-    ["Buy new toys", "19/1/2021"],
-    ["Playing Mobile Legends", ""],
-];
+// const todos = [
+//     ["Buy car signal light", "16/1/2021"],
+//     ["Return bycycle brake", "17/1/2021"],
+//     ["Buy A4 Paper", ""],
+//     ["Install Garage Shed", "18/1/2021"],
+//     ["Service PC", "18/1/2021"],
+//     ["Fix rooftops", "19/1/2021"],
+//     ["Watching TV series", "19/1/2021"],
+//     ["Buy new toys", "19/1/2021"],
+//     ["Playing Mobile Legends", ""],
+// ];
 // function filterTodos(todos) {
 //     //* manual
 //     let result = [];
@@ -119,7 +119,7 @@ const todos = [
 //* one liner filter()
 const filterTodos = (todos) => todos.filter(([task, date]) => date);
 
-console.log(filterTodos(todos));
+// console.log(filterTodos(todos));
 /*
   [
     ['Buy car signal light', '16/1/2021'],
@@ -146,28 +146,28 @@ console.log(filterTodos(todos));
 
 function todoStatus(todos, date) {
     // your code here
-    let result = [...todos];
+    // let result = [...todos];
 
-    // compare day
-    result.forEach((todo) => {
-        let [task, dueDate] = todo;
-        let taskDate = `${dueDate[0]}${dueDate[1]}`;
-        console.log(taskDate, date);
-        if (taskDate > date) todo.push("pending");
-        else if (taskDate < date) todo.push("done");
-        else todo.push("ongoing");
-    });
+    // *compare day
+    // result.forEach((todo) => {
+    //     let [task, dueDate] = todo;
+    //     let taskDate = `${dueDate[0]}${dueDate[1]}`;
+    //     console.log(taskDate, date);
+    //     if (taskDate > date) todo.push("pending");
+    //     else if (taskDate < date) todo.push("done");
+    //     else todo.push("ongoing");
+    // });
 
-    return result;
+    // return result;
     //* compare date
     return todos.map((todo) => {
         let [task, dueDateStr] = todo;
         const [day, month, year] = dueDateStr.split("/").map(Number);
         // UTC time akan mundur 1 hari jika waktu local
         let dueDate = new Date(year, month - 1, day);
-        let today = new Date(year, month - 1, date);
+        let today = new Date(year, month - 1, 18);
+        // console.log(day, month, year, today);
 
-        console.log(today.getTime());
         let status;
         if (today > dueDate) status = "done";
         //gunakan getTime() aagar waktu jam nya sama dan true, jika tidak maka hasilnya akan selalu false karena jam menit detiknya berbeda
@@ -194,33 +194,47 @@ function todoStatus(todos, date) {
     ['Buy new toys', '19/1/2021', 'pending']
    ]
  */
-
-// const todos = [
-//     ["Buy car signal light", "16/1/2021", "done"],
-//     ["Return bycycle brake", "17/1/2021", "done"],
-//     ["Install Garage Shed", "18/1/2021", "ongoing"],
-//     ["Service PC", "18/1/2021", "ongoing"],
-//     ["Fix rooftops", "19/1/2021", "pending"],
-//     ["Watching TV series", "19/1/2021", "pending"],
-//     ["Buy new toys", "19/1/2021", "pending"],
-// ];
-
 //*================================================================================//
 
-function todoStatistic(todos) {
-    // your code here
-    let result = {};
-    todos.forEach((todo) => {
-        let [task, date, status] = todo;
-        if (!result[status]) {
-            result[status] = 0;
-        }
-        result[status]++;
-    });
-    return result;
-}
+const todos = [
+    ["Buy car signal light", "16/1/2021", "done"],
+    ["Return bycycle brake", "17/1/2021", "done"],
+    ["Install Garage Shed", "18/1/2021", "ongoing"],
+    ["Service PC", "18/1/2021", "ongoing"],
+    ["Fix rooftops", "19/1/2021", "pending"],
+    ["Watching TV series", "19/1/2021", "pending"],
+    ["Buy new toys", "19/1/2021", "pending"],
+];
 
-// console.log(todoStatistic(todos));
+// function todoStatistic(todos) {
+//     // your code here
+//     let result = {};
+//     todos.forEach((todo) => {
+//         let [task, date, status] = todo;
+//         if (!result[status]) {
+//             result[status] = 0;
+//         }
+//         result[status]++;
+//     });
+//     return result;
+// }
+
+//*  reduce()
+// const todoStatistic = (todos) =>
+//     todos.reduce((result, [task, date, status]) => {
+//         result[status] = (result[status] || 0) + 1;
+//         return result;
+//     }, {});
+
+//* one liner reduce()
+const todoStatistic = (todos) =>
+    todos.reduce(
+        (result, [, , status]) => (
+            (result[status] = (result[status] || 0) + 1), result
+        ),
+        {}
+    );
+console.log(todoStatistic(todos));
 /**
  * {
  *   done: 2,
