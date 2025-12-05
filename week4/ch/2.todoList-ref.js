@@ -116,6 +116,9 @@ const todos = [
 
 // }
 
+//* one liner filter()
+const filterTodos = (todos) => todos.filter(([task, date]) => date);
+
 console.log(filterTodos(todos));
 /*
   [
