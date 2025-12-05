@@ -140,6 +140,17 @@ const gottaGroupEmAll = (arr) => {
     );
 };
 
+//*just try one liner reduce()- unreadble, 2 comma oprator
+// const gottaGroupEmAll = (arr) =>
+//     arr.reduce(
+//         (result, { name, type }) => (
+//             (result[type] = result[type] || { list: [] }),
+//             result[type].list.push(name),
+//             result
+//         ),
+//         { strongestPokemon: findStrongest(arr) }
+//     );
+
 console.log(
     gottaGroupEmAll([
         {
