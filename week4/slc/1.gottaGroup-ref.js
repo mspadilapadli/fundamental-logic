@@ -100,32 +100,45 @@ const findStrongest = (arr) =>
 //     ])
 // );
 // // Charizard
-//=================================//
+//*==================================================//
 
-function gottaGroupEmAll(arr) {
-    // Your code here
-    let result = {};
+// function gottaGroupEmAll(arr) {
+//     // Your code here
+//     let result = {};
 
-    let strongestPokemon = findStrongest(arr);
+//     let strongestPokemon = findStrongest(arr);
 
-    // arr.forEach((pokemon) => {
-    //     let type = pokemon.type;
-    //     if (!result[type]) {
-    //         result[type] = {
-    //             list: [],
-    //         };
-    //     }
-    //     result[type].list.push(pokemon.name);
-    // });
-    //*fallback
-    arr.forEach(({ name, status, type }) => {
-        result[type] = result[type] || { list: [] };
-        result[type].list.push(name);
-    });
+//     // arr.forEach((pokemon) => {
+//     //     let type = pokemon.type;
+//     //     if (!result[type]) {
+//     //         result[type] = {
+//     //             list: [],
+//     //         };
+//     //     }
+//     //     result[type].list.push(pokemon.name);
+//     // });
+//     //*fallback
+//     arr.forEach(({ name, status, type }) => {
+//         result[type] = result[type] || { list: [] };
+//         result[type].list.push(name);
+//     });
 
-    result.strongestPokemon = strongestPokemon;
-    return result;
-}
+//     result.strongestPokemon = strongestPokemon;
+//     return result;
+// }
+
+//* reduce(), modular function, readable, best pract
+const gottaGroupEmAll = (arr) => {
+    const strongestPokemon = findStrongest(arr);
+    return arr.reduce(
+        (result, { name, type }) => {
+            result[type] = result[type] || { list: [] };
+            result[type].list.push(name);
+            return result;
+        },
+        { strongestPokemon }
+    );
+};
 
 console.log(
     gottaGroupEmAll([
