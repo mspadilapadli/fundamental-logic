@@ -157,7 +157,7 @@ const cariPenyakit = (pasien, database) => {
 //* 3 one liner reduce()
 const cariObat = (penyakit, database) =>
     penyakit == "ambigu"
-        ? "tidak ada obat"
+        ? ["tidak ada obat", 0]
         : database[penyakit].obat.reduce((obatTermurah, curr) =>
               obatTermurah[1] < curr[1] ? obatTermurah : curr
           );
@@ -167,11 +167,15 @@ const cariObat = (penyakit, database) =>
 // console.log(cariObat("ambigu", db_penyakit)); // 'tidak ada obat'
 //*================================================================================//
 
-function cariHargaKonsultasi(penyakit, database) {
-    // Your code here
-    if (penyakit == "ambigu") return "tidak perlu ke dokter";
-    return database[penyakit].konsultasi;
-}
+// function cariHargaKonsultasi(penyakit, database) {
+//     // Your code here
+//     if (penyakit == "ambigu") return "tidak perlu ke dokter";
+//     return database[penyakit].konsultasi;
+// }
+
+//* one liner
+const cariHargaKonsultasi = (penyakit, database) =>
+    penyakit == "ambigu" ? "tidak perlu dokter" : database[penyakit].konsultasi;
 
 // console.log(cariHargaKonsultasi("flu", db_penyakit)); // 1000000
 // console.log(cariHargaKonsultasi("antrax", db_penyakit)); // 50000
