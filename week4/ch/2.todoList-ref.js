@@ -134,15 +134,15 @@ const filterTodos = (todos) => todos.filter(([task, date]) => date);
 
 //*================================================================================//
 
-const todos = [
-    ["Buy car signal light", "16/7/2025"],
-    ["Return bycycle brake", "17/7/2025"],
-    ["Install Garage Shed", "18/7/2025"],
-    ["Service PC", "18/7/2025"],
-    ["Fix rooftops", "19/7/2025"],
-    ["Watching TV series", "19/7/2025"],
-    ["Buy new toys", "19/7/2025"],
-];
+// const todos = [
+//     ["Buy car signal light", "16/7/2025"],
+//     ["Return bycycle brake", "17/7/2025"],
+//     ["Install Garage Shed", "18/7/2025"],
+//     ["Service PC", "18/7/2025"],
+//     ["Fix rooftops", "19/7/2025"],
+//     ["Watching TV series", "19/7/2025"],
+//     ["Buy new toys", "19/7/2025"],
+// ];
 
 function todoStatus(todos, date) {
     // your code here
@@ -243,17 +243,17 @@ const todoStatistic = (todos) =>
  */
 
 //*================================================================================//
-// const todos = [
-//     "Buy car signal light|16/1/2021",
-//     "Return bycycle brake|17/1/2021",
-//     "Buy A4 Paper|",
-//     "Install Garage Shed|18/1/2021",
-//     "Service PC|18/1/2021",
-//     "Fix rooftops|19/1/2021",
-//     "Watching TV series|19/1/2021",
-//     "Buy new toys|19/1/2021",
-//     "Playing Mobile Legends|",
-// ];
+const todos = [
+    "Buy car signal light|16/1/2021",
+    "Return bycycle brake|17/1/2021",
+    "Buy A4 Paper|",
+    "Install Garage Shed|18/1/2021",
+    "Service PC|18/1/2021",
+    "Fix rooftops|19/1/2021",
+    "Watching TV series|19/1/2021",
+    "Buy new toys|19/1/2021",
+    "Playing Mobile Legends|",
+];
 
 // function generateTodos(todos, date) {
 //     let result = { statistic: "", todo: [] };
@@ -276,7 +276,24 @@ const todoStatistic = (todos) =>
 //     return result;
 // }
 
-// console.log(generateTodos(todos, 18));
+// *2 map() - Implicit return object literal
+const generateTodos = (todos, date) => {
+    const splitedTask = splitTodos(todos);
+    const filteredTask = filterTodos(splitedTask);
+    const statusTask = todoStatus(filteredTask, date);
+
+    const statistic = todoStatistic(statusTask);
+    console.log(statistic);
+    //* Implicit return object literal
+    const todosObj = statusTask.map(([name, dueDate, status]) => ({
+        name,
+        dueDate,
+        status,
+    }));
+    return { statistic, todos: todosObj };
+};
+
+console.log(generateTodos(todos, 18));
 /**
  * {
     statistic: { done: 2, ongoing: 2, pending: 3 },
