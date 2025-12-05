@@ -70,35 +70,35 @@ const findStrongest = (arr) =>
 //         { name: "", status: 0 }
 //     ).name;
 
-console.log(
-    findStrongest([
-        {
-            name: "Charizard",
-            status: { attack: 84, hp: 78, defense: 78 },
-            type: "Flying",
-        },
-        {
-            name: "Talonflame",
-            status: { attack: 81, hp: 78, defense: 71 },
-            type: "Flying",
-        },
-        {
-            name: "Gengar",
-            status: { attack: 65, hp: 60, defense: 60 },
-            type: "Ghost",
-        },
-        {
-            name: "Grimer",
-            status: { attack: 80, hp: 80, defense: 50 },
-            type: "Poison",
-        },
-        {
-            name: "Arbok",
-            status: { attack: 95, hp: 60, defense: 69 },
-            type: "Poison",
-        },
-    ])
-);
+// console.log(
+//     findStrongest([
+//         {
+//             name: "Charizard",
+//             status: { attack: 84, hp: 78, defense: 78 },
+//             type: "Flying",
+//         },
+//         {
+//             name: "Talonflame",
+//             status: { attack: 81, hp: 78, defense: 71 },
+//             type: "Flying",
+//         },
+//         {
+//             name: "Gengar",
+//             status: { attack: 65, hp: 60, defense: 60 },
+//             type: "Ghost",
+//         },
+//         {
+//             name: "Grimer",
+//             status: { attack: 80, hp: 80, defense: 50 },
+//             type: "Poison",
+//         },
+//         {
+//             name: "Arbok",
+//             status: { attack: 95, hp: 60, defense: 69 },
+//             type: "Poison",
+//         },
+//     ])
+// );
 // // Charizard
 //=================================//
 
@@ -107,14 +107,20 @@ function gottaGroupEmAll(arr) {
     let result = {};
 
     let strongestPokemon = findStrongest(arr);
-    arr.forEach((pokemon) => {
-        let type = pokemon.type;
-        if (!result[type]) {
-            result[type] = {
-                list: [],
-            };
-        }
-        result[type].list.push(pokemon.name);
+
+    // arr.forEach((pokemon) => {
+    //     let type = pokemon.type;
+    //     if (!result[type]) {
+    //         result[type] = {
+    //             list: [],
+    //         };
+    //     }
+    //     result[type].list.push(pokemon.name);
+    // });
+    //*fallback
+    arr.forEach(({ name, status, type }) => {
+        result[type] = result[type] || { list: [] };
+        result[type].list.push(name);
     });
 
     result.strongestPokemon = strongestPokemon;
