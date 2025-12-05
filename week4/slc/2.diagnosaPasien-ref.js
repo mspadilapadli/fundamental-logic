@@ -157,7 +157,7 @@ const cariPenyakit = (pasien, database) => {
 //* 3 one liner reduce()
 const cariObat = (penyakit, database) =>
     penyakit == "ambigu"
-        ? ["tidak ada obat", 0]
+        ? "tidak ada obat"
         : database[penyakit].obat.reduce((obatTermurah, curr) =>
               obatTermurah[1] < curr[1] ? obatTermurah : curr
           );
@@ -181,61 +181,86 @@ const cariHargaKonsultasi = (penyakit, database) =>
 // console.log(cariHargaKonsultasi("antrax", db_penyakit)); // 50000
 // console.log(cariHargaKonsultasi("ambigu", db_penyakit)); // 'tidak perlu dokter'
 //*================================================================================//
-function diagnosaSemuaPasien(list_pasien, database) {
-    // Your code here
-    let result = {};
+// function diagnosaSemuaPasien(list_pasien, database) {
+//     // Your code here
+//     let result = {};
 
-    list_pasien.forEach((pasien) => {
-        let penyakit = cariPenyakit(pasien, database);
+//     list_pasien.forEach((pasien) => {
+//         let penyakit = cariPenyakit(pasien, database);
 
-        let obatPenyakit = cariObat(penyakit, database);
-        let obat = Array.isArray(obatPenyakit)
+//         let obatPenyakit = cariObat(penyakit, database);
+//         let obat = Array.isArray(obatPenyakit)
+//             ? obatPenyakit[0]
+//             : "tidak ada obat";
+//         let [, hargaObat] = obatPenyakit;
+
+//         let biayaKonsultasi = cariHargaKonsultasi(penyakit, database);
+//         let biaya =
+//             typeof biayaKonsultasi == "number"
+//                 ? biayaKonsultasi + hargaObat
+//                 : "tidak ada biaya";
+
+//         if (!result[penyakit]) {
+//             result[penyakit] = [];
+//         }
+//         result[penyakit].push({
+//             nama: pasien.nama,
+//             obat,
+//             biaya,
+//         });
+//     });
+
+//     return result;
+// }
+
+//* 2 reduce()
+
+const diagnosaSemuaPasien = (list_pasien, database) =>
+    list_pasien.reduce((result, { nama, keluhan }) => {
+        const penyakit = cariPenyakit({ nama, keluhan }, database);
+        const obatPenyakit = cariObat(penyakit, database);
+        const obat = Array.isArray(obatPenyakit)
             ? obatPenyakit[0]
             : "tidak ada obat";
-        let [, hargaObat] = obatPenyakit;
-
-        let biayaKonsultasi = cariHargaKonsultasi(penyakit, database);
+        const hargaObat = Array.isArray(obatPenyakit) ? obatPenyakit[1] : 0;
+        const biayaKonsultasi = cariHargaKonsultasi(penyakit, database);
         let biaya =
             typeof biayaKonsultasi == "number"
                 ? biayaKonsultasi + hargaObat
                 : "tidak ada biaya";
 
-        if (!result[penyakit]) {
-            result[penyakit] = [];
-        }
+        result[penyakit] = result[penyakit] || [];
         result[penyakit].push({
-            nama: pasien.nama,
+            nama,
             obat,
             biaya,
         });
-    });
+        return result;
+    }, {});
 
-    return result;
-}
-
-// console.log(
-//     diagnosaSemuaPasien(
-//         [
-//             {
-//                 nama: "heri wahyudianto",
-//                 keluhan: ["mata berair", "berkunang kunang"],
-//             },
-//             {
-//                 nama: "joker",
-//                 keluhan: ["nyeri otot", "lemas", "mual", "batuk kering"],
-//             },
-//             {
-//                 nama: "thanos",
-//                 keluhan: ["sulit bernafas", "lemas", "demam", "batuk darah"],
-//             },
-//             {
-//                 nama: "bad boy",
-//                 keluhan: ["cairan di paru-paru", "sakit bagian abdominal"],
-//             },
-//         ],
-//         db_penyakit
-//     )
-// );
+console.log(
+    diagnosaSemuaPasien(
+        [
+            {
+                nama: "heri wahyudianto",
+                keluhan: ["mata berair", "berkunang kunang"],
+            },
+            {
+                nama: "joker",
+                keluhan: ["nyeri otot", "lemas", "mual", "batuk kering"],
+            },
+            {
+                nama: "thanos",
+                keluhan: ["sulit bernafas", "lemas", "demam", "batuk darah"],
+            },
+            {
+                nama: "bad boy",
+                keluhan: ["cairan di paru-paru", "sakit bagian abdominal"],
+            },
+        ],
+        db_penyakit
+    )
+);
 
 /*
 {
@@ -254,37 +279,37 @@ function diagnosaSemuaPasien(list_pasien, database) {
 }
 */
 
-// console.log(
-//     diagnosaSemuaPasien(
-//         [
-//             {
-//                 nama: "andi",
-//                 keluhan: ["batuk kering", "demam", "batuk darah"],
-//             },
-//             {
-//                 nama: "budi",
-//                 keluhan: [
-//                     "tidak nyaman di dada",
-//                     "lemas",
-//                     "nyeri saat menelan",
-//                 ],
-//             },
-//             {
-//                 nama: "charlie",
-//                 keluhan: ["lemas", "demam"],
-//             },
-//             {
-//                 nama: "delta",
-//                 keluhan: ["Sakit tenggorokan", "tidak nyaman di dada", "ngilu"],
-//             },
-//             {
-//                 nama: "echo",
-//                 keluhan: ["tidak enak badan", "nyeri otot", "sulit bernafas"],
-//             },
-//         ],
-//         db_penyakit
-//     )
-// );
+console.log(
+    diagnosaSemuaPasien(
+        [
+            {
+                nama: "andi",
+                keluhan: ["batuk kering", "demam", "batuk darah"],
+            },
+            {
+                nama: "budi",
+                keluhan: [
+                    "tidak nyaman di dada",
+                    "lemas",
+                    "nyeri saat menelan",
+                ],
+            },
+            {
+                nama: "charlie",
+                keluhan: ["lemas", "demam"],
+            },
+            {
+                nama: "delta",
+                keluhan: ["Sakit tenggorokan", "tidak nyaman di dada", "ngilu"],
+            },
+            {
+                nama: "echo",
+                keluhan: ["tidak enak badan", "nyeri otot", "sulit bernafas"],
+            },
+        ],
+        db_penyakit
+    )
+);
 
 /*
 {
