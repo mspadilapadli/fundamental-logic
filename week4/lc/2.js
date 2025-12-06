@@ -105,8 +105,18 @@ function findMovies(favoriteGenre) {
     return foundMovies;
 
     //* filter() - includes()
-    //  return movies.filter((movie) => favoriteGenre.includes(movie.genre));
+    // return movies.filter((movie) => favoriteGenre.includes(movie.genre));
+
+    //* reduce practice
+    // return movies.reduce(
+    //     (foundMovies, movie) =>
+    //         favoriteGenre.includes(movie.genre)
+    //             ? (foundMovies.push(movie),foundMovies)
+    //             : foundMovies,
+    //     []
+    // );
 }
+
 console.log(findMovies(["Action", "Musical"]));
 
 /**
