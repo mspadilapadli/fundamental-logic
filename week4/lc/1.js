@@ -1,17 +1,23 @@
-function highestRating(data) {
-    // Your code here
-    let highestRating;
-    let highestScore = 0;
-    data.forEach((movie) => {
-        let rating = movie.rating;
-        if (rating > highestScore) {
-            highestScore = rating;
-            highestRating = movie;
-        }
-    });
+// function highestRating(data) {
+//     // Your code here
+//     let highestRating;
+//     let highestScore = 0;
+//     data.forEach((movie) => {
+//         let rating = movie.rating;
+//         if (rating > highestScore) {
+//             highestScore = rating;
+//             highestRating = movie;
+//         }
+//     });
 
-    return highestRating;
-}
+//     return highestRating;
+// }
+
+//* reduce() one liner
+const highestRating = (data) =>
+    data.reduce((highestRating, movie) =>
+        highestRating.rating < movie.rating ? movie : highestRating
+    );
 
 let allMovies = [
     {
@@ -76,7 +82,7 @@ let allMovies = [
     },
 ];
 
-console.log(highestRating(allMovies));
+// console.log(highestRating(allMovies));
 /*
 {
   title: 'Parasite',
@@ -86,24 +92,40 @@ console.log(highestRating(allMovies));
 }
 */
 
-function mostRecommended(data) {
-    // Your code here
+// function mostRecommended(data) {
+//     // Your code here
+//     if (!data) return "invalid input";
+//     if (data.length < 3) return "data tidak lengkap";
+//     let result = {};
+//     let bestRating = highestRating(data);
+//     data.forEach((movie) => {
+//         // console.log(movie.genre);
+//         let genre = movie.genre;
+//         if (!result[genre]) {
+//             result[genre] = { title: [] };
+//         }
+//         result[genre].title.push(movie.title);
+//     });
+
+//     result.bestRating = bestRating;
+//     return result;
+// }
+
+//* reduce()
+const mostRecommended = (data) => {
     if (!data) return "invalid input";
     if (data.length < 3) return "data tidak lengkap";
-    let result = {};
-    let bestRating = highestRating(data);
-    data.forEach((movie) => {
-        console.log(movie.genre);
-        let genre = movie.genre;
-        if (!result[genre]) {
-            result[genre] = { title: [] };
-        }
-        result[genre].title.push(movie.title);
-    });
+    const bestRating = highestRating(data);
 
-    result.bestRating = bestRating;
-    return result;
-}
+    return data.reduce(
+        (recommended, { title, genre }) => {
+            recommended[genre] = recommended[genre] || { titles: [] };
+            recommended[genre].titles.push(title);
+            return recommended;
+        },
+        { bestRating }
+    );
+};
 
 console.log(mostRecommended(allMovies));
 /*
