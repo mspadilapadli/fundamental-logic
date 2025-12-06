@@ -258,15 +258,15 @@ function generateRecommendation(user) {
     // Insert your code here
     if (!user) return "Tidak ada user yang diterima";
 
-    let result = [];
-    let hargaTiket = {
+    const result = [];
+    const hargaTiket = {
         Action: 100_000,
         Musical: 80_000,
         Romance: 40_000,
         Horor: 75_000,
     };
 
-    let movieRecommended = findRecommendation(user);
+    const movieRecommended = findRecommendation(user);
     if (movieRecommended.length <= 0)
         return "Tidak ada film yang sesuai kriteria";
     movieRecommended.forEach((movie) => {
@@ -287,13 +287,20 @@ function generateRecommendation(user) {
     //          totalPrice: user.ticket * hargaTiket[movie.genre],
     //      };
     //  });
+    //* one liner map()
+    // return movieRecommended.map((movie) => ({
+    //     id: movie.id,
+    //     name: movie.name,
+    //     genre: movie.genre,
+    //     totalPrice: user.ticket * hargaTiket[movie.genre],
+    // }));
 
     return result;
 }
 let user2 = {
     name: "Kosasih",
     ticket: 10,
-    favoriteGenre: ["Ngasal"],
+    favoriteGenre: ["Action", "Musical"],
 };
 
 let krys = {
@@ -302,6 +309,7 @@ let krys = {
     favoriteGenre: ["Action", "Musical", "Romance", "Horror"],
 };
 
+console.log(generateRecommendation(user2));
 console.log(generateRecommendation(krys));
 
 /**
