@@ -121,7 +121,7 @@ const mostRecommended = (data) => {
         (recommended, { title, genre }) => {
             recommended[genre] = recommended[genre] || { titles: [] };
             recommended[genre].titles.push(title);
-            return recommended;
+            return recommended; //debug
         },
         { bestRating }
     );
