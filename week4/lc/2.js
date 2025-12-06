@@ -173,7 +173,7 @@ console.log(findMovies(["Action", "Musical"]));
 ]
 */
 
-//========================================================//
+//*=====================================================================//
 let user = {
     name: "Kosasih",
     ticket: 10,
@@ -200,7 +200,7 @@ console.log(findTicketAvailability(movie, user)); // true
  *  ticket yang ingin dibeli user berjumlah 10, sedang untuk movie ini masih tersedia 50 ticket yang bisa dijual.
  *  Oleh karena itu hasil yang dikembalikan adalah true
  **/
-//========================================================//
+//*=====================================================================//
 
 function findRecommendation(user) {
     // Insert your code here
@@ -219,6 +219,12 @@ function findRecommendation(user) {
         return reminingTicket;
     });
 }
+
+//*just practice - one liner
+// const findRecommendation = (user) =>
+//     findMovies(user.favoriteGenre).filter((movie) =>
+//         findTicketAvailability(movie, user)
+//     );
 
 console.log(findRecommendation(user));
 /**
@@ -246,7 +252,7 @@ console.log(findRecommendation(user));
   }
 ]
  */
-//========================================================//
+//*=====================================================================//
 
 function generateRecommendation(user) {
     // Insert your code here
@@ -411,5 +417,5 @@ console.log(generateRecommendation()); // Tidak ada user yang diterima
   }
 ]
 */
-//========================================================//
-//========================================================//
+//*=====================================================================//
+//*=====================================================================//
